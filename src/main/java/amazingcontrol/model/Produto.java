@@ -1,4 +1,4 @@
-package br.com.amazingcontrol.model; 
+package amazingcontrol.model;
 
 
 public class Produto {
