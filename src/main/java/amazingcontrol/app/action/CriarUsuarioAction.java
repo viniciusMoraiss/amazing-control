@@ -1,5 +1,7 @@
 package amazingcontrol.app.action;
 
+import static javax.swing.JOptionPane.showMessageDialog;
+
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -28,10 +30,10 @@ public class CriarUsuarioAction implements ActionListener {
 			UsuarioDAO dao = new UsuarioDAO();
 			
 			if(!senha.equals(confirmacaoSenha)){
-				JOptionPane.showMessageDialog(view, "Senha e a confirmação devem serem iguais", "Erro", JOptionPane.ERROR_MESSAGE);
+				showMessageDialog(view, "Confirmação de senha não pode ser diferente da senha", "Erro", JOptionPane.ERROR_MESSAGE);
 			} else {
 				dao.inserir(usuario);
-				JOptionPane.showMessageDialog(view, "Usuario inserido com sucesso", "Informação", JOptionPane.INFORMATION_MESSAGE);
+				showMessageDialog(view, "Usuario inserido com sucesso", "Informação", JOptionPane.INFORMATION_MESSAGE);
 			}
 			
 		}catch(Exception ex) {
