@@ -42,7 +42,6 @@ public class Usuario {
 		this.ativo = ativo;
 	}
 	
-	
 	public String toString() {
 		return "Nome: " + nome + " Ativo: " + ativo;
 	}
