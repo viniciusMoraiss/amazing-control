@@ -5,6 +5,9 @@ import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
 
+import amazingcontrol.app.action.MenuCadastroProdutoAction;
+import amazingcontrol.app.action.MenuCadastroUsuarioAction;
+
 public class MainView extends JFrame {
 
 	public MainView() {
@@ -24,11 +27,15 @@ public class MainView extends JFrame {
 	private JMenuBar createMenu() {
 		JMenuBar menuBar;
 		menuBar = new JMenuBar();
+		
 		// adiciona menu de produtos
 		menuProdutos(menuBar);
 		
-		// adiciona menu de vendass
+		// adiciona menu de vendas
 		menuVendas(menuBar);
+		
+		// adiciona menu de usuarios
+		menuOpcoesUsuario(menuBar);
 
 		return menuBar;
 	}
@@ -39,11 +46,11 @@ public class MainView extends JFrame {
 		menu = new JMenu("Vendas");
 		menuBar.add(menu);
 
-		menuItem = new JMenuItem("Cadastrar de produtos");
-		// menuItem.addActionListener(new MenuClienteAction(this));
+		menuItem = new JMenuItem("Cadastrar de vendas");
+		//menuItem.addActionListener(new MenuCadastroProdutoAction(this));
 		menu.add(menuItem);
 
-		menuItem = new JMenuItem("Consultar estoque");
+		menuItem = new JMenuItem("Consultar vendas");
 		// menuItem.addActionListener(new MenuBairroAction(this));
 		menu.add(menuItem);
 	}
@@ -55,12 +62,30 @@ public class MainView extends JFrame {
 		menuBar.add(menu);
 
 		menuItem = new JMenuItem("Cadastrar de produtos");
-		// menuItem.addActionListener(new MenuClienteAction(this));
+		menuItem.addActionListener(new MenuCadastroProdutoAction(this));
 		menu.add(menuItem);
 
 		menuItem = new JMenuItem("Consultar estoque");
 		// menuItem.addActionListener(new MenuBairroAction(this));
 		menu.add(menuItem);
 	}
+	
+	private void menuOpcoesUsuario(JMenuBar menuBar) {
+		JMenu menu;
+		JMenuItem menuItem;
+		menu = new JMenu("Opcões de Usuario");
+		menuBar.add(menu);
 
+		menuItem = new JMenuItem("Criar novo usuario");
+		menuItem.addActionListener(new MenuCadastroUsuarioAction(this));
+		menu.add(menuItem);
+
+		menuItem = new JMenuItem("Invativar usuario");
+		// menuItem.addActionListener(new MenuBairroAction(this));
+		menu.add(menuItem);
+		
+		menuItem = new JMenuItem("Ativar usuario");
+		// menuItem.addActionListener(new MenuBairroAction(this));
+		menu.add(menuItem);
+	}
 }

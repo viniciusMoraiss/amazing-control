@@ -5,6 +5,16 @@ public class Usuario {
 	private String senha;
 	private String confirmacaoSenha;
 	private boolean ativo;
+	
+	public Usuario() {
+	}
+
+	public Usuario(String nome, String senha, String confirmacaoSenha, boolean ativo) {
+		this.nome = nome;
+		this.senha = senha;
+		this.confirmacaoSenha = confirmacaoSenha;
+		this.ativo = ativo;
+	}
 
 	public String getNome() {
 		return nome;

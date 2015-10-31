@@ -17,17 +17,16 @@ import amazingcontrol.app.action.LoginAction;
 import amazingcontrol.dao.UsuarioDAO;
 import amazingcontrol.model.Usuario;
 
-public class LoginView extends JFrame{
+public class LoginView extends JFrame {
 
 	private JLabel usuarioJLabel;
 	private JLabel senhaJLabel;
 	private JTextField usuarioJTextField;
 	private JTextField senhaJTextField;
 	private JButton okJButton;
-	private JButton fecharJButton;
 
 	public LoginView() {
-		super("[FELIPE] Sistem Logins");
+		super("[A-CONTROL] Login");
 		
 		// inicia componentes
 		initComponents();
@@ -49,7 +48,8 @@ public class LoginView extends JFrame{
 	}
 
 	private void initListeners() {
-		okJButton.addActionListener(new LoginAction(usuarioJTextField, senhaJTextField));
+		// redireciona a acao do botao para classe LoginAction
+		okJButton.addActionListener(new LoginAction(this, usuarioJTextField, senhaJTextField));
 	}
 
 	private void initPanel() {
@@ -72,9 +72,8 @@ public class LoginView extends JFrame{
 
 		// Botões
 		painelBotoes.add(okJButton);
-		painelBotoes.add(fecharJButton);
 
-		// Painel relacionado � janela
+		// Painel relacionado a janela
 		container.add(painelLogin);
 		container.add(painelSenha);
 		container.add(painelBotoes);	
@@ -91,6 +90,5 @@ public class LoginView extends JFrame{
 
 		// Botões
 		okJButton = new JButton("Entrar");
-		fecharJButton = new JButton("Fechar");
 	}
 }
