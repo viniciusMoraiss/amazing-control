@@ -22,6 +22,7 @@ public class CriarUsuarioAction implements ActionListener {
 		// valores digitados pelo usuario
 		String nome = view.getNomeTextField().getText();
 		String senha = new String(view.getSenhaPasswordField().getPassword());
+		// é preciso converter o password para string, pois o getPassword retorna um array de chars
 		String confirmacaoSenha = new String(view.getConfirmacaoSenhaPasswordField().getPassword());
 		boolean ativo = view.getAtivoCheckBox().isSelected();
 		
@@ -35,6 +36,7 @@ public class CriarUsuarioAction implements ActionListener {
 			// mensagem de sucesso
 			showMessageDialog(view, "Usuario inserido com sucesso", "Informação", JOptionPane.INFORMATION_MESSAGE);
 			
+			// chama o metodo privado para limpar os campos
 			limpaCampos();
 			
 			
@@ -45,7 +47,8 @@ public class CriarUsuarioAction implements ActionListener {
 		}
 	}
 	
-	private void limpaCampos(){
+	// Metodo para limpar os campos
+	private void limpaCampos() {
 		view.getNomeTextField().setText("");
 		view.getSenhaPasswordField().setText("");
 		view.getConfirmacaoSenhaPasswordField().setText("");

@@ -83,7 +83,7 @@ public class UsuarioDAO {
 	 * metodo que atualiza usuario
 	 */
 	public void atualizar(Usuario usuario) {
-		// TODO Auto-generated method stub
+		// TODO implementar metodos
 		
 	}
 }

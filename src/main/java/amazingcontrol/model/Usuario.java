@@ -2,23 +2,36 @@ package amazingcontrol.model;
 
 import amazingcontrol.app.model.Entidate;
 
+/*
+ * Classe usuario
+ * herda o id da classe Entidade<PK>, onde informa que seu id é do tipo integer pelo generics
+ */
 public class Usuario extends Entidate<Integer> {
 
 	private String nome;
 	private String senha;
 	private String confirmacaoSenha;
 	private boolean ativo;
-
+	
+	/*
+	 * construtor vazio
+	 */
 	public Usuario() {
 	}
-
+	
+	/*
+	 * Construtor com todas as variaveis
+	 */
 	public Usuario(String nome, String senha, String confirmacaoSenha, boolean ativo) throws Exception {
 		this.nome = nome;
 		this.senha = senha;
 		setConfirmacaoSenha(confirmacaoSenha);
 		this.ativo = ativo;
 	}
-
+	
+	/*
+	 * Getters and Setters 
+	 */
 	public String getNome() {
 		return nome;
 	}
@@ -38,7 +51,8 @@ public class Usuario extends Entidate<Integer> {
 	public String getConfirmacaoSenha() {
 		return confirmacaoSenha;
 	}
-
+	
+	// verifica se a confirmacao de senha é igual a senha, caso contrario lança uma excessao
 	public void setConfirmacaoSenha(String confirmacaoSenha) throws Exception {
 		// valida se a confirmacao de senha é a mesma senha digitada
 		if (!confirmacaoSenha.equals(senha)) {
@@ -60,7 +74,9 @@ public class Usuario extends Entidate<Integer> {
 		return "Nome: " + nome + " Ativo: " + ativo;
 	}
 
-	// Validacoes
+	/*
+	 * Validacoes
+	 */
 	private void valida(String campo, String nomeCampo) throws Exception {
 
 		// Nome nulo
@@ -79,14 +95,12 @@ public class Usuario extends Entidate<Integer> {
 		}
 
 		// FIXME Validar REGEX para invalidos!
-
 	}
 	
 	public void validaNome() throws Exception {
 		valida(nome, "Nome");
 	}
 
-	// Validacoes
 	public void validaSenha() throws Exception {
 		valida(senha, "Senha");
 		

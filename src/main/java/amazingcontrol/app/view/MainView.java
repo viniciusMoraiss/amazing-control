@@ -12,7 +12,6 @@ public class MainView extends JFrame {
 
 	public MainView() {
 		super("[A-CONTROL] Controle de estoque");
-
 		initComponents();
 
 		setSize(750, 500);
@@ -80,12 +79,12 @@ public class MainView extends JFrame {
 		menuItem.addActionListener(new MenuCadastroUsuarioAction(this));
 		menu.add(menuItem);
 
-		menuItem = new JMenuItem("Invativar usuario");
-		// menuItem.addActionListener(new MenuBairroAction(this));
+		menuItem = new JMenuItem("Inativar usuario");
+		// menuItem.addActionListener(new MenuCadastroUsuarioAction(this));
 		menu.add(menuItem);
 		
 		menuItem = new JMenuItem("Ativar usuario");
-		// menuItem.addActionListener(new MenuBairroAction(this));
+		// menuItem.addActionListener(new MenuCadastroUsuarioAction(this));
 		menu.add(menuItem);
 	}
 }

@@ -46,13 +46,12 @@ public class CadastroUsuarioView extends JDialog {
 		setSize(630, 320);
 		setResizable(false);
 		setLocationRelativeTo(mainView);
-		//setDefaultCloseOperation(DO_NOTHING_ON_CLOSE);
+		// setDefaultCloseOperation(DO_NOTHING_ON_CLOSE);
 		setModalityType(ModalityType.DOCUMENT_MODAL);
-		//setAlwaysOnTop(true);
-		//pack();
+		// setAlwaysOnTop(true);
+		// pack();
 		setModal(true);
 	}
-	
 
 	/*
 	 * getters and setters
@@ -136,13 +135,12 @@ public class CadastroUsuarioView extends JDialog {
 	public void setBotaoCancelar(JButton botaoCancelar) {
 		this.botaoCancelar = botaoCancelar;
 	}
-	
-	
+
 	/*
-	 *  metodos para contruir a tela
+	 * Ira instanciar os objetos labels e TextFields
 	 */
 	private void initComponents() {
-	
+
 		// label e input para nome
 		nomeLabel = new JLabel("Nome: ");
 		nomeTextField = new JTextField(20);
@@ -157,78 +155,78 @@ public class CadastroUsuarioView extends JDialog {
 		confirmacaoSenhaLabel = new JLabel("Confirmação de senha: ");
 		confirmacaoSenhaPasswordField = new JPasswordField(20);
 		CustomizeView.labelsAndInputs(confirmacaoSenhaLabel, confirmacaoSenhaPasswordField);
-		
+
 		ativoLabel = new JLabel("Ativo?: ");
 		ativoCheckBox = new JCheckBox();
 		ativoLabel.setFont(new Font(Font.SANS_SERIF, Font.CENTER_BASELINE, 14));
-		
+
 		botaoCriarUsuario = new JButton("Criar usuario");
 		botaoCancelar = new JButton("Cancelar");
 	}
 	
-
-
+	/*
+	 * Montara painel posicionando os Labels e TextFields
+	 */
 	private void initPainel() {
 		JPanel painel = new JPanel(new GridBagLayout());
-		
-        GridBagConstraints constraints = new GridBagConstraints();
-        constraints.anchor = GridBagConstraints.WEST;
-        constraints.insets = new Insets(10, 10, 10, 10);
-        
-        // posiciona label nome
-        constraints.gridx = 0; // coluna
-        constraints.gridy = 0; // linha    
-        painel.add(nomeLabel, constraints);
-        
-        // posicona input nome
-        constraints.gridx = 1;
-        painel.add(nomeTextField, constraints);
-        
-        // posiciona label senha
-        constraints.gridx = 0;
-        constraints.gridy = 1; // linha
-        painel.add(senhaLabel, constraints);
-        
-        // posicona input senha
-        constraints.gridx = 1;
-        painel.add(senhaPasswordField, constraints);
-        
-        // posiciona label confirmacao de senha
-        constraints.gridx = 0;
-        constraints.gridy = 2; // linha
-        painel.add(confirmacaoSenhaLabel, constraints);
-        
-        // posicona input confirmacao senha
-        constraints.gridx = 1;
-        painel.add(confirmacaoSenhaPasswordField, constraints);
-        
-        // posiciona label ativo
-        constraints.gridx = 0;
-        constraints.gridy = 4;     
-        painel.add(ativoLabel, constraints);
-        
-        // posicona checkbox ativo
-        constraints.gridx = 1;
-        painel.add(ativoCheckBox, constraints);
-        
-        // botao criar usuario
-        constraints.gridx = 0;
-        constraints.gridy = 5;
-        constraints.anchor = GridBagConstraints.CENTER;
+
+		GridBagConstraints constraints = new GridBagConstraints();
+		constraints.anchor = GridBagConstraints.WEST;
+		constraints.insets = new Insets(10, 10, 10, 10);
+
+		// posiciona label nome
+		constraints.gridx = 0; // coluna
+		constraints.gridy = 0; // linha
+		painel.add(nomeLabel, constraints);
+
+		// posicona input nome
+		constraints.gridx = 1;
+		painel.add(nomeTextField, constraints);
+
+		// posiciona label senha
+		constraints.gridx = 0;
+		constraints.gridy = 1; // linha
+		painel.add(senhaLabel, constraints);
+
+		// posicona input senha
+		constraints.gridx = 1;
+		painel.add(senhaPasswordField, constraints);
+
+		// posiciona label confirmacao de senha
+		constraints.gridx = 0;
+		constraints.gridy = 2; // linha
+		painel.add(confirmacaoSenhaLabel, constraints);
+
+		// posicona input confirmacao senha
+		constraints.gridx = 1;
+		painel.add(confirmacaoSenhaPasswordField, constraints);
+
+		// posiciona label ativo
+		constraints.gridx = 0;
+		constraints.gridy = 4;
+		painel.add(ativoLabel, constraints);
+
+		// posicona checkbox ativo
+		constraints.gridx = 1;
+		painel.add(ativoCheckBox, constraints);
+
+		// botao criar usuario
+		constraints.gridx = 0;
+		constraints.gridy = 5;
+		constraints.anchor = GridBagConstraints.CENTER;
 		painel.add(botaoCriarUsuario, constraints);
-        
+
 		// botao cancelar
-        constraints.gridx = 1;
-        constraints.anchor = GridBagConstraints.SOUTH;
+		constraints.gridx = 1;
+		constraints.anchor = GridBagConstraints.SOUTH;
 		painel.add(botaoCancelar, constraints);
-        
+
 		// configura borda
-        painel.setBorder(BorderFactory.createTitledBorder(
-                BorderFactory.createEtchedBorder(), "Login Panel"));
-        
+		painel.setBorder(BorderFactory.createTitledBorder(BorderFactory.createEtchedBorder(), "Login Panel"));
+
 		add(painel);
 	}
-	
+
 	/*
 	 * Chama a responsabilidade de ação do botao para outra classe
 	 */
