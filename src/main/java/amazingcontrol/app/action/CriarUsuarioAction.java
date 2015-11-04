@@ -7,8 +7,8 @@ import java.awt.event.ActionListener;
 
 import javax.swing.JOptionPane;
 
+import amazingcontrol.app.service.UsuarioService;
 import amazingcontrol.app.view.CadastroUsuarioView;
-import amazingcontrol.dao.UsuarioDAO;
 import amazingcontrol.model.Usuario;
 
 public class CriarUsuarioAction implements ActionListener {
@@ -19,25 +19,36 @@ public class CriarUsuarioAction implements ActionListener {
 	}
 
 	public void actionPerformed(ActionEvent e) {
+		// valores digitados pelo usuario
 		String nome = view.getNomeTextField().getText();
 		String senha = new String(view.getSenhaPasswordField().getPassword());
 		String confirmacaoSenha = new String(view.getConfirmacaoSenhaPasswordField().getPassword());
 		boolean ativo = view.getAtivoCheckBox().isSelected();
 		
-		Usuario usuario = new Usuario(nome, senha, confirmacaoSenha, ativo);
-		
 		try {
-			UsuarioDAO dao = new UsuarioDAO();
+			// cria objeto usuario com os valores digitados na tela
+			Usuario usuario = new Usuario(nome, senha, confirmacaoSenha, ativo);
 			
-			if(!senha.equals(confirmacaoSenha)){
-				showMessageDialog(view, "Confirmação de senha não pode ser diferente da senha", "Erro", JOptionPane.ERROR_MESSAGE);
-			} else {
-				dao.inserir(usuario);
-				showMessageDialog(view, "Usuario inserido com sucesso", "Informação", JOptionPane.INFORMATION_MESSAGE);
-			}
+			// insere usuario se nao houver nenhum erro
+			new UsuarioService().salvar(usuario);
 			
-		}catch(Exception ex) {
+			// mensagem de sucesso
+			showMessageDialog(view, "Usuario inserido com sucesso", "Informação", JOptionPane.INFORMATION_MESSAGE);
+			
+			limpaCampos();
+			
+			
+		} catch (Exception ex) {
 			ex.printStackTrace();
+			// imprime os erros se houver
+			showMessageDialog(view, ex.getMessage(), "Erro", JOptionPane.ERROR_MESSAGE);
 		}
+	}
+	
+	private void limpaCampos(){
+		view.getNomeTextField().setText("");
+		view.getSenhaPasswordField().setText("");
+		view.getConfirmacaoSenhaPasswordField().setText("");
+		view.getAtivoCheckBox().setSelected(false);
 	}
 }
