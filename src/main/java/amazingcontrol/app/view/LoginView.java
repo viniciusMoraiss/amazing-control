@@ -1,28 +1,25 @@
 package amazingcontrol.app.view;
 
-import java.awt.Container;
-import java.awt.FlowLayout;
-import java.awt.GridLayout;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
+import java.awt.GridBagConstraints;
+import java.awt.GridBagLayout;
+import java.awt.Insets;
 
+import javax.swing.BorderFactory;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
-import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 
 import amazingcontrol.app.action.LoginAction;
-import amazingcontrol.dao.UsuarioDAO;
-import amazingcontrol.model.Usuario;
 
 public class LoginView extends JFrame {
 
 	private JLabel usuarioJLabel;
 	private JLabel senhaJLabel;
 	private JTextField usuarioJTextField;
-	private JTextField senhaJTextField;
+	private JPasswordField senhaJPasswordField;
 	private JButton okJButton;
 
 	public LoginView() {
@@ -38,7 +35,8 @@ public class LoginView extends JFrame {
 		initListeners();
 
 		// Configurar a janela
-		setSize(300, 100);
+		setSize(630, 320);
+		setResizable(false);
 		
 		// Centro da tela
 		setLocationRelativeTo(null); 
@@ -47,48 +45,66 @@ public class LoginView extends JFrame {
 		setDefaultCloseOperation(EXIT_ON_CLOSE);
 	}
 
-	private void initListeners() {
-		// redireciona a acao do botao para classe LoginAction
-		okJButton.addActionListener(new LoginAction(this, usuarioJTextField, senhaJTextField));
-	}
-
 	private void initPanel() {
 		// Layout
-		Container container = getContentPane();
-		container.setLayout(new FlowLayout());
+		JPanel painel = new JPanel(new GridBagLayout());
+			
+        GridBagConstraints constraints = new GridBagConstraints();
+        constraints.anchor = GridBagConstraints.WEST;
+        constraints.insets = new Insets(10, 10, 10, 10);
+        
+        // Usuario
+        // posiciona label nome
+        constraints.gridx = 0; // coluna
+        constraints.gridy = 0; // linha    
+        painel.add(usuarioJLabel, constraints);
+        
+        // posicona input nome
+        constraints.gridx = 1;
+        painel.add(usuarioJTextField, constraints);
+        
+        // Senha
+        // posiciona label senha
+        constraints.gridx = 0; // coluna
+        constraints.gridy = 1; // linha    
+        painel.add(senhaJLabel, constraints);
+        
+        // posicona input senha
+        constraints.gridx = 1;
+        painel.add(senhaJPasswordField, constraints);
 		
-		// Paineis
-		JPanel painelLogin = new JPanel(new GridLayout(1, 2));
-		JPanel painelSenha = new JPanel(new GridLayout(1, 2));
-		JPanel painelBotoes = new JPanel(new FlowLayout());
+        
+        // botao criar usuario
+        constraints.gridx = 0;
+        constraints.gridy = 2;
+        constraints.anchor = GridBagConstraints.CENTER;
+		painel.add(okJButton, constraints);
 		
-		// Usuario
-		painelLogin.add(usuarioJLabel);
-		painelLogin.add(usuarioJTextField);
-
-		// Senha
-		painelSenha.add(senhaJLabel);
-		painelSenha.add(senhaJTextField);
-
-		// Botões
-		painelBotoes.add(okJButton);
-
-		// Painel relacionado a janela
-		container.add(painelLogin);
-		container.add(painelSenha);
-		container.add(painelBotoes);	
+		// configura borda
+        painel.setBorder(BorderFactory.createTitledBorder(
+                BorderFactory.createEtchedBorder(), "Login"));
+        
+		add(painel);
 	}
 
 	private void initComponents() {
 		// Usuario
 		usuarioJLabel = new JLabel("Usuario");
 		usuarioJTextField = new JTextField(10);
+		CustomizeView.labelsAndInputs(usuarioJLabel, usuarioJTextField);
 		
 		// Senha
 		senhaJLabel = new JLabel("Senha");
-		senhaJTextField = new JTextField(10);
+		senhaJPasswordField = new JPasswordField(10);
+		CustomizeView.labelsAndInputs(senhaJLabel, senhaJPasswordField);
 
 		// Botões
 		okJButton = new JButton("Entrar");
 	}
+	
+	private void initListeners() {
+		// redireciona a acao do botao para classe LoginAction
+		okJButton.addActionListener(new LoginAction(this, usuarioJTextField, senhaJPasswordField));
+	}
+
 }
