@@ -180,7 +180,7 @@ public class CadastroUsuarioView extends JDialog {
 		painel.add(nomeLabel, constraints);
 
 		// posicona input nome
-		constraints.gridx = 1;
+		constraints.gridx = 1; //coluna
 		painel.add(nomeTextField, constraints);
 
 		// posiciona label senha

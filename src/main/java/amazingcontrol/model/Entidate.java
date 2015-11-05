@@ -1,8 +1,8 @@
-package amazingcontrol.app.model;
+package amazingcontrol.model;
 
 public class Entidate<PK> {
 	
-	private PK id; // Tipo gen�rico.
+	private PK id; // Tipo generico.
 
 
 	public PK getId() {

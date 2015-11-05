@@ -1,7 +1,5 @@
 package amazingcontrol.model;
 
-import amazingcontrol.app.model.Entidate;
-
 /*
  * Classe usuario
  * herda o id da classe Entidade<PK>, onde informa que seu id é do tipo integer pelo generics
