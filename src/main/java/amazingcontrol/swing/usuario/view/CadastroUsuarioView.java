@@ -1,4 +1,4 @@
-package amazingcontrol.app.view;
+package amazingcontrol.swing.usuario.view;
 
 import java.awt.Font;
 import java.awt.GridBagConstraints;
@@ -15,8 +15,9 @@ import javax.swing.JPanel;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 
-import amazingcontrol.app.action.CriarUsuarioAction;
-import amazingcontrol.app.action.WindowCancelarAction;
+import amazingcontrol.swing.usuario.action.CriarUsuarioAction;
+import amazingcontrol.swing.view.utils.CustomizeView;
+import amazingcontrol.swing.view.utils.WindowCancelarAction;
 
 public class CadastroUsuarioView extends JDialog {
 

@@ -1,4 +1,4 @@
-package amazingcontrol.app.view;
+package amazingcontrol.swing.produto.view;
 
 import javax.swing.JDialog;
 import javax.swing.JFrame;

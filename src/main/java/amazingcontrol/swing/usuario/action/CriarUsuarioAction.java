@@ -1,4 +1,4 @@
-package amazingcontrol.app.action;
+package amazingcontrol.swing.usuario.action;
 
 import static javax.swing.JOptionPane.showMessageDialog;
 
@@ -7,9 +7,9 @@ import java.awt.event.ActionListener;
 
 import javax.swing.JOptionPane;
 
-import amazingcontrol.app.view.CadastroUsuarioView;
 import amazingcontrol.model.Usuario;
 import amazingcontrol.service.UsuarioService;
+import amazingcontrol.swing.usuario.view.CadastroUsuarioView;
 
 public class CriarUsuarioAction implements ActionListener {
 	private CadastroUsuarioView view;

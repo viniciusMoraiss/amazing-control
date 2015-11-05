@@ -1,4 +1,4 @@
-package amazingcontrol.app.action;
+package amazingcontrol.swing.usuario.action;
 
 import static javax.swing.JOptionPane.showMessageDialog;
 
@@ -9,10 +9,10 @@ import javax.swing.JFrame;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 
-import amazingcontrol.app.view.LoginView;
-import amazingcontrol.app.view.MainView;
 import amazingcontrol.dao.UsuarioDAO;
 import amazingcontrol.model.Usuario;
+import amazingcontrol.swing.principal.view.MainView;
+import amazingcontrol.swing.usuario.view.LoginView;
 
 public class LoginAction implements ActionListener {
 	private JTextField usuarioJTextField;

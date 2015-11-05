@@ -1,4 +1,4 @@
-package amazingcontrol.app.view;
+package amazingcontrol.swing.view.utils;
 
 import java.awt.Dimension;
 import java.awt.Font;

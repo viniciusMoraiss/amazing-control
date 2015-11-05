@@ -1,4 +1,4 @@
-package amazingcontrol.app.view;
+package amazingcontrol.swing.usuario.view;
 
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
@@ -12,7 +12,8 @@ import javax.swing.JPanel;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 
-import amazingcontrol.app.action.LoginAction;
+import amazingcontrol.swing.usuario.action.LoginAction;
+import amazingcontrol.swing.view.utils.CustomizeView;
 
 public class LoginView extends JFrame {
 

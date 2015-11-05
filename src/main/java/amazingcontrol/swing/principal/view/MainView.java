@@ -1,12 +1,13 @@
-package amazingcontrol.app.view;
+package amazingcontrol.swing.principal.view;
 
 import javax.swing.JFrame;
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
 
-import amazingcontrol.app.action.MenuCadastroProdutoAction;
-import amazingcontrol.app.action.MenuCadastroUsuarioAction;
+import amazingcontrol.swing.produto.action.MenuCadastroProdutoAction;
+import amazingcontrol.swing.usuario.action.CadastroUsuarioAction;
+import amazingcontrol.swing.usuario.action.UsuarioAction;
 
 public class MainView extends JFrame {
 
@@ -76,11 +77,11 @@ public class MainView extends JFrame {
 		menuBar.add(menu);
 
 		menuItem = new JMenuItem("Criar novo usuario");
-		menuItem.addActionListener(new MenuCadastroUsuarioAction(this));
+		menuItem.addActionListener(new CadastroUsuarioAction(this));
 		menu.add(menuItem);
 
-		menuItem = new JMenuItem("Inativar usuario");
-		// menuItem.addActionListener(new MenuCadastroUsuarioAction(this));
+		menuItem = new JMenuItem("usuarios");
+		menuItem.addActionListener(new UsuarioAction(this));
 		menu.add(menuItem);
 		
 		menuItem = new JMenuItem("Ativar usuario");

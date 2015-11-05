@@ -4,6 +4,8 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 
 import amazingcontrol.connection.ConexaoMySQL;
 import amazingcontrol.model.Usuario;
@@ -80,10 +82,45 @@ public class UsuarioDAO {
 	}
 	
 	/*
+	 * metodo que retorna lista com usuario cadastrados
+	 */
+	public List<Usuario> listaUsuarios() {
+		List<Usuario> usuarios = new ArrayList<>();
+		String sql = "SELECT * FROM usuarios";
+
+		PreparedStatement stmt = null;
+		ResultSet rs = null;
+
+		try {
+			stmt = con.prepareStatement(sql);
+
+			// executa a consulta sql
+			rs = stmt.executeQuery();
+
+			Usuario usuario;
+			
+			while (rs.next()) {
+				// cria um objeto usuario com id, nome e ativo
+				usuario = new Usuario();
+				usuario.setId(rs.getInt("id"));
+				usuario.setNome(rs.getString("nome"));
+				usuario.setAtivo(rs.getBoolean("ativo"));
+				
+				// adiciona usuario na lista
+				usuarios.add(usuario);
+				return usuarios;
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return usuarios;
+	}
+	
+	/*
 	 * metodo que atualiza usuario
 	 */
 	public void atualizar(Usuario usuario) {
-		// TODO implementar metodos
+		// TODO implementar metodo de atualizar um usuario
 		
 	}
 }

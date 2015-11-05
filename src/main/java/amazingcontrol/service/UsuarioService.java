@@ -1,6 +1,7 @@
-package amazingcontrol.app.service;
+package amazingcontrol.service;
 
 import java.sql.SQLException;
+import java.util.List;
 
 import amazingcontrol.dao.UsuarioDAO;
 import amazingcontrol.model.Usuario;
@@ -25,6 +26,13 @@ public class UsuarioService {
 	private void validar(Usuario usuario) throws Exception {
 		usuario.validaNome();
 		usuario.validaSenha();
+	}
+	
+	/*
+	 * metodo para carregar lista de usuarios
+	 */
+	public List<Usuario> listar() {
+		return dao.listaUsuarios();
 	}
 	
 	/*
