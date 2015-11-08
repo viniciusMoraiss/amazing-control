@@ -4,7 +4,7 @@ public class Fornecedor extends Entidate<Integer> {
 
 	private String nome;
 	private int telefone;
-	private String endereço;
+	private String endereco;
 	private String cidade;
 	private int cep;
 	private String uf;
@@ -25,12 +25,12 @@ public class Fornecedor extends Entidate<Integer> {
 		this.telefone = telefone;
 	}
 
-	public String getEndereço() {
-		return endereço;
+	public String getEndereco() {
+		return endereco;
 	}
 
 	public void setEndereço(String endereço) {
-		this.endereço = endereço;
+		this.endereco = endereço;
 	}
 
 	public String getCidade() {

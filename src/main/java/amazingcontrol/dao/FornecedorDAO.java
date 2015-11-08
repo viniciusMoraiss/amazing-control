@@ -25,7 +25,7 @@ public class FornecedorDAO {
 			stmt = con.prepareStatement(sql);
 			stmt.setString(1, fornecedor.getNome());
 			stmt.setInt(2, fornecedor.getTelefone());
-			stmt.setString(3, fornecedor.getEndereço());
+			stmt.setString(3, fornecedor.getEndereco());
 			stmt.setString(4, fornecedor.getCidade());
 			stmt.setInt(5, fornecedor.getCep());
 			stmt.setString(6, fornecedor.getUf());
@@ -54,7 +54,7 @@ public class FornecedorDAO {
 			stmt = con.prepareStatement(sql);
 			stmt.setString(1, fornecedor.getNome());
 			stmt.setInt(2, fornecedor.getTelefone());
-			stmt.setString(3, fornecedor.getEndereço());
+			stmt.setString(3, fornecedor.getEndereco());
 			stmt.setString(4, fornecedor.getCidade());
 			stmt.setInt(5, fornecedor.getCep());
 			stmt.setString(6, fornecedor.getUf());
