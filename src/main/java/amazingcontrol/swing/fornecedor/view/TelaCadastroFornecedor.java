@@ -1,6 +1,5 @@
 package amazingcontrol.swing.fornecedor.view;
 
-import java.awt.Component;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.Insets;
@@ -17,7 +16,7 @@ import javax.swing.text.MaskFormatter;
 
 import amazingcontrol.swing.view.utils.CustomizeView;
 
-public class TelacadastroFornecedor extends JFrame {
+public class TelaCadastroFornecedor extends JFrame {
 
 	private JLabel nomeLabel;
 	private JTextField nomeText;
@@ -34,14 +33,14 @@ public class TelacadastroFornecedor extends JFrame {
 	private JButton cadastrarBt;
 	private JButton cancelarBt;
 
-	public TelacadastroFornecedor() {
+	public TelaCadastroFornecedor() {
 		super();
 
 		initComponents();
 		initPainel();
 
 		setTitle(("[A-CONTROL] Fornecedor"));
-		setSize(630, 370);
+		setSize(630, 470);
 		setResizable(false);
 		setVisible(true);
 		setLocationRelativeTo(null);
@@ -175,5 +174,4 @@ public class TelacadastroFornecedor extends JFrame {
 		add(painel);
 
 	}
-
 }
