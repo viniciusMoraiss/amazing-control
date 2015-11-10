@@ -79,7 +79,7 @@ public class FornecedorDAO {
 				fornecedor.setId(rs.getInt("id"));
 				fornecedor.setNome(rs.getString("nome"));
 				fornecedor.setTelefone(rs.getInt("telefone"));
-				fornecedor.setEndereço(rs.getString("endereço"));
+				fornecedor.setEndereco(rs.getString("endereço"));
 				fornecedor.setCidade(rs.getString("cidade"));
 				fornecedor.setCep(rs.getInt("cep"));
 				fornecedor.setUf(rs.getString("uf"));
