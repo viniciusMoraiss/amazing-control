@@ -29,8 +29,8 @@ public class Fornecedor extends Entidate<Integer> {
 		return endereco;
 	}
 
-	public void setEndereço(String endereço) {
-		this.endereco = endereço;
+	public void setEndereco(String endereco) {
+		this.endereco = endereco;
 	}
 
 	public String getCidade() {
