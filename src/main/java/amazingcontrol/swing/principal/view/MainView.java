@@ -6,7 +6,7 @@ import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
 
 import amazingcontrol.swing.produto.action.MenuCadastroProdutoAction;
-import amazingcontrol.swing.usuario.action.CadastroUsuarioAction;
+import amazingcontrol.swing.usuario.action.UsuarioAction;
 
 public class MainView extends JFrame {
 
@@ -75,12 +75,8 @@ public class MainView extends JFrame {
 		menu = new JMenu("Opcões de Usuario");
 		menuBar.add(menu);
 
-		menuItem = new JMenuItem("Criar novo usuario");
-		menuItem.addActionListener(new CadastroUsuarioAction(this));
-		menu.add(menuItem);
-
 		menuItem = new JMenuItem("usuarios");
-		//menuItem.addActionListener(new UsuarioAction(this));
+		menuItem.addActionListener(new UsuarioAction(this));
 		menu.add(menuItem);
 		
 		menuItem = new JMenuItem("Ativar usuario");

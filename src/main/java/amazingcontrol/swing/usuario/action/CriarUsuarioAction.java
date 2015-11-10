@@ -39,7 +39,6 @@ public class CriarUsuarioAction implements ActionListener {
 			// chama o metodo privado para limpar os campos
 			limpaCampos();
 			
-			
 		} catch (Exception ex) {
 			ex.printStackTrace();
 			// imprime os erros se houver

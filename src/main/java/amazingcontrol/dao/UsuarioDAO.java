@@ -108,8 +108,8 @@ public class UsuarioDAO {
 				
 				// adiciona usuario na lista
 				usuarios.add(usuario);
-				return usuarios;
 			}
+			return usuarios;
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

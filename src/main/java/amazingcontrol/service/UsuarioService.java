@@ -11,21 +11,13 @@ import amazingcontrol.model.Usuario;
  * Resposavel por centralizar as logicas referente ao modelo Usuario
  */
 public class UsuarioService {
-	UsuarioDAO dao;
+	private UsuarioDAO dao;
 	
 	/*
 	 * Cria acesso ao metodos do banco já no construtor
 	 */
 	public UsuarioService() throws SQLException {
 		dao = new UsuarioDAO();
-	}
-	
-	/*
-	 * metodo privado para chamar os metodos de validacoes do usuario
-	 */
-	private void validar(Usuario usuario) throws Exception {
-		usuario.validaNome();
-		usuario.validaSenha();
 	}
 	
 	/*
@@ -50,6 +42,18 @@ public class UsuarioService {
 		} else {
 			dao.atualizar(usuario);
 		}
+	}
+	
+	public Usuario getUsuario(String nome, String senha) {
+		return dao.getUsuario(nome, senha);
+	}
+	
+	/*
+	 * metodo privado para chamar os metodos de validacoes do usuario
+	 */
+	private void validar(Usuario usuario) throws Exception {
+		usuario.validaNome();
+		usuario.validaSenha();
 	}
 	
 }

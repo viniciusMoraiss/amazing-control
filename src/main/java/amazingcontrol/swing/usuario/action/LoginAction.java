@@ -11,6 +11,7 @@ import javax.swing.JTextField;
 
 import amazingcontrol.dao.UsuarioDAO;
 import amazingcontrol.model.Usuario;
+import amazingcontrol.service.UsuarioService;
 import amazingcontrol.swing.principal.view.MainView;
 import amazingcontrol.swing.usuario.view.LoginView;
 
@@ -32,7 +33,7 @@ public class LoginAction implements ActionListener {
 		
 		try {
 			// busca usuario no banco com os dados digitados pelo usuario
-			Usuario usuario = new UsuarioDAO().getUsuario(nome, senha);
+			Usuario usuario = new UsuarioService().getUsuario(nome, senha);
 
 			// verifica se existe usuario e ele está ativo
 			if (usuario != null && usuario.isAtivo()) {
