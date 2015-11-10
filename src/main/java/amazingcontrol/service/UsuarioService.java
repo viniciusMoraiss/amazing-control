@@ -24,7 +24,7 @@ public class UsuarioService {
 	 * metodo para carregar lista de usuarios
 	 */
 	public List<Usuario> listar() {
-		return dao.listaUsuarios();
+		return dao.lista();
 	}
 	
 	/*

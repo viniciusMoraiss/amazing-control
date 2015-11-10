@@ -46,7 +46,7 @@ public class UsuarioDAO implements Crud<Usuario> {
 	 */
 	public void atualizar(Usuario usuario) {
 		Connection con = ConexaoMySQL.conectar();
-		String sql = "UPDATE INTO fornecedor (nome, senha, confirmacaoSenha, ativo) VALUES (?,?,?,?)";
+		String sql = "UPDATE INTO usuarios (nome, senha, confirmacaoSenha, ativo) VALUES (?,?,?,?)";
 		PreparedStatement stmt = null;
 
 		try {
