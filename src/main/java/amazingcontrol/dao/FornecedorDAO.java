@@ -3,24 +3,19 @@ package amazingcontrol.dao;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
-import java.sql.SQLException;
 import java.util.List;
 import java.util.ArrayList;
 
 import amazingcontrol.connection.ConexaoMySQL;
 import amazingcontrol.model.Fornecedor;
-import amazingcontrol.model.Usuario;
 
 public class FornecedorDAO {
-	private Connection con;
-
-	public FornecedorDAO() throws SQLException {
-		con = ConexaoMySQL.conectar();
-	}
 
 	public void inserir(Fornecedor fornecedor) {
+		Connection con = ConexaoMySQL.conectar();
 		String sql = "INSERT INTO fornecedor (nome, telefone, endereço, cidade, cep, uf) VALUES (?,?,?,?,?,?)";
 		PreparedStatement stmt = null;
+		
 		try {
 			stmt = con.prepareStatement(sql);
 			stmt.setString(1, fornecedor.getNome());
@@ -32,10 +27,13 @@ public class FornecedorDAO {
 			stmt.execute();
 		} catch (Exception e) {
 			e.printStackTrace();
+		} finally {
+			ConexaoMySQL.desconectar(con, stmt, null);
 		}
 	}
 
-	public void delete(Fornecedor fornecedor) {
+	public void apagar(Fornecedor fornecedor) {
+		Connection con = ConexaoMySQL.conectar();
 		String sql = "DELETE FROM fornecedor WHERE id = ? ";
 		PreparedStatement stmt = null;
 		try {
@@ -44,10 +42,13 @@ public class FornecedorDAO {
 			stmt.execute();
 		} catch (Exception e) {
 			e.printStackTrace();
+		} finally {
+			ConexaoMySQL.desconectar(con, stmt, null);
 		}
 	}
 
-	public void update(Fornecedor fornecedor) {
+	public void atualizar(Fornecedor fornecedor) {
+		Connection con = ConexaoMySQL.conectar();
 		String sql = "UPDATE INTO fornecedor (nome, telefone, endereço, cidade, cep, uf) VALUES (?,?,?,?,?,?)";
 		PreparedStatement stmt = null;
 		try {
@@ -61,14 +62,18 @@ public class FornecedorDAO {
 			stmt.execute();
 		} catch (Exception e) {
 			e.printStackTrace();
+		} finally {
+			ConexaoMySQL.desconectar(con, stmt, null);
 		}
 	}
 
 	public List<Fornecedor> listaFornecedores() {
-		List<Fornecedor> Fornecedores = new ArrayList<>();
+		Connection con = ConexaoMySQL.conectar();
+		List<Fornecedor> fornecedores = new ArrayList<>();
 		String sql = " SELECT * FROM Fornecedores";
 		PreparedStatement stmt = null;
 		ResultSet rs = null;
+		
 		try {
 			stmt = con.prepareStatement(sql);
 			rs = stmt.executeQuery();
@@ -84,18 +89,17 @@ public class FornecedorDAO {
 				fornecedor.setCep(rs.getInt("cep"));
 				fornecedor.setUf(rs.getString("uf"));
 
-				Fornecedores.add(fornecedor);
-				return Fornecedores;
+				fornecedores.add(fornecedor);
 			}
+			
+			return fornecedores;
+			
 		} catch (Exception e) {
 			e.printStackTrace();
+		} finally {
+			ConexaoMySQL.desconectar(con, stmt, rs);
 		}
-
-		return Fornecedores;
-	}
-
-	public void atualizar(Usuario usuario) {
-		// TODO implementar metodo de atualizar um usuario
-
+		
+		return fornecedores;
 	}
 }

@@ -3,7 +3,6 @@ package amazingcontrol.dao;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
-import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -16,22 +15,15 @@ import amazingcontrol.model.Usuario;
  * referente a banco de dados da classe usuario
  */
 public class UsuarioDAO {
-	private Connection con;
-	
-	/*
-	 * Cria uma conexão no construtor
-	 */
-	public UsuarioDAO() throws SQLException {
-		con = ConexaoMySQL.conectar();
-	}
 	
 	/*
 	 * método para inserir um novo usuario
 	 */
 	public void inserir(Usuario usuario) {
-		String sql = "INSERT INTO usuarios(nome, senha, confirmacaoSenha, ativo) VALUES (?,?,?,?)";
-
+		Connection con = ConexaoMySQL.conectar();
 		PreparedStatement stmt = null;
+		String sql = "INSERT INTO usuarios(nome, senha, confirmacaoSenha, ativo) VALUES (?,?,?,?)";
+		
 		try {
 			stmt = con.prepareStatement(sql);
 			stmt.setString(1, usuario.getNome());
@@ -42,6 +34,8 @@ public class UsuarioDAO {
 
 		} catch (Exception e) {
 			e.printStackTrace();
+		} finally {
+			ConexaoMySQL.desconectar(con, stmt, null);
 		}
 	}
 	
@@ -49,6 +43,7 @@ public class UsuarioDAO {
 	 * metodo que recupera um usuario caso ele exista de acordo com os parametros
 	 */
 	public Usuario getUsuario(String nome, String senha) {
+		Connection con = ConexaoMySQL.conectar();
 		Usuario usuario = null;
 		String sql = "SELECT * FROM usuarios where nome = ? and senha = ?";
 
@@ -77,7 +72,10 @@ public class UsuarioDAO {
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
+		} finally {
+			ConexaoMySQL.desconectar(con, stmt, rs);
 		}
+		
 		return usuario;
 	}
 	
@@ -85,6 +83,7 @@ public class UsuarioDAO {
 	 * metodo que retorna lista com usuario cadastrados
 	 */
 	public List<Usuario> listaUsuarios() {
+		Connection con = ConexaoMySQL.conectar();
 		List<Usuario> usuarios = new ArrayList<>();
 		String sql = "SELECT * FROM usuarios";
 
@@ -112,7 +111,9 @@ public class UsuarioDAO {
 			return usuarios;
 		} catch (Exception e) {
 			e.printStackTrace();
-		}
+		} finally {
+			ConexaoMySQL.desconectar(con, stmt, rs);
+		}	
 		return usuarios;
 	}
 	
