@@ -9,7 +9,7 @@ import java.util.ArrayList;
 import amazingcontrol.connection.ConexaoMySQL;
 import amazingcontrol.model.Fornecedor;
 
-public class FornecedorDAO {
+public class FornecedorDAO implements Crud<Fornecedor> {
 
 	public void inserir(Fornecedor fornecedor) {
 		Connection con = ConexaoMySQL.conectar();
@@ -32,7 +32,7 @@ public class FornecedorDAO {
 		}
 	}
 
-	public void apagar(Fornecedor fornecedor) {
+	public void deletar(Fornecedor fornecedor) {
 		Connection con = ConexaoMySQL.conectar();
 		String sql = "DELETE FROM fornecedor WHERE id = ? ";
 		PreparedStatement stmt = null;
@@ -67,7 +67,7 @@ public class FornecedorDAO {
 		}
 	}
 
-	public List<Fornecedor> listaFornecedores() {
+	public List<Fornecedor> lista() {
 		Connection con = ConexaoMySQL.conectar();
 		List<Fornecedor> fornecedores = new ArrayList<>();
 		String sql = " SELECT * FROM Fornecedores";
