@@ -46,16 +46,26 @@ public class UsuarioDAO implements Crud<Usuario> {
 	 */
 	public void atualizar(Usuario usuario) {
 		Connection con = ConexaoMySQL.conectar();
-		String sql = "UPDATE INTO usuarios (nome, senha, confirmacaoSenha, ativo) VALUES (?,?,?,?)";
+		String sql = "UPDATE usuarios SET nome = ?, senha = ?, confirmacaoSenha = ?, ativo = ? WHERE id = ?";
 		PreparedStatement stmt = null;
 
-		try {
+		try {	
 			stmt = con.prepareStatement(sql);
+			// prepara consulta
 			stmt.setString(1, usuario.getNome());
 			stmt.setString(2, usuario.getSenha());
 			stmt.setString(3, usuario.getConfirmacaoSenha());
 			stmt.setBoolean(4, usuario.isAtivo());
-			stmt.execute();
+			stmt.setInt(5, usuario.getId());
+			
+			// executa 
+			int rows = stmt.executeUpdate();
+			
+			// tratar os resultados
+			if (rows == 0) {
+				throw new IllegalArgumentException("DEVERIA TER ATUALIZADO!");
+			}
+			
 		} catch (Exception e) {
 			e.printStackTrace();
 		} finally {
