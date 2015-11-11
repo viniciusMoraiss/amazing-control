@@ -69,7 +69,7 @@ public class Usuario extends Entidate<Integer> {
 	}
 
 	public String toString() {
-		return "Nome: " + nome + " Ativo: " + ativo;
+		return nome;
 	}
 
 	/*
