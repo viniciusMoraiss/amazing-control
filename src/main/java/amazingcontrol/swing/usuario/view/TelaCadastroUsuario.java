@@ -51,7 +51,6 @@ public class TelaCadastroUsuario extends JDialog {
 		// setAlwaysOnTop(true);
 		// pack();
 		setModal(true);
-		setVisible(true);
 	}
 
 	/*

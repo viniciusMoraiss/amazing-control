@@ -31,13 +31,13 @@ public class AlterarUsuarioAction implements ActionListener {
 		// recupera usuario selecionado
 		Usuario usuario = (Usuario) view.getModel().getValueAt(row, 0);
 		
-		TelaCadastroUsuario cadastroUsuarioView = new TelaCadastroUsuario(view);
-		
 		//seta dados do usuario na tela
+		TelaCadastroUsuario cadastroUsuarioView = new TelaCadastroUsuario(view);
 		cadastroUsuarioView.setIdUsuario(usuario.getId());
 		cadastroUsuarioView.getNomeTextField().setText(usuario.getNome());
 		cadastroUsuarioView.getAtivoCheckBox().setSelected(usuario.isAtivo());
 		cadastroUsuarioView.getBotaoCriarUsuario().setText("Atualizar");
+		cadastroUsuarioView.setVisible(true);
 	}
 
 }
