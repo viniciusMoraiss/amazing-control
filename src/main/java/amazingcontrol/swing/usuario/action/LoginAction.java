@@ -9,18 +9,17 @@ import javax.swing.JFrame;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 
-import amazingcontrol.dao.UsuarioDAO;
 import amazingcontrol.model.Usuario;
 import amazingcontrol.service.UsuarioService;
-import amazingcontrol.swing.principal.view.MainView;
-import amazingcontrol.swing.usuario.view.LoginView;
+import amazingcontrol.swing.principal.view.TelaPrincipal;
+import amazingcontrol.swing.usuario.view.TelaLogin;
 
 public class LoginAction implements ActionListener {
 	private JTextField usuarioJTextField;
 	private JPasswordField senhaJPasswordField;
 	private JFrame loginView;
 
-	public LoginAction(LoginView loginView, JTextField usuarioJTextField, JPasswordField senhaJPasswordField) {
+	public LoginAction(TelaLogin loginView, JTextField usuarioJTextField, JPasswordField senhaJPasswordField) {
 		this.loginView = loginView;
 		this.usuarioJTextField = usuarioJTextField;
 		this.senhaJPasswordField = senhaJPasswordField;
@@ -39,7 +38,7 @@ public class LoginAction implements ActionListener {
 			if (usuario != null && usuario.isAtivo()) {
 				System.out.println("Logado");
 				// abre menu do sistema
-				new MainView().setVisible(true);
+				new TelaPrincipal().setVisible(true);
 				// fecha tela de login
 				loginView.setVisible(false);
 				

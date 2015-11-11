@@ -3,26 +3,25 @@ package amazingcontrol.swing.usuario.action;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-import javax.swing.JFrame;
-
-import amazingcontrol.swing.usuario.view.CadastroUsuarioView;
+import amazingcontrol.swing.usuario.view.TelaCadastroUsuario;
+import amazingcontrol.swing.usuario.view.TelaUsuario;
 
 /*
  * Classe MenuCadastroUsuarioAction
  * implementa acao de chamar a tela de cadastro do usuario (CadastroUsuarioView)
  */
-public class CadastroUsuarioAction implements ActionListener {
-	
-	private JFrame mainView;
+public class NovoUsuarioAction implements ActionListener {
 
-	public CadastroUsuarioAction(JFrame mainView) {
+	private TelaUsuario view;
+
+	public NovoUsuarioAction(TelaUsuario view) {
 		super();
-		this.mainView = mainView;
+		this.view = view;
 	}
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		new CadastroUsuarioView(mainView).setVisible(true);
+		new TelaCadastroUsuario(view).setVisible(true);
 	}
 
 }

@@ -8,9 +8,9 @@ import javax.swing.JMenuItem;
 import amazingcontrol.swing.produto.action.MenuCadastroProdutoAction;
 import amazingcontrol.swing.usuario.action.UsuarioAction;
 
-public class MainView extends JFrame {
+public class TelaPrincipal extends JFrame {
 
-	public MainView() {
+	public TelaPrincipal() {
 		super("[A-CONTROL] Controle de estoque");
 		initComponents();
 

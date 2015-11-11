@@ -5,7 +5,7 @@ import java.awt.event.ActionListener;
 
 import javax.swing.JFrame;
 
-import amazingcontrol.swing.usuario.view.UsuarioView;
+import amazingcontrol.swing.usuario.view.TelaUsuario;
 
 /*
  * Classe UsuarioAction
@@ -22,7 +22,7 @@ public class UsuarioAction implements ActionListener {
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		new UsuarioView(mainView).setVisible(true);
+		new TelaUsuario(mainView).setVisible(true);
 	}
 
 }

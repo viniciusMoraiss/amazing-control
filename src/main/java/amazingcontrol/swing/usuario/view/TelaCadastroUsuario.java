@@ -9,7 +9,6 @@ import javax.swing.BorderFactory;
 import javax.swing.JButton;
 import javax.swing.JCheckBox;
 import javax.swing.JDialog;
-import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JPasswordField;
@@ -19,25 +18,25 @@ import amazingcontrol.swing.usuario.action.CriarUsuarioAction;
 import amazingcontrol.swing.view.utils.CustomizeView;
 import amazingcontrol.swing.view.utils.WindowCancelarAction;
 
-public class CadastroUsuarioView extends JDialog {
+public class TelaCadastroUsuario extends JDialog {
 
 	private JLabel nomeLabel;
 	private JLabel senhaLabel;
 	private JLabel confirmacaoSenhaLabel;
 	private JLabel ativoLabel;
+	private Integer idUsuario;
 	private JTextField nomeTextField;
 	private JPasswordField senhaPasswordField;
 	private JPasswordField confirmacaoSenhaPasswordField;
 	private JCheckBox ativoCheckBox;
 	private JButton botaoCriarUsuario;
 	private JButton botaoCancelar;
+	private TelaUsuario view;
 
-	public CadastroUsuarioView() {
-		this(null);
-	}
 
-	public CadastroUsuarioView(JFrame mainView) {
+	public TelaCadastroUsuario(TelaUsuario view) {
 		super();
+		this.view = view;
 
 		initComponents();
 		initPainel();
@@ -46,17 +45,26 @@ public class CadastroUsuarioView extends JDialog {
 		setTitle("[A-CONTROL] Cadastro de usuarios");
 		setSize(630, 320);
 		setResizable(false);
-		setLocationRelativeTo(mainView);
+		setLocationRelativeTo(view);
 		// setDefaultCloseOperation(DO_NOTHING_ON_CLOSE);
 		setModalityType(ModalityType.DOCUMENT_MODAL);
 		// setAlwaysOnTop(true);
 		// pack();
 		setModal(true);
+		setVisible(true);
 	}
 
 	/*
 	 * getters and setters
 	 */
+	public Integer getIdUsuario() {
+		return idUsuario;
+	}
+	
+	public void setIdUsuario(Integer idUsuario) {
+		this.idUsuario = idUsuario;
+	}
+	
 	public JLabel getNomeLabel() {
 		return nomeLabel;
 	}
@@ -232,7 +240,7 @@ public class CadastroUsuarioView extends JDialog {
 	 * Chama a responsabilidade de ação do botao para outra classe
 	 */
 	private void initListeners() {
-		botaoCriarUsuario.addActionListener(new CriarUsuarioAction(this));
+		botaoCriarUsuario.addActionListener(new CriarUsuarioAction(this, view));
 		botaoCancelar.addActionListener(new WindowCancelarAction(this, "[A-CONTROL] Usuarios"));
 	}
 }

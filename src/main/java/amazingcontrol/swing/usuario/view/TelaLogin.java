@@ -15,7 +15,7 @@ import javax.swing.JTextField;
 import amazingcontrol.swing.usuario.action.LoginAction;
 import amazingcontrol.swing.view.utils.CustomizeView;
 
-public class LoginView extends JFrame {
+public class TelaLogin extends JFrame {
 
 	private JLabel usuarioJLabel;
 	private JLabel senhaJLabel;
@@ -23,7 +23,7 @@ public class LoginView extends JFrame {
 	private JPasswordField senhaJPasswordField;
 	private JButton okJButton;
 
-	public LoginView() {
+	public TelaLogin() {
 		super("[A-CONTROL] Login");
 		
 		// inicia componentes

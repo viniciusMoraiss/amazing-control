@@ -3,13 +3,13 @@ package amazingcontrol.swing.produto.view;
 import javax.swing.JDialog;
 import javax.swing.JFrame;
 
-public class CadastroProdutoView extends JDialog {
+public class TelaCadastroProduto extends JDialog {
 	
-	public CadastroProdutoView() {
+	public TelaCadastroProduto() {
 		this(null);
 	}
 
-	public CadastroProdutoView(JFrame mainView) {
+	public TelaCadastroProduto(JFrame mainView) {
 		super();
 		
 		setTitle("[A-CONTROL] Cadastro de usuarios");

@@ -1,9 +1,9 @@
 package amazingcontrol.swing.view;
 
-import amazingcontrol.swing.usuario.view.LoginView;
+import amazingcontrol.swing.usuario.view.TelaLogin;
 
 public class App {
 	public static void main(String[] args) {
-		new LoginView();
+		new TelaLogin();
 	}
 }

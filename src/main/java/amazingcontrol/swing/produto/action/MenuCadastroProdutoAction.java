@@ -5,20 +5,20 @@ import java.awt.event.ActionListener;
 
 import javax.swing.JFrame;
 
-import amazingcontrol.swing.principal.view.MainView;
-import amazingcontrol.swing.produto.view.CadastroProdutoView;
+import amazingcontrol.swing.principal.view.TelaPrincipal;
+import amazingcontrol.swing.produto.view.TelaCadastroProduto;
 
 public class MenuCadastroProdutoAction implements ActionListener {
 	
 	private JFrame mainView;
 
-	public MenuCadastroProdutoAction(MainView mainView) {
+	public MenuCadastroProdutoAction(TelaPrincipal mainView) {
        this.mainView = mainView;
 	}
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		new CadastroProdutoView(mainView).setVisible(true);
+		new TelaCadastroProduto(mainView).setVisible(true);
 	}
 
 }

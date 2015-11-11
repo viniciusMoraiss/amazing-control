@@ -9,13 +9,16 @@ import javax.swing.JOptionPane;
 
 import amazingcontrol.model.Usuario;
 import amazingcontrol.service.UsuarioService;
-import amazingcontrol.swing.usuario.view.CadastroUsuarioView;
+import amazingcontrol.swing.usuario.view.TelaCadastroUsuario;
+import amazingcontrol.swing.usuario.view.TelaUsuario;
 
 public class CriarUsuarioAction implements ActionListener {
-	private CadastroUsuarioView view;
+	private TelaCadastroUsuario view;
+	private TelaUsuario usuarioView;
 
-	public CriarUsuarioAction(CadastroUsuarioView cadastroUsuarioView) {
+	public CriarUsuarioAction(TelaCadastroUsuario cadastroUsuarioView, TelaUsuario usuarioView) {
 		this.view = cadastroUsuarioView;
+		this.usuarioView = usuarioView;
 	}
 
 	public void actionPerformed(ActionEvent e) {
@@ -29,12 +32,16 @@ public class CriarUsuarioAction implements ActionListener {
 		try {
 			// cria objeto usuario com os valores digitados na tela
 			Usuario usuario = new Usuario(nome, senha, confirmacaoSenha, ativo);
+			usuario.setId(view.getIdUsuario());
 			
 			// insere usuario se nao houver nenhum erro
 			new UsuarioService().salvar(usuario);
 			
 			// mensagem de sucesso
 			showMessageDialog(view, "Usuario inserido com sucesso", "Informação", JOptionPane.INFORMATION_MESSAGE);
+			
+			// recarrega tabela
+			usuarioView.carregarUsuarios();
 			
 			// chama o metodo privado para limpar os campos
 			limpaCampos();
