@@ -85,7 +85,7 @@ public class TelaPrincipal extends JFrame {
 		menu = new JMenu("Opcões de Usuario");
 		menuBar.add(menu);
 
-		menuItem = new JMenuItem("usuarios");
+		menuItem = new JMenuItem("Consulta usuarios");
 		menuItem.addActionListener(new TelaUsuarioAction(this));
 		menu.add(menuItem);
 		
