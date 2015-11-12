@@ -19,18 +19,19 @@ import javax.swing.table.TableModel;
 
 import amazingcontrol.model.Usuario;
 import amazingcontrol.service.UsuarioService;
+import amazingcontrol.swing.usuario.action.DeletarUsuarioAction;
 import amazingcontrol.swing.usuario.action.NovoUsuarioAction;
-import amazingcontrol.swing.usuario.action.AlterarUsuarioAction;
+import amazingcontrol.swing.principal.view.TelaPrincipal;
 import amazingcontrol.swing.view.utils.PopupMouseAdapter;
 
 public class TelaUsuario extends JDialog {
 
-	private JFrame view;
+	private TelaPrincipal view;
 	private JTable usuariosJTable;
 	private JButton novoJButton;
 
 	// Construtor
-	public TelaUsuario(JFrame view) {
+	public TelaUsuario(TelaPrincipal view) {
 		this.view = view;
 
 		initComponents();
@@ -72,6 +73,10 @@ public class TelaUsuario extends JDialog {
 	public TableModel getModel() {
 		return getUsuariosJTable().getModel();
 	}
+	
+	public Usuario getUsuario() {
+		return view.getUsuario();
+	}
 
 	// Outros metodos
 	private void initComponents() {
@@ -109,10 +114,10 @@ public class TelaUsuario extends JDialog {
 		final JPopupMenu menu = new JPopupMenu();
 		JMenuItem item;
 
-		item = new JMenuItem("Alterar...");
-		item.addActionListener(new AlterarUsuarioAction(this));
+		item = new JMenuItem("Deletar...");
+		item.addActionListener(new DeletarUsuarioAction(this));
 		menu.add(item);
-
+		
 		item = new JMenuItem("Ativar...");
 		// item.addActionListener(new UsuarioApagarAction(this));
 		menu.add(item);
@@ -139,7 +144,7 @@ public class TelaUsuario extends JDialog {
 		model.getDataVector().clear();
 
 		for (Usuario usuario : usuarios) {
-			String ativo = usuario.isAtivo() ? "Ativo" : "Inativo";
+			String ativo = usuario.isAtivo() ? "Ativo" : "Status";
 
 			model.addRow(new Object[] { usuario, ativo });
 
@@ -147,5 +152,4 @@ public class TelaUsuario extends JDialog {
 
 		usuariosJTable.updateUI();
 	}
-
 }

@@ -162,7 +162,9 @@ public class UsuarioDAO implements Crud<Usuario> {
 				// dados
 				if (nomeBanco.equals(nome) && senhaBanco.equals(senha)) {
 					usuario = new Usuario();
+					usuario.setId(rs.getInt("id"));
 					usuario.setNome(rs.getString("nome"));
+					usuario.setSenha(rs.getString("senha"));
 					usuario.setAtivo(rs.getBoolean("ativo"));
 					return usuario;
 				}
@@ -174,6 +176,24 @@ public class UsuarioDAO implements Crud<Usuario> {
 		}
 
 		return usuario;
+	}
+	
+	public void alterarStatus(Usuario usuario) {
+		Connection con = ConexaoMySQL.conectar();
+		PreparedStatement stmt = null;
+		String sql = "INSERT INTO usuarios(ativo) VALUES (?)";
+
+		try {
+			stmt = con.prepareStatement(sql);
+			stmt.setBoolean(1, usuario.isAtivo());
+			stmt.execute();
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			ConexaoMySQL.desconectar(con, stmt, null);
+		}
+
 	}
 
 }

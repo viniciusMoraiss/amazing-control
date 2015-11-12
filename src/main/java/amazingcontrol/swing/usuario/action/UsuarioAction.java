@@ -3,8 +3,7 @@ package amazingcontrol.swing.usuario.action;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-import javax.swing.JFrame;
-
+import amazingcontrol.swing.principal.view.TelaPrincipal;
 import amazingcontrol.swing.usuario.view.TelaUsuario;
 
 /*
@@ -13,9 +12,9 @@ import amazingcontrol.swing.usuario.view.TelaUsuario;
  */
 public class UsuarioAction implements ActionListener {
 
-	private JFrame mainView;
+	private TelaPrincipal mainView;
 
-	public UsuarioAction(JFrame mainView) {
+	public UsuarioAction(TelaPrincipal mainView) {
 		super();
 		this.mainView = mainView;
 	}

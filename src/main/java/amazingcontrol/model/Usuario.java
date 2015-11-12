@@ -95,6 +95,30 @@ public class Usuario extends Entidate<Integer> {
 		// FIXME Validar REGEX para invalidos!
 	}
 	
+	/*
+	 * metodo equals para comparar este objeto, onde se for o mesmo id e nome são iguais
+	 * (non-Javadoc)
+	 * @see java.lang.Object#equals(java.lang.Object)
+	 */
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Usuario other = (Usuario) obj;
+		if (ativo != other.ativo)
+			return false;
+		if (nome == null) {
+			if (other.nome != null)
+				return false;
+		} else if (!nome.equals(other.nome))
+			return false;
+		return true;
+	}
+
 	public void validaNome() throws Exception {
 		valida(nome, "Nome");
 	}

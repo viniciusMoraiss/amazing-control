@@ -38,7 +38,7 @@ public class LoginAction implements ActionListener {
 			if (usuario != null && usuario.isAtivo()) {
 				System.out.println("Logado");
 				// abre menu do sistema
-				new TelaPrincipal().setVisible(true);
+				new TelaPrincipal(usuario).setVisible(true);
 				// fecha tela de login
 				loginView.setVisible(false);
 				

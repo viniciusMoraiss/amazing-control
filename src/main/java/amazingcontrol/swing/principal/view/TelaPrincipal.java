@@ -5,18 +5,28 @@ import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
 
+import amazingcontrol.model.Usuario;
 import amazingcontrol.swing.produto.action.MenuCadastroProdutoAction;
+import amazingcontrol.swing.usuario.action.AlterarUsuarioAction;
 import amazingcontrol.swing.usuario.action.UsuarioAction;
 
 public class TelaPrincipal extends JFrame {
 
-	public TelaPrincipal() {
-		super("[A-CONTROL] Controle de estoque");
-		initComponents();
+	private Usuario usuario;
 
+	public TelaPrincipal(Usuario usuario) {
+		super("[A-CONTROL] Controle de estoque");
+		
+		this.usuario = usuario;
+		
+		initComponents();
 		setSize(750, 500);
 		setLocationRelativeTo(null);
 		setDefaultCloseOperation(EXIT_ON_CLOSE);
+	}
+
+	public Usuario getUsuario() {
+		return usuario;
 	}
 
 	private void initComponents() {
@@ -79,8 +89,8 @@ public class TelaPrincipal extends JFrame {
 		menuItem.addActionListener(new UsuarioAction(this));
 		menu.add(menuItem);
 		
-		menuItem = new JMenuItem("Ativar usuario");
-		// menuItem.addActionListener(new MenuCadastroUsuarioAction(this));
+		menuItem = new JMenuItem("Alterar minha senha");
+		menuItem.addActionListener(new AlterarUsuarioAction(this));
 		menu.add(menuItem);
 	}
 }

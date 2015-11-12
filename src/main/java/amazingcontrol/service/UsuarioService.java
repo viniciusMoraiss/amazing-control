@@ -44,6 +44,13 @@ public class UsuarioService {
 		}
 	}
 	
+	/*
+	 * Metodo para deletar usuario
+	 */
+	public void deletar(Usuario usuario) {
+		dao.deletar(usuario);
+	}
+	
 	public Usuario getUsuario(String nome, String senha) {
 		return dao.getUsuario(nome, senha);
 	}

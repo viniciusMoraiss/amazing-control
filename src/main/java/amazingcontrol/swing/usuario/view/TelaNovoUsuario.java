@@ -14,29 +14,29 @@ import javax.swing.JPanel;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 
+import amazingcontrol.model.Usuario;
 import amazingcontrol.swing.usuario.action.CriarUsuarioAction;
 import amazingcontrol.swing.view.utils.CustomizeView;
 import amazingcontrol.swing.view.utils.WindowCancelarAction;
 
-public class TelaCadastroUsuario extends JDialog {
+public class TelaNovoUsuario extends JDialog {
 
 	private JLabel nomeLabel;
 	private JLabel senhaLabel;
 	private JLabel confirmacaoSenhaLabel;
 	private JLabel ativoLabel;
-	private Integer idUsuario;
 	private JTextField nomeTextField;
 	private JPasswordField senhaPasswordField;
 	private JPasswordField confirmacaoSenhaPasswordField;
 	private JCheckBox ativoCheckBox;
 	private JButton botaoCriarUsuario;
 	private JButton botaoCancelar;
-	private TelaUsuario view;
+	private TelaUsuario usuarioView;
+	private Usuario usuario;
 
-
-	public TelaCadastroUsuario(TelaUsuario view) {
+	public TelaNovoUsuario(TelaUsuario usuarioView) {
 		super();
-		this.view = view;
+		this.usuarioView = usuarioView;
 
 		initComponents();
 		initPainel();
@@ -45,7 +45,7 @@ public class TelaCadastroUsuario extends JDialog {
 		setTitle("[A-CONTROL] Cadastro de usuarios");
 		setSize(630, 320);
 		setResizable(false);
-		setLocationRelativeTo(view);
+		setLocationRelativeTo(usuarioView);
 		// setDefaultCloseOperation(DO_NOTHING_ON_CLOSE);
 		setModalityType(ModalityType.DOCUMENT_MODAL);
 		// setAlwaysOnTop(true);
@@ -56,12 +56,12 @@ public class TelaCadastroUsuario extends JDialog {
 	/*
 	 * getters and setters
 	 */
-	public Integer getIdUsuario() {
-		return idUsuario;
+	public Usuario getUsuario() {
+		return usuario;
 	}
 	
-	public void setIdUsuario(Integer idUsuario) {
-		this.idUsuario = idUsuario;
+	public void setUsuario(Usuario usuario) {
+		this.usuario = usuario;
 	}
 	
 	public JLabel getNomeLabel() {
@@ -239,7 +239,7 @@ public class TelaCadastroUsuario extends JDialog {
 	 * Chama a responsabilidade de ação do botao para outra classe
 	 */
 	private void initListeners() {
-		botaoCriarUsuario.addActionListener(new CriarUsuarioAction(this, view));
+		botaoCriarUsuario.addActionListener(new CriarUsuarioAction(this, usuarioView));
 		botaoCancelar.addActionListener(new WindowCancelarAction(this, "[A-CONTROL] Usuarios"));
 	}
 }

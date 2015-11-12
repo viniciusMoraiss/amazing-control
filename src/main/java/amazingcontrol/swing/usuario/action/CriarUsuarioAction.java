@@ -9,14 +9,14 @@ import javax.swing.JOptionPane;
 
 import amazingcontrol.model.Usuario;
 import amazingcontrol.service.UsuarioService;
-import amazingcontrol.swing.usuario.view.TelaCadastroUsuario;
+import amazingcontrol.swing.usuario.view.TelaNovoUsuario;
 import amazingcontrol.swing.usuario.view.TelaUsuario;
 
 public class CriarUsuarioAction implements ActionListener {
-	private TelaCadastroUsuario view;
+	private TelaNovoUsuario view;
 	private TelaUsuario usuarioView;
 
-	public CriarUsuarioAction(TelaCadastroUsuario cadastroUsuarioView, TelaUsuario usuarioView) {
+	public CriarUsuarioAction(TelaNovoUsuario cadastroUsuarioView, TelaUsuario usuarioView) {
 		this.view = cadastroUsuarioView;
 		this.usuarioView = usuarioView;
 	}
@@ -31,8 +31,10 @@ public class CriarUsuarioAction implements ActionListener {
 		
 		try {
 			// cria objeto usuario com os valores digitados na tela
-			Usuario usuario = new Usuario(nome, senha, confirmacaoSenha, ativo);
-			usuario.setId(view.getIdUsuario());
+			Usuario usuario = view.getUsuario();
+			
+			usuario = new Usuario(nome, senha, confirmacaoSenha, ativo);
+			usuario.setId(view.getUsuario().getId());
 			
 			// insere usuario se nao houver nenhum erro
 			new UsuarioService().salvar(usuario);
@@ -43,13 +45,13 @@ public class CriarUsuarioAction implements ActionListener {
 			// recarrega tabela
 			usuarioView.carregarUsuarios();
 			
-			// chama o metodo privado para limpar os campos
-			limpaCampos();
-			
 		} catch (Exception ex) {
 			ex.printStackTrace();
 			// imprime os erros se houver
 			showMessageDialog(view, ex.getMessage(), "Erro", JOptionPane.ERROR_MESSAGE);
+		} finally {
+			// chama o metodo privado para limpar os campos
+			limpaCampos();
 		}
 	}
 	
