@@ -7,8 +7,8 @@ import javax.swing.JMenuItem;
 
 import amazingcontrol.model.Usuario;
 import amazingcontrol.swing.produto.action.MenuCadastroProdutoAction;
-import amazingcontrol.swing.usuario.action.AlterarUsuarioAction;
-import amazingcontrol.swing.usuario.action.UsuarioAction;
+import amazingcontrol.swing.usuario.action.TelaAlterarSenhaUsuarioAction;
+import amazingcontrol.swing.usuario.action.TelaUsuarioAction;
 
 public class TelaPrincipal extends JFrame {
 
@@ -86,11 +86,11 @@ public class TelaPrincipal extends JFrame {
 		menuBar.add(menu);
 
 		menuItem = new JMenuItem("usuarios");
-		menuItem.addActionListener(new UsuarioAction(this));
+		menuItem.addActionListener(new TelaUsuarioAction(this));
 		menu.add(menuItem);
 		
 		menuItem = new JMenuItem("Alterar minha senha");
-		menuItem.addActionListener(new AlterarUsuarioAction(this));
+		menuItem.addActionListener(new TelaAlterarSenhaUsuarioAction(this));
 		menu.add(menuItem);
 	}
 }

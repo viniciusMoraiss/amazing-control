@@ -26,7 +26,7 @@ public class TelaAlterarSenhaUsuario extends JDialog {
 	private JPasswordField senhaAtualPasswordField;
 	private JPasswordField senhaPasswordField;
 	private JPasswordField confirmacaoSenhaPasswordField;
-	private JButton botaoAlterarUsuario;
+	private JButton botaoAlterarSenhaUsuario;
 	private JButton botaoCancelar;
 
 	public TelaAlterarSenhaUsuario(TelaPrincipal view) {
@@ -111,11 +111,11 @@ public class TelaAlterarSenhaUsuario extends JDialog {
 	}
 
 	public JButton getBotaoAlterarUsuario() {
-		return botaoAlterarUsuario;
+		return botaoAlterarSenhaUsuario;
 	}
 
 	public void setBotaoAlterarUsuario(JButton botaoAlterarUsuario) {
-		this.botaoAlterarUsuario = botaoAlterarUsuario;
+		this.botaoAlterarSenhaUsuario = botaoAlterarUsuario;
 	}
 
 	public JButton getBotaoCancelar() {
@@ -146,7 +146,7 @@ public class TelaAlterarSenhaUsuario extends JDialog {
 		confirmacaoSenhaPasswordField = new JPasswordField(20);
 		CustomizeView.labelsAndInputs(confirmacaoSenhaLabel, confirmacaoSenhaPasswordField);
 
-		botaoAlterarUsuario = new JButton("Alterar Usuario");
+		botaoAlterarSenhaUsuario = new JButton("Alterar Usuario");
 		botaoCancelar = new JButton("Cancelar");
 	}
 
@@ -191,7 +191,7 @@ public class TelaAlterarSenhaUsuario extends JDialog {
 		constraints.gridx = 0;
 		constraints.gridy = 5;
 		constraints.anchor = GridBagConstraints.CENTER;
-		painel.add(botaoAlterarUsuario, constraints);
+		painel.add(botaoAlterarSenhaUsuario, constraints);
 
 		// botao cancelar
 		constraints.gridx = 1;
@@ -208,7 +208,7 @@ public class TelaAlterarSenhaUsuario extends JDialog {
 	 * Chama a responsabilidade de ação do botao para outra classe
 	 */
 	private void initListeners() {
-		botaoAlterarUsuario.addActionListener(new AlterarSenhaUsuarioAction(this));
+		botaoAlterarSenhaUsuario.addActionListener(new AlterarSenhaUsuarioAction(this));
 		botaoCancelar.addActionListener(new WindowCancelarAction(this, "[A-CONTROL] Usuarios"));
 	}
 

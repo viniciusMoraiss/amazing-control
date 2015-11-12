@@ -10,11 +10,11 @@ import amazingcontrol.swing.usuario.view.TelaUsuario;
  * Classe UsuarioAction
  * Implementa acao de chamar a tela usuario view
  */
-public class UsuarioAction implements ActionListener {
+public class TelaUsuarioAction implements ActionListener {
 
 	private TelaPrincipal mainView;
 
-	public UsuarioAction(TelaPrincipal mainView) {
+	public TelaUsuarioAction(TelaPrincipal mainView) {
 		super();
 		this.mainView = mainView;
 	}

@@ -166,7 +166,6 @@ public class UsuarioDAO implements Crud<Usuario> {
 					usuario.setNome(rs.getString("nome"));
 					usuario.setSenha(rs.getString("senha"));
 					usuario.setAtivo(rs.getBoolean("ativo"));
-					return usuario;
 				}
 			}
 		} catch (Exception e) {
@@ -174,26 +173,73 @@ public class UsuarioDAO implements Crud<Usuario> {
 		} finally {
 			ConexaoMySQL.desconectar(con, stmt, rs);
 		}
-
 		return usuario;
 	}
 	
-	public void alterarStatus(Usuario usuario) {
+	public Usuario getUsuarioPorId(Integer id) {
 		Connection con = ConexaoMySQL.conectar();
+		Usuario usuario = null;
+		String sql = "SELECT * FROM usuarios where id = ?";
+
 		PreparedStatement stmt = null;
-		String sql = "INSERT INTO usuarios(ativo) VALUES (?)";
+		ResultSet rs = null;
 
 		try {
 			stmt = con.prepareStatement(sql);
-			stmt.setBoolean(1, usuario.isAtivo());
-			stmt.execute();
+			stmt.setInt(1, id);
+			// executa a consulta sql
+			rs = stmt.executeQuery();
+
+			if (rs.next()) {
+				usuario = new Usuario();
+				usuario.setId(rs.getInt("id"));
+				usuario.setNome(rs.getString("nome"));
+				usuario.setSenha(rs.getString("senha"));
+				usuario.setConfirmacaoSenha(rs.getString("confirmacaoSenha"));
+				usuario.setAtivo(rs.getBoolean("ativo"));
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			ConexaoMySQL.desconectar(con, stmt, rs);
+		}
+		return usuario;
+	}
+	
+	public boolean alterarStatus(Usuario usuario) {
+		Connection con = ConexaoMySQL.conectar();
+		PreparedStatement stmt = null;
+		String sql = "UPDATE usuarios SET ativo = ?  WHERE id = ?";
+		boolean alterou = false;
+
+		try {
+			Usuario usuarioBanco = getUsuarioPorId(usuario.getId());
+			
+			if(usuarioBanco != null && usuarioBanco.isAtivo() != usuario.isAtivo()) {
+				stmt = con.prepareStatement(sql);
+				stmt.setBoolean(1, usuario.isAtivo());
+				stmt.setInt(2, usuario.getId());
+				
+				// executa 
+				int rows = stmt.executeUpdate();
+				
+				// tratar os resultados
+				if (rows == 0) {
+					throw new IllegalArgumentException("DEVERIA TER ATIVADO!!!");
+				}
+				
+				alterou = true;
+			} else {
+				alterou = false;
+			}
 
 		} catch (Exception e) {
 			e.printStackTrace();
 		} finally {
 			ConexaoMySQL.desconectar(con, stmt, null);
 		}
-
+		
+		return alterou;
 	}
 
 }

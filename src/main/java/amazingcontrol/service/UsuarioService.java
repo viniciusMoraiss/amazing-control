@@ -62,5 +62,9 @@ public class UsuarioService {
 		usuario.validaNome();
 		usuario.validaSenha();
 	}
+
+	public boolean alterarStatus(Usuario usuario) {
+		return dao.alterarStatus(usuario);
+	}
 	
 }

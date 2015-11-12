@@ -19,7 +19,9 @@ import javax.swing.table.TableModel;
 
 import amazingcontrol.model.Usuario;
 import amazingcontrol.service.UsuarioService;
+import amazingcontrol.swing.usuario.action.AtivarUsuarioAction;
 import amazingcontrol.swing.usuario.action.DeletarUsuarioAction;
+import amazingcontrol.swing.usuario.action.InativarApagarAction;
 import amazingcontrol.swing.usuario.action.NovoUsuarioAction;
 import amazingcontrol.swing.principal.view.TelaPrincipal;
 import amazingcontrol.swing.view.utils.PopupMouseAdapter;
@@ -85,7 +87,7 @@ public class TelaUsuario extends JDialog {
 	}
 
 	private Object[] createColumnNames() {
-		return new Object[] { "Nome", "ativo" };
+		return new Object[] { "Nome", "Status" };
 	}
 
 	private void initPainel() {
@@ -119,11 +121,11 @@ public class TelaUsuario extends JDialog {
 		menu.add(item);
 		
 		item = new JMenuItem("Ativar...");
-		// item.addActionListener(new UsuarioApagarAction(this));
+		item.addActionListener(new AtivarUsuarioAction(this));
 		menu.add(item);
 
 		item = new JMenuItem("Inativar...");
-		// item.addActionListener(new UsuarioApagarAction(this));
+		item.addActionListener(new InativarApagarAction(this));
 		menu.add(item);
 
 		usuariosJTable.addMouseListener(new PopupMouseAdapter(menu));
@@ -144,7 +146,7 @@ public class TelaUsuario extends JDialog {
 		model.getDataVector().clear();
 
 		for (Usuario usuario : usuarios) {
-			String ativo = usuario.isAtivo() ? "Ativo" : "Status";
+			String ativo = usuario.isAtivo() ? "Ativo" : "Inativo";
 
 			model.addRow(new Object[] { usuario, ativo });
 
