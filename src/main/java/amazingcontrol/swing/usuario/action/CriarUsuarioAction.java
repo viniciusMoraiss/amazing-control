@@ -31,10 +31,7 @@ public class CriarUsuarioAction implements ActionListener {
 		
 		try {
 			// cria objeto usuario com os valores digitados na tela
-			Usuario usuario = view.getUsuario();
-			
-			usuario = new Usuario(nome, senha, confirmacaoSenha, ativo);
-			usuario.setId(view.getUsuario().getId());
+			Usuario usuario = new Usuario(nome, senha, confirmacaoSenha, ativo);
 			
 			// insere usuario se nao houver nenhum erro
 			new UsuarioService().salvar(usuario);

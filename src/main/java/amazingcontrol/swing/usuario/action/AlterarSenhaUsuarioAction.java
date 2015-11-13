@@ -24,30 +24,30 @@ public class AlterarSenhaUsuarioAction implements ActionListener {
 		// valores digitados pelo usuario
 		String senhaAtual = new String(view.getSenhaAtualPasswordField().getPassword());
 		String senha = new String(view.getSenhaPasswordField().getPassword());
-		// é preciso converter o password para string, pois o getPassword retorna um array de chars
+		// é preciso converter o password para string, pois o getPassword
+		// retorna um array de chars
 		String confirmacaoSenha = new String(view.getConfirmacaoSenhaPasswordField().getPassword());
 
 		String msg;
 
 		try {
-			// cria objeto usuario com os valores do usuario a ser alterado (logado)
+			// cria objeto usuario com os valores do usuario a ser alterado
+			// (logado)
 			Usuario usuario = view.getUsuario();
-			
-			if(senhaAtual.equals(usuario.getSenha())) {
+
+			if (senhaAtual.equals(usuario.getSenha())) {
 				usuario.setSenha(senha);
 				usuario.setConfirmacaoSenha(confirmacaoSenha);
-				
+
 				// altera usuario se nao houver nenhum erro
 				new UsuarioService().salvar(usuario);
 				msg = "Usuario alterado com sucesso";
 			} else {
 				msg = "Senha atual invalida";
 			}
-			
-			
+
 			showMessageDialog(view, msg, "Informação", JOptionPane.INFORMATION_MESSAGE);
-			
-		
+
 		} catch (Exception ex) {
 			ex.printStackTrace();
 			// imprime os erros se houver
@@ -57,7 +57,7 @@ public class AlterarSenhaUsuarioAction implements ActionListener {
 			limpaCampos();
 		}
 	}
-	
+
 	// Metodo para limpar os campos
 	private void limpaCampos() {
 		view.getSenhaAtualPasswordField().setText("");
