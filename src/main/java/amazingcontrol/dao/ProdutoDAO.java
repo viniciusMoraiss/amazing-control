@@ -7,7 +7,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import amazingcontrol.connection.ConexaoMySQL;
-import amazingcontrol.model.Fornecedor;
 import amazingcontrol.model.Produto;
 
 public class ProdutoDAO implements Crud<Produto> {
@@ -74,39 +73,35 @@ public class ProdutoDAO implements Crud<Produto> {
 	@Override
 	public List<Produto> lista() {
 		Connection con = ConexaoMySQL.conectar();
-		List<Fornecedor> produto = new ArrayList<>();
+		List<Produto> produtos = new ArrayList<>();
 		String sql = " SELECT * FROM produto";
+
 		PreparedStatement stmt = null;
 		ResultSet rs = null;
 
 		try {
 			stmt = con.prepareStatement(sql);
 			rs = stmt.executeQuery();
-			Produto produtos;
+			Produto produto;
 
 			while (rs.next()) {
-				produtos = new Produto();
-				produtos.seId(rs.getInt("id"));
-				produtos.setNome(rs.getString("nome"));
-				produtos.setMarca(rs.getString("Marca"));
-				produtos.setTipo(rs.getString("Tipo"));
-				produtos.setValorCusto(rs.getDouble("Valor Custo"));
-				produtos.setValorVenda(rs.getDouble("Valor Venda"));
-				produtos.setQuantidadeDeProduto(rs.getInt("Produto"));
-
-				produtos.add(produtos);
+				produto = new Produto();
+				produto.setId(rs.getInt("id"));
+				produto.setNome(rs.getString("nome"));
+				produto.setMarca(rs.getString("Marca"));
+				produto.setTipo(rs.getString("Tipo"));
+				produto.setValorCusto(rs.getDouble("Valor Custo"));
+				produto.setValorVenda(rs.getDouble("Valor Venda"));
+				produto.setQuantidadeDeProduto(rs.getInt("Produto"));
+				produtos.add(produto);
 			}
-
-			return produtos;
-
 		} catch (Exception e) {
 			e.printStackTrace();
 		} finally {
 			ConexaoMySQL.desconectar(con, stmt, rs);
 		}
 
-		return produto;
-		return null;
+		return produtos;
 	}
 
 }
