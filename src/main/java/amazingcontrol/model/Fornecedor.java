@@ -1,5 +1,10 @@
 package amazingcontrol.model;
 
+import java.util.HashMap;
+import java.util.Map;
+
+import amazingcontrol.model.utils.Validacoes;
+
 public class Fornecedor extends Entidate<Integer> {
 
 	private String nome;
@@ -11,7 +16,6 @@ public class Fornecedor extends Entidate<Integer> {
 
 	
 	// construtor para passar os paramentros para a tela (CriarFornecedorAction)
-	
 	public Fornecedor(String nome, String telefone, String endereco, String cidade, String cep, UF uf) {
 		this.nome = nome;
 		this.telefone = telefone;
@@ -22,12 +26,10 @@ public class Fornecedor extends Entidate<Integer> {
 	}
 
 	// construtor padrao para o fornecedorDAO
-	
 	public Fornecedor(){		
 	}
 	
 	// getters and setters 
-	
 	public String getNome() {
 		return nome;
 	}
@@ -77,8 +79,17 @@ public class Fornecedor extends Entidate<Integer> {
 	}
 
 	// toString
-
 	public String toString() {
 		return "Fornecedor: " + nome;
+	}
+	
+	// validacoes
+	public void valida() throws Exception {
+		Map<String, String> atributos = new HashMap<>();
+		atributos.put(cidade, "Cidade");
+		atributos.put(endereco, "Endereço");
+		atributos.put(cep, "CEP");
+		atributos.put(nome, "Nome");
+		Validacoes.valida(atributos );
 	}
 }

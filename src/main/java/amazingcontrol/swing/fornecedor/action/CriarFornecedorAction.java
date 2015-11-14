@@ -1,11 +1,12 @@
 package amazingcontrol.swing.fornecedor.action;
 
+import static javax.swing.JOptionPane.ERROR_MESSAGE;
+import static javax.swing.JOptionPane.INFORMATION_MESSAGE;
+import static javax.swing.JOptionPane.showMessageDialog;
+
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.sql.SQLException;
 import java.text.ParseException;
-
-import javax.swing.JOptionPane;
 
 import amazingcontrol.model.Fornecedor;
 import amazingcontrol.model.UF;
@@ -35,24 +36,33 @@ public class CriarFornecedorAction implements ActionListener {
 		String cep = null;
 		
 		try {
-			telefone = (String) view.getMaskTelefone().stringToValue(telefoneComMascara);
-			cep = (String) view.getMaskCep().stringToValue(cepComMascara);;
+			
+			if(telefoneComMascara != null && telefoneComMascara.matches("(?:\\d+[a-z]|[a-z]+\\d)[a-z\\d]*")) {
+				telefone = (String) view.getMaskTelefone().stringToValue(telefoneComMascara);
+			}
+			
+			if(cepComMascara != null && cepComMascara.matches("(?:\\d+[a-z]|[a-z]+\\d)[a-z\\d]*")){
+				cep = (String) view.getMaskCep().stringToValue(cepComMascara);
+			}
+			
 		} catch (ParseException ex) {
 			ex.printStackTrace();
 		}
 		
-		// cria objeto com os dados digitados pelo usuario
-		Fornecedor fornecedor = new Fornecedor(nome, telefone, endereco, cidade, cep, uf);
-
 		try {
+			// cria objeto com os dados digitados pelo usuario
+			Fornecedor fornecedor = new Fornecedor(nome, telefone, endereco, cidade, cep, uf);
+			
 			// tenta salvar o objeto fornecedor no banco de dados
 			new FornecedorService().salvar(fornecedor);
-			JOptionPane.showMessageDialog(view, "Inserido com sucesso");
-		} catch (SQLException ex) {
+			
+			// mensagem de sucesso
+			showMessageDialog(view, "Inserido com sucesso", "OK", INFORMATION_MESSAGE);
+			
+		} catch (Exception ex) {
 			ex.printStackTrace();
-			JOptionPane.showMessageDialog(view, "Erro ao inserir");
+			showMessageDialog(view, ex.getMessage(), "Erro", ERROR_MESSAGE);
 		}
-
 	}
 
 }

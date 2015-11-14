@@ -59,7 +59,7 @@ public class UsuarioService {
 	 * metodo privado para chamar os metodos de validacoes do usuario
 	 */
 	private void validar(Usuario usuario) throws Exception {
-		usuario.validaNome();
+		usuario.validaAtributos();
 		usuario.validaSenha();
 	}
 
