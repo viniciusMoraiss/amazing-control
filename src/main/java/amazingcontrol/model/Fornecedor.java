@@ -3,12 +3,31 @@ package amazingcontrol.model;
 public class Fornecedor extends Entidate<Integer> {
 
 	private String nome;
-	private int telefone;
+	private String telefone;
 	private String endereco;
 	private String cidade;
-	private int cep;
+	private String cep;
 	private String uf;
 
+	
+	// construtor para passar os paramentros para a tela (CriarFornecedorAction)
+	
+	public Fornecedor(String nome, String telefone, String endereco, String cidade, String cep, String uf) {
+		this.nome = nome;
+		this.telefone = telefone;
+		this.endereco = endereco;
+		this.cidade = cidade;
+		this.cep = cep;
+		this.uf = uf;
+	}
+
+	// construtor padrao para o fornecedorDAO
+	
+	public Fornecedor(){		
+	}
+	
+	// getters and setters 
+	
 	public String getNome() {
 		return nome;
 	}
@@ -17,11 +36,11 @@ public class Fornecedor extends Entidate<Integer> {
 		this.nome = nome;
 	}
 
-	public int getTelefone() {
+	public String getTelefone() {
 		return telefone;
 	}
 
-	public void setTelefone(int telefone) {
+	public void setTelefone(String telefone) {
 		this.telefone = telefone;
 	}
 
@@ -41,11 +60,11 @@ public class Fornecedor extends Entidate<Integer> {
 		this.cidade = cidade;
 	}
 
-	public int getCep() {
+	public String getCep() {
 		return cep;
 	}
 
-	public void setCep(int cep) {
+	public void setCep(String cep) {
 		this.cep = cep;
 	}
 
@@ -56,6 +75,8 @@ public class Fornecedor extends Entidate<Integer> {
 	public void setUf(String uf) {
 		this.uf = uf;
 	}
+
+	// toString
 
 	public String toString() {
 		return "Fornecedor: " + nome;
