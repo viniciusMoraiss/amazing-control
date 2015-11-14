@@ -14,6 +14,7 @@ import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.text.MaskFormatter;
 
+import amazingcontrol.swing.fornecedor.action.CriarFornecedorAction;
 import amazingcontrol.swing.view.utils.CustomizeView;
 
 public class TelaCadastroFornecedor extends JFrame {
@@ -38,6 +39,7 @@ public class TelaCadastroFornecedor extends JFrame {
 
 		initComponents();
 		initPainel();
+		initListeners();
 
 		setTitle(("[A-CONTROL] Fornecedor"));
 		setSize(630, 470);
@@ -46,9 +48,127 @@ public class TelaCadastroFornecedor extends JFrame {
 		setLocationRelativeTo(null);
 	}
 
+	// Getters and Setters
+
+	private void initListeners() {
+		cadastrarBt.addActionListener(new CriarFornecedorAction(this));
+	}
+
+	public JLabel getNomeLabel() {
+		return nomeLabel;
+	}
+
+	public void setNomeLabel(JLabel nomeLabel) {
+		this.nomeLabel = nomeLabel;
+	}
+
+	public JTextField getNomeText() {
+		return nomeText;
+	}
+
+	public void setNomeText(JTextField nomeText) {
+		this.nomeText = nomeText;
+	}
+
+	public JLabel getTelefoneLabel() {
+		return telefoneLabel;
+	}
+
+	public void setTelefoneLabel(JLabel telefoneLabel) {
+		this.telefoneLabel = telefoneLabel;
+	}
+
+	public JTextField getTelefoneText() {
+		return telefoneText;
+	}
+
+	public void setTelefoneText(JTextField telefoneText) {
+		this.telefoneText = telefoneText;
+	}
+
+	public JLabel getEnderecoLabel() {
+		return enderecoLabel;
+	}
+
+	public void setEnderecoLabel(JLabel enderecoLabel) {
+		this.enderecoLabel = enderecoLabel;
+	}
+
+	public JTextField getEnderecoText() {
+		return enderecoText;
+	}
+
+	public void setEnderecoText(JTextField enderecoText) {
+		this.enderecoText = enderecoText;
+	}
+
+	public JLabel getCidadeLabel() {
+		return cidadeLabel;
+	}
+
+	public void setCidadeLabel(JLabel cidadeLabel) {
+		this.cidadeLabel = cidadeLabel;
+	}
+
+	public JTextField getCidadeText() {
+		return cidadeText;
+	}
+
+	public void setCidadeText(JTextField cidadeText) {
+		this.cidadeText = cidadeText;
+	}
+
+	public JLabel getCepLabel() {
+		return cepLabel;
+	}
+
+	public void setCepLabel(JLabel cepLabel) {
+		this.cepLabel = cepLabel;
+	}
+
+	public JTextField getCepText() {
+		return cepText;
+	}
+
+	public void setCepText(JTextField cepText) {
+		this.cepText = cepText;
+	}
+
+	public JLabel getUfLabel() {
+		return ufLabel;
+	}
+
+	public void setUfLabel(JLabel ufLabel) {
+		this.ufLabel = ufLabel;
+	}
+
+	public JTextField getUfText() {
+		return ufText;
+	}
+
+	public void setUfText(JTextField ufText) {
+		this.ufText = ufText;
+	}
+
+	public JButton getCadastrarBt() {
+		return cadastrarBt;
+	}
+
+	public void setCadastrarBt(JButton cadastrarBt) {
+		this.cadastrarBt = cadastrarBt;
+	}
+
+	public JButton getCancelarBt() {
+		return cancelarBt;
+	}
+
+	public void setCancelarBt(JButton cancelarBt) {
+		this.cancelarBt = cancelarBt;
+	}
+
 	private void initComponents() {
 
-		// label e input usando a classe customizeView para mudar a fonte e  cor.
+		// label e input usando a classe customizeView para mudar a fonte e cor.
 		nomeLabel = new JLabel("Nome ");
 		nomeText = new JTextField(20);
 		CustomizeView.labelsAndInputs(nomeLabel, nomeText);
@@ -83,9 +203,9 @@ public class TelaCadastroFornecedor extends JFrame {
 		GridBagConstraints constraints = new GridBagConstraints();
 		constraints.anchor = GridBagConstraints.WEST;
 		constraints.insets = new Insets(10, 10, 10, 10);
-		
-		// Mascara para cep,tel, uf 
-		
+
+		// Mascara para cep,tel, uf
+
 		MaskFormatter mascaraTel = null;
 		MaskFormatter mascaraCep = null;
 		MaskFormatter mascaraUf = null;
@@ -103,7 +223,7 @@ public class TelaCadastroFornecedor extends JFrame {
 			System.exit(-1);
 		}
 		// Seta as mascaras nos objetos
-		
+
 		JFormattedTextField mascaracep = new JFormattedTextField(mascaraCep);
 		JFormattedTextField mascaratel = new JFormattedTextField(mascaraTel);
 		JFormattedTextField mascarauf = new JFormattedTextField(mascaraUf);
@@ -113,7 +233,9 @@ public class TelaCadastroFornecedor extends JFrame {
 		mascarauf.setBounds(150, 40, 100, 20);
 
 		// customizando as mascaras criada cep, tel, uf
-		
+
+		// problema com as mascaras
+
 		CustomizeView.labelsAndInputs(cepLabel, mascaracep);
 		CustomizeView.labelsAndInputs(telefoneLabel, mascaratel);
 		CustomizeView.labelsAndInputs(ufLabel, mascarauf);
