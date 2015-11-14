@@ -15,5 +15,6 @@ public class CustomizeView {
 		label.setFont(new Font(Font.SANS_SERIF, Font.CENTER_BASELINE, 14));
 		textField.setPreferredSize(new Dimension(200,30));
 		textField.setFont(new Font(Font.SANS_SERIF, Font.CENTER_BASELINE, 14));
+		textField.setColumns(20);
 	}
 }

@@ -31,6 +31,8 @@ public class TelaCadastroFornecedor extends JFrame {
 	private JTextField cepText;
 	private JLabel ufLabel;
 	private JTextField ufText;
+	private MaskFormatter maskTelefone;
+	private MaskFormatter maskCep;
 	private JButton cadastrarBt;
 	private JButton cancelarBt;
 
@@ -165,33 +167,58 @@ public class TelaCadastroFornecedor extends JFrame {
 	public void setCancelarBt(JButton cancelarBt) {
 		this.cancelarBt = cancelarBt;
 	}
+	
+	public MaskFormatter getMaskTelefone() {
+		return maskTelefone;
+	}
+
+	public void setMaskTelefone(MaskFormatter maskTelefone) {
+		this.maskTelefone = maskTelefone;
+	}
+
+	public MaskFormatter getMaskCep() {
+		return maskCep;
+	}
+
+	public void setMaskCep(MaskFormatter maskCep) {
+		this.maskCep = maskCep;
+	}
 
 	private void initComponents() {
+		
+		// cria mascaras para telefone e cep
+		try {
+			maskTelefone = new MaskFormatter("(##) # ####-####");
+			maskCep = new MaskFormatter("##### - ###");
+			maskTelefone.setValueContainsLiteralCharacters(false);
+			maskCep.setValueContainsLiteralCharacters(false);
+		} catch (ParseException excp) {
+			excp.printStackTrace();
+		}
 
-		// label e input usando a classe customizeView para mudar a fonte e cor.
 		nomeLabel = new JLabel("Nome ");
 		nomeText = new JTextField(20);
 		CustomizeView.labelsAndInputs(nomeLabel, nomeText);
 
-		telefoneLabel = new JLabel("Telefone");
-		telefoneText = new JTextField(20);
-		CustomizeView.labelsAndInputs(telefoneLabel, telefoneText);
+		cepLabel = new JLabel("Cep");
+		cepText = new JFormattedTextField(maskCep);
+		CustomizeView.labelsAndInputs(cepLabel, cepText);
 
 		enderecoLabel = new JLabel("Endereço");
 		enderecoText = new JTextField(20);
 		CustomizeView.labelsAndInputs(enderecoLabel, enderecoText);
 
 		cidadeLabel = new JLabel("Cidade");
-		cidadeText = new JTextField(20);
+		cidadeText = new JTextField();
 		CustomizeView.labelsAndInputs(cidadeLabel, cidadeText);
 
-		cepLabel = new JLabel("Cep");
-		cepText = new JTextField(20);
-		CustomizeView.labelsAndInputs(cepLabel, cepText);
-
 		ufLabel = new JLabel("UF");
-		ufText = new JTextField(20);
+		ufText = new JTextField();
 		CustomizeView.labelsAndInputs(ufLabel, ufText);
+
+		telefoneLabel = new JLabel("Telefone");
+		telefoneText = new JFormattedTextField(maskTelefone);
+		CustomizeView.labelsAndInputs(telefoneLabel, telefoneText);
 
 		cadastrarBt = new JButton("Cadastrar");
 		cancelarBt = new JButton("Cancelar");
@@ -204,43 +231,6 @@ public class TelaCadastroFornecedor extends JFrame {
 		constraints.anchor = GridBagConstraints.WEST;
 		constraints.insets = new Insets(10, 10, 10, 10);
 
-		// Mascara para cep,tel, uf
-
-		MaskFormatter mascaraTel = null;
-		MaskFormatter mascaraCep = null;
-		MaskFormatter mascaraUf = null;
-
-		try {
-			mascaraCep = new MaskFormatter(" ##### - ### ");
-			mascaraTel = new MaskFormatter(" (##) #### - ####  ");
-			mascaraUf = new MaskFormatter("  UU  ");
-
-			mascaraCep.setPlaceholderCharacter('_');
-			mascaraTel.setPlaceholderCharacter('_');
-			mascaraUf.setPlaceholderCharacter('_');
-		} catch (ParseException excp) {
-			System.err.println("Erro na formatação: " + excp.getMessage());
-			System.exit(-1);
-		}
-		// Seta as mascaras nos objetos
-
-		JFormattedTextField mascaracep = new JFormattedTextField(mascaraCep);
-		JFormattedTextField mascaratel = new JFormattedTextField(mascaraTel);
-		JFormattedTextField mascarauf = new JFormattedTextField(mascaraUf);
-
-		mascaracep.setBounds(150, 40, 100, 20);
-		mascaratel.setBounds(150, 40, 100, 20);
-		mascarauf.setBounds(150, 40, 100, 20);
-
-		// customizando as mascaras criada cep, tel, uf
-
-		// problema com as mascaras
-
-		CustomizeView.labelsAndInputs(cepLabel, mascaracep);
-		CustomizeView.labelsAndInputs(telefoneLabel, mascaratel);
-		CustomizeView.labelsAndInputs(ufLabel, mascarauf);
-
-		constraints.gridx = 0; // coluna
 		constraints.gridy = 0; // linha
 		painel.add(nomeLabel, constraints);
 
@@ -248,39 +238,39 @@ public class TelaCadastroFornecedor extends JFrame {
 		painel.add(nomeText, constraints);
 
 		constraints.gridx = 0;
-		constraints.gridy = 1; // linha
-		painel.add(cidadeLabel, constraints);
+		constraints.gridy = 2;
+		painel.add(cepLabel, constraints);
 
 		constraints.gridx = 1;
-		painel.add(cidadeText, constraints);
+		painel.add(cepText, constraints);
 
 		constraints.gridx = 0;
-		constraints.gridy = 2; // linha
+		constraints.gridy = 3; // linha
 		painel.add(enderecoLabel, constraints);
 
 		constraints.gridx = 1;
 		painel.add(enderecoText, constraints);
 
 		constraints.gridx = 0;
-		constraints.gridy = 4;
-		painel.add(telefoneLabel, constraints);
+		constraints.gridy = 4; // linha
+		painel.add(cidadeLabel, constraints);
 
 		constraints.gridx = 1;
-		painel.add(mascaratel, constraints);
+		painel.add(cidadeText, constraints);
 
 		constraints.gridx = 0;
 		constraints.gridy = 5;
-		painel.add(cepLabel, constraints);
-
-		constraints.gridx = 1;
-		painel.add(mascaracep, constraints);
-
-		constraints.gridx = 0;
-		constraints.gridy = 6;
 		painel.add(ufLabel, constraints);
 
 		constraints.gridx = 1;
-		painel.add(mascarauf, constraints);
+		painel.add(ufText, constraints);
+
+		constraints.gridx = 0;
+		constraints.gridy = 6;
+		painel.add(telefoneLabel, constraints);
+
+		constraints.gridx = 1;
+		painel.add(telefoneText, constraints);
 
 		constraints.gridx = 0;
 		constraints.gridy = 7;
@@ -295,5 +285,9 @@ public class TelaCadastroFornecedor extends JFrame {
 
 		add(painel);
 
+	}
+	
+	public static void main(String[] args) {
+		new TelaCadastroFornecedor().setVisible(true);
 	}
 }

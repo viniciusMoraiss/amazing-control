@@ -3,6 +3,7 @@ package amazingcontrol.dao;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.List;
 import java.util.ArrayList;
 
@@ -25,7 +26,7 @@ public class FornecedorDAO implements Crud<Fornecedor> {
 			stmt.setString(5, fornecedor.getCep());
 			stmt.setString(6, fornecedor.getUf());
 			stmt.execute();
-		} catch (Exception e) {
+		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally {
 			ConexaoMySQL.desconectar(con, stmt, null);
@@ -40,7 +41,7 @@ public class FornecedorDAO implements Crud<Fornecedor> {
 			stmt = con.prepareStatement(sql);
 			stmt.setInt(1, fornecedor.getId());
 			stmt.execute();
-		} catch (Exception e) {
+		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally {
 			ConexaoMySQL.desconectar(con, stmt, null);
@@ -60,7 +61,7 @@ public class FornecedorDAO implements Crud<Fornecedor> {
 			stmt.setString(5, fornecedor.getCep());
 			stmt.setString(6, fornecedor.getUf());
 			stmt.execute();
-		} catch (Exception e) {
+		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally {
 			ConexaoMySQL.desconectar(con, stmt, null);
@@ -94,7 +95,7 @@ public class FornecedorDAO implements Crud<Fornecedor> {
 
 			return fornecedores;
 
-		} catch (Exception e) {
+		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally {
 			ConexaoMySQL.desconectar(con, stmt, rs);
