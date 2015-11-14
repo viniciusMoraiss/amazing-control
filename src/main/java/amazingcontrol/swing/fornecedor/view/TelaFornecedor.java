@@ -16,17 +16,20 @@ import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 
 import amazingcontrol.swing.fornecedor.action.NovoFornecedorAction;
+import amazingcontrol.swing.principal.view.TelaPrincipal;
 import amazingcontrol.swing.view.utils.PopupMouseAdapter;
 
 public class TelaFornecedor extends JFrame {
 
 	private JButton btNovo;
 	private JTable jtFornecedor;
+	private TelaPrincipal view;
 
 	// construtor
 
-	public TelaFornecedor() {
+	public TelaFornecedor(TelaPrincipal view) {
 		super();
+		this.view = view;
 
 		initComponents();
 		initListeners();
@@ -100,7 +103,7 @@ public class TelaFornecedor extends JFrame {
 	}
 
 	private void initListeners() {
-		btNovo.addActionListener(new NovoFornecedorAction());
+		btNovo.addActionListener(new NovoFornecedorAction(view));
 	}
 }
 /*

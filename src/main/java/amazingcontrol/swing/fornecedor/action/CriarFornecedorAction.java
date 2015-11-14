@@ -8,6 +8,7 @@ import java.text.ParseException;
 import javax.swing.JOptionPane;
 
 import amazingcontrol.model.Fornecedor;
+import amazingcontrol.model.UF;
 import amazingcontrol.service.FornecedorService;
 import amazingcontrol.swing.fornecedor.view.TelaCadastroFornecedor;
 
@@ -24,7 +25,7 @@ public class CriarFornecedorAction implements ActionListener {
 		String nome = view.getNomeText().getText();
 		String endereco = view.getEnderecoText().getText();
 		String cidade = view.getCidadeText().getText();
-		String uf = view.getUfText().getText();
+		UF uf = (UF) view.getUFComboBox().getSelectedItem();
 		
 		// remover as mascaras telefone e cep
 		String telefoneComMascara = view.getTelefoneText().getText();

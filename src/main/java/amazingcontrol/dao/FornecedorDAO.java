@@ -9,6 +9,7 @@ import java.util.ArrayList;
 
 import amazingcontrol.connection.ConexaoMySQL;
 import amazingcontrol.model.Fornecedor;
+import amazingcontrol.model.UF;
 
 public class FornecedorDAO implements Crud<Fornecedor> {
 
@@ -24,7 +25,7 @@ public class FornecedorDAO implements Crud<Fornecedor> {
 			stmt.setString(3, fornecedor.getEndereco());
 			stmt.setString(4, fornecedor.getCidade());
 			stmt.setString(5, fornecedor.getCep());
-			stmt.setString(6, fornecedor.getUf());
+			stmt.setString(6, fornecedor.getUf().toString());
 			stmt.execute();
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -59,7 +60,7 @@ public class FornecedorDAO implements Crud<Fornecedor> {
 			stmt.setString(3, fornecedor.getEndereco());
 			stmt.setString(4, fornecedor.getCidade());
 			stmt.setString(5, fornecedor.getCep());
-			stmt.setString(6, fornecedor.getUf());
+			stmt.setString(6, fornecedor.getUf().toString());
 			stmt.execute();
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -88,8 +89,14 @@ public class FornecedorDAO implements Crud<Fornecedor> {
 				fornecedor.setEndereco(rs.getString("endereço"));
 				fornecedor.setCidade(rs.getString("cidade"));
 				fornecedor.setCep(rs.getString("cep"));
-				fornecedor.setUf(rs.getString("uf"));
-
+				
+				// seta uf do banco
+				for(UF uf : UF.values()) {
+					if(rs.getString("uf") == uf.toString()) {
+						fornecedor.setUf(uf);
+					}
+				}
+				
 				fornecedores.add(fornecedor);
 			}
 

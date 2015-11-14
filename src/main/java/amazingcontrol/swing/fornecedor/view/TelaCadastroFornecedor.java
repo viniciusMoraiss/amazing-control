@@ -7,6 +7,7 @@ import java.text.ParseException;
 
 import javax.swing.BorderFactory;
 import javax.swing.JButton;
+import javax.swing.JComboBox;
 import javax.swing.JFormattedTextField;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -14,7 +15,9 @@ import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.text.MaskFormatter;
 
+import amazingcontrol.model.UF;
 import amazingcontrol.swing.fornecedor.action.CriarFornecedorAction;
+import amazingcontrol.swing.principal.view.TelaPrincipal;
 import amazingcontrol.swing.view.utils.CustomizeView;
 
 public class TelaCadastroFornecedor extends JFrame {
@@ -30,13 +33,13 @@ public class TelaCadastroFornecedor extends JFrame {
 	private JLabel cepLabel;
 	private JTextField cepText;
 	private JLabel ufLabel;
-	private JTextField ufText;
+	private JComboBox<Object> ufJComboBox;
 	private MaskFormatter maskTelefone;
 	private MaskFormatter maskCep;
 	private JButton cadastrarBt;
 	private JButton cancelarBt;
 
-	public TelaCadastroFornecedor() {
+	public TelaCadastroFornecedor(TelaPrincipal view) {
 		super();
 
 		initComponents();
@@ -51,7 +54,6 @@ public class TelaCadastroFornecedor extends JFrame {
 	}
 
 	// Getters and Setters
-
 	private void initListeners() {
 		cadastrarBt.addActionListener(new CriarFornecedorAction(this));
 	}
@@ -144,12 +146,12 @@ public class TelaCadastroFornecedor extends JFrame {
 		this.ufLabel = ufLabel;
 	}
 
-	public JTextField getUfText() {
-		return ufText;
+	public JComboBox<Object> getUFComboBox() {
+		return ufJComboBox;
 	}
 
-	public void setUfText(JTextField ufText) {
-		this.ufText = ufText;
+	public void setUFComboBox(JComboBox<Object> ufJComboBox) {
+		this.ufJComboBox = ufJComboBox;
 	}
 
 	public JButton getCadastrarBt() {
@@ -211,10 +213,10 @@ public class TelaCadastroFornecedor extends JFrame {
 		cidadeLabel = new JLabel("Cidade");
 		cidadeText = new JTextField();
 		CustomizeView.labelsAndInputs(cidadeLabel, cidadeText);
-
+		
+		Object[] ufs = UF.values();
 		ufLabel = new JLabel("UF");
-		ufText = new JTextField();
-		CustomizeView.labelsAndInputs(ufLabel, ufText);
+		ufJComboBox = new JComboBox<>(ufs);
 
 		telefoneLabel = new JLabel("Telefone");
 		telefoneText = new JFormattedTextField(maskTelefone);
@@ -263,7 +265,7 @@ public class TelaCadastroFornecedor extends JFrame {
 		painel.add(ufLabel, constraints);
 
 		constraints.gridx = 1;
-		painel.add(ufText, constraints);
+		painel.add(ufJComboBox, constraints);
 
 		constraints.gridx = 0;
 		constraints.gridy = 6;
@@ -285,9 +287,5 @@ public class TelaCadastroFornecedor extends JFrame {
 
 		add(painel);
 
-	}
-	
-	public static void main(String[] args) {
-		new TelaCadastroFornecedor().setVisible(true);
 	}
 }

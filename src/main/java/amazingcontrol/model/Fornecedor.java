@@ -7,12 +7,12 @@ public class Fornecedor extends Entidate<Integer> {
 	private String endereco;
 	private String cidade;
 	private String cep;
-	private String uf;
+	private UF uf;
 
 	
 	// construtor para passar os paramentros para a tela (CriarFornecedorAction)
 	
-	public Fornecedor(String nome, String telefone, String endereco, String cidade, String cep, String uf) {
+	public Fornecedor(String nome, String telefone, String endereco, String cidade, String cep, UF uf) {
 		this.nome = nome;
 		this.telefone = telefone;
 		this.endereco = endereco;
@@ -68,11 +68,11 @@ public class Fornecedor extends Entidate<Integer> {
 		this.cep = cep;
 	}
 
-	public String getUf() {
+	public UF getUf() {
 		return uf;
 	}
 
-	public void setUf(String uf) {
+	public void setUf(UF uf) {
 		this.uf = uf;
 	}
 
