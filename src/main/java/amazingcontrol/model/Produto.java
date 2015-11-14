@@ -1,6 +1,6 @@
 package amazingcontrol.model;
 
-public class Produto {
+public class Produto extends Entidate<Integer>{
 
 	private String nome;
 	private String marca;
@@ -9,20 +9,10 @@ public class Produto {
 	private double valorVenda;
 	private int quantidadeDeProduto;
 
-	/**
-	 * Recupera nome
-	 * 
-	 * @return nome
-	 */
 	public String getNome() {
 		return this.nome;
 	}
 
-	/**
-	 * Configura nome
-	 * 
-	 * @param nome
-	 */
 	public void setNome(String nome) {
 		this.nome = nome;
 	}
@@ -65,5 +55,10 @@ public class Produto {
 
 	public void setQuantidadeDeProduto(int quantidadeDeProduto) {
 		this.quantidadeDeProduto = quantidadeDeProduto;
+	}
+	
+	@Override
+	public String toString() {
+		return nome;
 	}
 }
