@@ -1,9 +1,6 @@
-package amazingcontrol.swing.usuario.action;
+package amazingcontrol.swing.login.action;
 
 import static javax.swing.JOptionPane.showMessageDialog;
-
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 
 import javax.swing.JFrame;
 import javax.swing.JPasswordField;
@@ -12,24 +9,14 @@ import javax.swing.JTextField;
 import amazingcontrol.model.Usuario;
 import amazingcontrol.service.UsuarioService;
 import amazingcontrol.swing.principal.view.TelaPrincipal;
-import amazingcontrol.swing.usuario.view.TelaLogin;
 
-public class LoginAction implements ActionListener {
-	private JTextField usuarioJTextField;
-	private JPasswordField senhaJPasswordField;
-	private JFrame loginView;
+public class Logar {
 
-	public LoginAction(TelaLogin loginView, JTextField usuarioJTextField, JPasswordField senhaJPasswordField) {
-		this.loginView = loginView;
-		this.usuarioJTextField = usuarioJTextField;
-		this.senhaJPasswordField = senhaJPasswordField;
-	}
-
-	public void actionPerformed(ActionEvent e) {
+	public static void fazerLogin(JFrame loginView, JTextField usuarioJTextField, JPasswordField senhaJPasswordField) {
 		// nome e senha digitados pelo usuario
 		String nome = usuarioJTextField.getText();
 		String senha = new String(senhaJPasswordField.getPassword());
-		
+
 		try {
 			// busca usuario no banco com os dados digitados pelo usuario
 			Usuario usuario = new UsuarioService().getUsuario(nome, senha);
@@ -41,7 +28,7 @@ public class LoginAction implements ActionListener {
 				new TelaPrincipal(usuario).setVisible(true);
 				// fecha tela de login
 				loginView.setVisible(false);
-				
+
 			} else {
 				showMessageDialog(null, "Usuario ou senha invalida");
 				// zera os campos de usuario e senha se for invalidos

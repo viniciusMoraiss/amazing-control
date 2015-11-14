@@ -1,4 +1,4 @@
-package amazingcontrol.swing.usuario.view;
+package amazingcontrol.swing.login.view;
 
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
@@ -12,7 +12,8 @@ import javax.swing.JPanel;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 
-import amazingcontrol.swing.usuario.action.LoginAction;
+import amazingcontrol.swing.login.action.LoginAction;
+import amazingcontrol.swing.login.action.LoginEnterAction;
 import amazingcontrol.swing.view.utils.CustomizeView;
 
 public class TelaLogin extends JFrame {
@@ -106,6 +107,10 @@ public class TelaLogin extends JFrame {
 	private void initListeners() {
 		// redireciona a acao do botao para classe LoginAction
 		okJButton.addActionListener(new LoginAction(this, usuarioJTextField, senhaJPasswordField));
+		
+		// login pela tecla enter
+		okJButton.addKeyListener(new LoginEnterAction(this, usuarioJTextField, senhaJPasswordField));
+		senhaJPasswordField.addKeyListener(new LoginEnterAction(this, usuarioJTextField, senhaJPasswordField));
 	}
 
 }
