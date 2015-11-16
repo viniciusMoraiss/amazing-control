@@ -86,10 +86,10 @@ public class Fornecedor extends Entidate<Integer> {
 	// validacoes
 	public void valida() throws Exception {
 		Map<String, String> atributos = new HashMap<>();
-		atributos.put(cidade, "Cidade");
-		atributos.put(endereco, "Endereço");
-		atributos.put(cep, "CEP");
-		atributos.put(nome, "Nome");
-		Validacoes.valida(atributos );
+		atributos.put("Nome", nome);
+		atributos.put("CEP", cep);
+		atributos.put("Endereço", endereco );
+		atributos.put("Cidade", cidade);
+		Validacoes.valida(atributos);
 	}
 }

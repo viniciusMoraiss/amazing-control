@@ -37,11 +37,11 @@ public class CriarFornecedorAction implements ActionListener {
 		
 		try {
 			
-			if(telefoneComMascara != null && telefoneComMascara.matches("(?:\\d+[a-z]|[a-z]+\\d)[a-z\\d]*")) {
+			if(telefoneComMascara != null && telefoneComMascara.matches(".*\\d+.*")) {
 				telefone = (String) view.getMaskTelefone().stringToValue(telefoneComMascara);
 			}
 			
-			if(cepComMascara != null && cepComMascara.matches("(?:\\d+[a-z]|[a-z]+\\d)[a-z\\d]*")){
+			if(cepComMascara != null && cepComMascara.matches(".*\\d+.*")){
 				cep = (String) view.getMaskCep().stringToValue(cepComMascara);
 			}
 			

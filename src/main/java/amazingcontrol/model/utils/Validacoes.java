@@ -7,25 +7,25 @@ public class Validacoes {
 	public static void valida(Map<String, String> campo) throws Exception {
 		
 		
-		for (String string : campo.values()) {
+		for (String key : campo.keySet()) {
 			// Nome nulo
-			if (campo.get(string) == null) {
-				throw new IllegalArgumentException(string + " nao pode ser nulo!");
+			if (campo.get(key) == null) {
+				throw new IllegalArgumentException(key + " nao pode ser nulo!");
 			}
 
 			// Nome vazio
-			if (campo.get(string).isEmpty()) { // nome.equals("");
-				throw new IllegalArgumentException(string + " nao pode ser vazio!");
+			if (campo.get(key).isEmpty()) { // nome.equals("");
+				throw new IllegalArgumentException(key + " nao pode ser vazio!");
 			}
 
 			// Nome em branco
-			if (campo.get(string).matches("^[ ]+$")) { // REGEX
-				throw new IllegalArgumentException(string + " nao pode ser branco!");
+			if (campo.get(key).matches("^[ ]+$")) { // REGEX
+				throw new IllegalArgumentException(key + " nao pode ser branco!");
 			}
 			
 			// Nao pode ter menos de 2 caracteres
-			if (campo.get(string).length() < 2) {
-				throw new IllegalArgumentException(string + " nao pode ser branco!");
+			if (campo.get(key).length() < 2) {
+				throw new IllegalArgumentException(key + " nao pode ser branco!");
 			}
 			
 		}

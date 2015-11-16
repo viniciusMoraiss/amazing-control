@@ -134,8 +134,8 @@ public class Usuario extends Entidate<Integer> {
 	
 	public void validaAtributos() throws Exception {
 		Map<String, String> atributos = new HashMap<>();
-		atributos.put(senha, "Senha");
-		atributos.put(nome, "Nome");
+		atributos.put("Nome", nome);
+		atributos.put("Senha", senha);
 		Validacoes.valida(atributos);
 	}
 
