@@ -15,7 +15,7 @@ public class ProdutoDAO implements Crud<Produto> {
 	public void inserir(Produto produto) {
 		Connection con = ConexaoMySQL.conectar();
 		PreparedStatement stmt = null;
-		String sql = "INSERT INTO produto(nome, marca, tipo, valorCusto, valorVenda, quantidadeDeProduto ) VALUES (?,?,?,?,?,?)";
+		String sql = "INSERT INTO produtos(nome, marca, tipo, valorCusto, valorVenda, quantidadeDeProdutos ) VALUES (?,?,?,?,?,?)";
 
 		try {
 			stmt = con.prepareStatement(sql);
@@ -36,7 +36,7 @@ public class ProdutoDAO implements Crud<Produto> {
 	@Override
 	public void atualizar(Produto produto) {
 		Connection con = ConexaoMySQL.conectar();
-		String sql = "UPDATE INTO produto (nome, marca, tipo, valorCusto, valorVenda, quantidadeDeProduto) VALUES (?,?,?,?,?,?)";
+		String sql = "UPDATE INTO produtos (nome, marca, tipo, valorCusto, valorVenda, quantidadeDeProduto) VALUES (?,?,?,?,?,?)";
 		PreparedStatement stmt = null;
 		try {
 			stmt = con.prepareStatement(sql);
@@ -57,7 +57,7 @@ public class ProdutoDAO implements Crud<Produto> {
 	@Override
 	public void deletar(Produto produto) {
 		Connection con = ConexaoMySQL.conectar();
-		String sql = "DELETE FROM produto WHERE id = ? ";
+		String sql = "DELETE FROM produtos WHERE id = ? ";
 		PreparedStatement stmt = null;
 		try {
 			stmt = con.prepareStatement(sql);
@@ -74,7 +74,7 @@ public class ProdutoDAO implements Crud<Produto> {
 	public List<Produto> lista() {
 		Connection con = ConexaoMySQL.conectar();
 		List<Produto> produtos = new ArrayList<>();
-		String sql = " SELECT * FROM produto";
+		String sql = " SELECT * FROM produtos";
 
 		PreparedStatement stmt = null;
 		ResultSet rs = null;
@@ -90,9 +90,9 @@ public class ProdutoDAO implements Crud<Produto> {
 				produto.setNome(rs.getString("nome"));
 				produto.setMarca(rs.getString("Marca"));
 				produto.setTipo(rs.getString("Tipo"));
-				produto.setValorCusto(rs.getDouble("Valor Custo"));
-				produto.setValorVenda(rs.getDouble("Valor Venda"));
-				produto.setQuantidadeDeProduto(rs.getInt("Produto"));
+				produto.setValorCusto(rs.getDouble("ValorCusto"));
+				produto.setValorVenda(rs.getDouble("ValorVenda"));
+				produto.setQuantidadeDeProduto(rs.getInt("QuantidadeDeProdutos"));
 				produtos.add(produto);
 			}
 		} catch (Exception e) {
@@ -100,7 +100,6 @@ public class ProdutoDAO implements Crud<Produto> {
 		} finally {
 			ConexaoMySQL.desconectar(con, stmt, rs);
 		}
-
 		return produtos;
 	}
 

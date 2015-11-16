@@ -11,11 +11,11 @@ import amazingcontrol.model.Produto;
 import amazingcontrol.service.ProdutoService;
 import amazingcontrol.swing.produto.view.TelaCadastroProduto;
 
-public class CadastroProdutoAction implements ActionListener {
+public class CriarProdutoAction implements ActionListener {
 	
 	private TelaCadastroProduto view;
 
-	public void CriarProdutoAction(TelaCadastroProduto view) {
+	public CriarProdutoAction(TelaCadastroProduto view) {
 		this.view = view;
 	}
 
@@ -26,7 +26,7 @@ public class CadastroProdutoAction implements ActionListener {
 		String tipo = view.getTipoText().getText();
 		double valorCusto = Double.parseDouble(view.getValorCustoText().getText());
 		double valorVenda = Double.parseDouble(view.getValorVendaText().getText());
-		int quantidadeDeProduto = Integer.parseInt(view.getValorVendaText().getText());
+		int quantidadeDeProduto = Integer.parseInt(view.getQuantidadeDeProdutoText().getText());
 		
 		try {
 			// cria objeto com os dados digitados pelo usuario
@@ -37,6 +37,9 @@ public class CadastroProdutoAction implements ActionListener {
 			
 			// mensagem de sucesso
 			showMessageDialog(view, "Inserido com sucesso", "OK", INFORMATION_MESSAGE);
+			
+			// recarrega os produtos
+			view.getProdutos();
 			
 		} catch (Exception ex) {
 			ex.printStackTrace();

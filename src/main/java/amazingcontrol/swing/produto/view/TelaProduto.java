@@ -4,6 +4,8 @@ import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.GridLayout;
 import java.awt.Insets;
+import java.sql.SQLException;
+import java.util.List;
 
 import javax.swing.BorderFactory;
 import javax.swing.JButton;
@@ -15,43 +17,39 @@ import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 
-import amazingcontrol.swing.fornecedor.action.NovoFornecedorAction;
+import amazingcontrol.model.Produto;
+import amazingcontrol.service.ProdutoService;
 import amazingcontrol.swing.principal.view.TelaPrincipal;
+import amazingcontrol.swing.produto.action.NovoProdutoAction;
 import amazingcontrol.swing.view.utils.PopupMouseAdapter;
 
 public class TelaProduto extends JFrame {
 
 	private JButton btNovo;
 	private JTable jtProduto;
-	private TelaPrincipal view;
 
 	// construtor
 
 	public TelaProduto(TelaPrincipal view) {
 		super();
-		this.view = view;
 
 		initComponents();
 		initListeners();
 		initPainel();
 		initPopupMenu();
 
-		setTitle("[A-CONTROL] Fornecedores");
+		setTitle("[A-CONTROL] Lista de Produtos");
 		setSize(630, 320);
 		setResizable(false);
 		setLocationRelativeTo(null);
-		// setVisible(true);
+		
+		// carrega os produtos cadastrados
+		try {
+			carregarProdutos();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 	}
-	// setDefaultCloseOperation(DO_NOTHING_ON_CLOSE);
-	// setModalExclusionType(ModalityType.DOCUMENT_MODAL);
-	// setAlwaysOnTop(true);
-	// pack();
-	// setModal(true);
-
-	/*
-	 * try { carregarFornecedores(); } catch (Exception e) {
-	 * e.printStackTrace(); }
-	 */
 
 	private void initComponents() {
 		jtProduto = new JTable(new DefaultTableModel(new Object[0][0], createColumnNames()));
@@ -59,7 +57,7 @@ public class TelaProduto extends JFrame {
 	}
 
 	private Object[] createColumnNames() {
-		return new Object[] { "Fornecedor" };
+		return new Object[] { "Nome", "Marca", "Tipo", "Valor Custo", "Valor Venda", "Quantidade" };
 	}
 
 	private void initPainel() {
@@ -103,23 +101,34 @@ public class TelaProduto extends JFrame {
 	}
 
 	private void initListeners() {
-		btNovo.addActionListener(new NovoFornecedorAction(view));
+		btNovo.addActionListener(new NovoProdutoAction(this));
 	}
-	
+
+	public void carregarProdutos() { 
+		ProdutoService service;
+		try {
+			service = new ProdutoService();
+			List<Produto> produtos = service.listar(); DefaultTableModel model;
+			model = (DefaultTableModel) jtProduto.getModel();
+			
+			model.getDataVector().clear();
+			
+			for (Produto produto : produtos) {
+				//"Nome", "Marca", "Tipo", "Valor Custo", "Valor Venda", "Quantidade"
+				model.addRow(new Object[] { produto, 
+											produto.getMarca(), 
+											produto.getTipo(), 
+											produto.getValorCusto(), 
+											produto.getValorVenda(),
+											produto.getQuantidadeDeProduto()
+											});
+			}
+
+			jtProduto.updateUI();
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+	}
+
 }
-/*
- * private void carregarFornecedores() throws Exception { FornecedorService
- * service = new FornecedorService();
- * 
- * List<Fornecedor> fornecedor = service.listar(); DefaultTableModel model;
- * 
- * model = (DefaultTableModel) jtFornecedor.getModel();
- * 
- * model.getDataVector().clear();
- * 
- * public static void main(String[] args) { new
- * FornecedorView(null).setVisible(true); }
- * 
- * }
- * 
- */

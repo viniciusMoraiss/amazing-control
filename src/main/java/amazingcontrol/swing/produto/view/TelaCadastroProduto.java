@@ -8,11 +8,11 @@ import javax.swing.BorderFactory;
 import javax.swing.JButton;
 import javax.swing.JDialog;
 import javax.swing.JFormattedTextField;
-import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
+import amazingcontrol.swing.produto.action.CriarProdutoAction;
 import amazingcontrol.swing.view.utils.CustomizeView;
 
 public class TelaCadastroProduto extends JDialog {
@@ -31,23 +31,29 @@ public class TelaCadastroProduto extends JDialog {
 	private JTextField quantidadeDeProdutoText;
 	private JButton cadastrarBt;
 	private JButton cancelarBt;
+	private TelaProduto view;
 
 	public TelaCadastroProduto() {
 		this(null);
 	}
 
-	public TelaCadastroProduto(JFrame view) {
+	public TelaCadastroProduto(TelaProduto view) {
 		super();
+		this.view = view;
 
 		initComponents();
 		initPainel();
-		// initListeners();
+		initListeners();
 
 		setTitle(("[A-CONTROL] Fornecedor"));
 		setSize(630, 470);
 		setResizable(false);
 		setVisible(true);
 		setLocationRelativeTo(null);
+	}
+
+	private void initListeners() {
+		cadastrarBt.addActionListener(new CriarProdutoAction(this));
 	}
 
 	// getters and setters
@@ -163,6 +169,10 @@ public class TelaCadastroProduto extends JDialog {
 	public void setCancelarBt(JButton cancelarBt) {
 		this.cancelarBt = cancelarBt;
 	}
+	
+	public void getProdutos() {
+		view.carregarProdutos();
+	}
 
 	private void initComponents() {
 
@@ -171,28 +181,27 @@ public class TelaCadastroProduto extends JDialog {
 		CustomizeView.labelsAndInputs(nomeLabel, nomeText);
 
 		marcaLabel = new JLabel("Marca");
-		marcaText = new JFormattedTextField(10);
+		marcaText = new JFormattedTextField();
 		CustomizeView.labelsAndInputs(marcaLabel, marcaText);
 
 		tipoLabel = new JLabel("Tipo");
-		tipoText = new JTextField(20);
+		tipoText = new JTextField();
 		CustomizeView.labelsAndInputs(tipoLabel, tipoText);
 
 		valorCustoLabel = new JLabel("Valor Custo");
-		valorCustoText = new JTextField(10);
+		valorCustoText = new JTextField();
 		CustomizeView.labelsAndInputs(valorCustoLabel, valorCustoText);
 
 		valorVendaLabel = new JLabel("Valor Venda");
-		valorVendaText = new JFormattedTextField(10);
+		valorVendaText = new JTextField();
 		CustomizeView.labelsAndInputs(valorVendaLabel, valorVendaText);
 
-		quantidadeDeProdutoLabel = new JLabel("Valor Custo");
-		quantidadeDeProdutoText = new JFormattedTextField(10);
+		quantidadeDeProdutoLabel = new JLabel("Quantidade");
+		quantidadeDeProdutoText = new JTextField();
 		CustomizeView.labelsAndInputs(quantidadeDeProdutoLabel, quantidadeDeProdutoText);
 
 		cadastrarBt = new JButton("Cadastrar");
 		cancelarBt = new JButton("Cancelar");
-
 	}
 
 	private void initPainel() {
