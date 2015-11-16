@@ -6,8 +6,8 @@ import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
 
 import amazingcontrol.model.Usuario;
+import amazingcontrol.swing.principal.action.MenuCadastroProdutoAction;
 import amazingcontrol.swing.principal.action.TelaFornecedorAction;
-import amazingcontrol.swing.produto.action.MenuCadastroProdutoAction;
 import amazingcontrol.swing.usuario.action.TelaAlterarSenhaUsuarioAction;
 import amazingcontrol.swing.usuario.action.TelaUsuarioAction;
 

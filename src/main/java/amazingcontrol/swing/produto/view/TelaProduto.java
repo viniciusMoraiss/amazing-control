@@ -105,6 +105,7 @@ public class TelaProduto extends JFrame {
 	private void initListeners() {
 		btNovo.addActionListener(new NovoFornecedorAction(view));
 	}
+	
 }
 /*
  * private void carregarFornecedores() throws Exception { FornecedorService

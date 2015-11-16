@@ -3,20 +3,16 @@ package amazingcontrol.swing.produto.view;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.Insets;
-import java.text.ParseException;
 
 import javax.swing.BorderFactory;
 import javax.swing.JButton;
-import javax.swing.JComboBox;
 import javax.swing.JDialog;
 import javax.swing.JFormattedTextField;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
-import javax.swing.text.MaskFormatter;
 
-import amazingcontrol.model.UF;
 import amazingcontrol.swing.view.utils.CustomizeView;
 
 public class TelaCadastroProduto extends JDialog {
