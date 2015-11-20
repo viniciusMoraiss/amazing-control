@@ -90,7 +90,7 @@ public class ClienteDAO implements Crud<Cliente> {
 	@Override
 	public void atualizar(Cliente cliente) {
 		Connection con = ConexaoMySQL.conectar();
-		String sql = "UPDATE INTO clientes (nome,endereco,telefone , cidade, cep, uf) VALUES (?,?,?,?,?,?)";
+		String sql = "UPDATE clientes SET nome = ?, endereco= ?, telefone = ? , cidade = ?, cep = ?, uf= ? WHERE id = ?";
 		PreparedStatement stmt = null;
 		try {
 			stmt = con.prepareStatement(sql);
@@ -100,6 +100,7 @@ public class ClienteDAO implements Crud<Cliente> {
 			stmt.setString(4, cliente.getCidade());
 			stmt.setString(5, cliente.getCep());
 			stmt.setString(6, cliente.getUf().toString());
+			stmt.setInt(7, cliente.getId());
 			stmt.execute();
 		} catch (Exception e) {
 			e.printStackTrace();

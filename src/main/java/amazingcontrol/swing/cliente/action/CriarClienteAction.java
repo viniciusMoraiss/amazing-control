@@ -48,15 +48,21 @@ public class CriarClienteAction implements ActionListener {
 			}
 
 			// cria objeto com os dados digitados pelo usuario
-			Cliente cliente = new Cliente(nome, telefone, endereco, cidade, cep, uf);
+			Cliente cliente = new Cliente(nome, endereco, telefone, cidade, cep, uf);
+			cliente.setId(clienteCadastroView.getCliente().getId());
 
 			// tenta salvar o objeto fornecedor no banco de dados
 			new ClienteService().salvar(cliente);
 			
 			clienteCadastroView.getClienteView().carregarClientes();
-
+			
+			String msg = cliente.getId() == null ? "Inserido com sucesso" : "Alterado com sucesso";
+			
 			// mensagem de sucesso
-			showMessageDialog(clienteCadastroView, "Inserido com sucesso", "OK", INFORMATION_MESSAGE);
+			showMessageDialog(clienteCadastroView, msg, "OK", INFORMATION_MESSAGE);
+			
+			// fehca janela apos cadastro
+			clienteCadastroView.dispose();
 
 		} catch (SQLException | ParseException ex) {
 			ex.printStackTrace();

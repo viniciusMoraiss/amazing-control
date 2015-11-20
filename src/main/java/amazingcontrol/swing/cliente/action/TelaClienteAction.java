@@ -3,7 +3,6 @@ package amazingcontrol.swing.cliente.action;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-import amazingcontrol.model.Cliente;
 import amazingcontrol.swing.cliente.view.TelaCliente;
 import amazingcontrol.swing.principal.view.TelaPrincipal;
 

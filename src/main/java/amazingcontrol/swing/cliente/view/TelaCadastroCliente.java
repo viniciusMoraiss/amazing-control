@@ -15,6 +15,7 @@ import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.text.MaskFormatter;
 
+import amazingcontrol.model.Cliente;
 import amazingcontrol.model.UF;
 import amazingcontrol.swing.cliente.action.CriarClienteAction;
 import amazingcontrol.swing.view.utils.CustomizeView;
@@ -38,6 +39,7 @@ public class TelaCadastroCliente extends JDialog {
 	private JButton cadastrarButton;
 	private JButton cancelarButton;
 	private TelaCliente clienteView;
+	private Cliente cliente;
 
 	public TelaCadastroCliente(TelaCliente clienteView) {
 		super();
@@ -291,5 +293,13 @@ public class TelaCadastroCliente extends JDialog {
 
 	private void initListeners() {
 		cadastrarButton.addActionListener(new CriarClienteAction(this));
+	}
+
+	public Cliente getCliente() {
+		return cliente;
+	}
+	
+	public void setCliente(Cliente cliente) {
+		this.cliente = cliente;
 	}
 }

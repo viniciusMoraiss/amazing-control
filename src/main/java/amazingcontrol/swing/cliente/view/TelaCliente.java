@@ -19,6 +19,7 @@ import javax.swing.table.TableModel;
 
 import amazingcontrol.model.Cliente;
 import amazingcontrol.service.ClienteService;
+import amazingcontrol.swing.cliente.action.AlterarClienteAction;
 import amazingcontrol.swing.cliente.action.DeletarClienteAction;
 import amazingcontrol.swing.cliente.action.NovoClienteAction;
 import amazingcontrol.swing.principal.view.TelaPrincipal;
@@ -94,6 +95,10 @@ public class TelaCliente extends JDialog {
 
 		item = new JMenuItem("Deletar...");
 		item.addActionListener(new DeletarClienteAction(this));
+		menu.add(item);
+		
+		item = new JMenuItem("Alterar...");
+		item.addActionListener(new AlterarClienteAction(this));
 		menu.add(item);
 
 		clientesJTable.addMouseListener(new PopupMouseAdapter(menu));
