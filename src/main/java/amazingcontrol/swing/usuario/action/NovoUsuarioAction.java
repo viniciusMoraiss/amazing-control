@@ -3,7 +3,7 @@ package amazingcontrol.swing.usuario.action;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-import amazingcontrol.swing.usuario.view.TelaNovoUsuario;
+import amazingcontrol.swing.usuario.view.TelaCadastroUsuario;
 import amazingcontrol.swing.usuario.view.TelaUsuario;
 
 /*
@@ -21,7 +21,7 @@ public class NovoUsuarioAction implements ActionListener {
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		new TelaNovoUsuario(view).setVisible(true);
+		new TelaCadastroUsuario(view).setVisible(true);
 	}
 
 }

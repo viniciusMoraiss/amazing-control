@@ -9,14 +9,14 @@ import javax.swing.JOptionPane;
 
 import amazingcontrol.model.Usuario;
 import amazingcontrol.service.UsuarioService;
-import amazingcontrol.swing.usuario.view.TelaNovoUsuario;
+import amazingcontrol.swing.usuario.view.TelaCadastroUsuario;
 import amazingcontrol.swing.usuario.view.TelaUsuario;
 
 public class CriarUsuarioAction implements ActionListener {
-	private TelaNovoUsuario view;
+	private TelaCadastroUsuario view;
 	private TelaUsuario usuarioView;
 
-	public CriarUsuarioAction(TelaNovoUsuario cadastroUsuarioView, TelaUsuario usuarioView) {
+	public CriarUsuarioAction(TelaCadastroUsuario cadastroUsuarioView, TelaUsuario usuarioView) {
 		this.view = cadastroUsuarioView;
 		this.usuarioView = usuarioView;
 	}

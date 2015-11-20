@@ -45,10 +45,7 @@ public class TelaUsuario extends JDialog {
 		setSize(630, 320);
 		setResizable(false);
 		setLocationRelativeTo(view);
-		// setDefaultCloseOperation(DO_NOTHING_ON_CLOSE);
 		setModalityType(ModalityType.DOCUMENT_MODAL);
-		// setAlwaysOnTop(true);
-		// pack();
 		setModal(true);
 
 		// carrega usuarios ao abrir a tela

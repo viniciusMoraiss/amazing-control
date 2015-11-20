@@ -19,7 +19,7 @@ import amazingcontrol.swing.usuario.action.CriarUsuarioAction;
 import amazingcontrol.swing.view.utils.CustomizeView;
 import amazingcontrol.swing.view.utils.WindowCancelarAction;
 
-public class TelaNovoUsuario extends JDialog {
+public class TelaCadastroUsuario extends JDialog {
 
 	private JLabel nomeLabel;
 	private JLabel senhaLabel;
@@ -34,7 +34,7 @@ public class TelaNovoUsuario extends JDialog {
 	private TelaUsuario usuarioView;
 	private Usuario usuario;
 
-	public TelaNovoUsuario(TelaUsuario usuarioView) {
+	public TelaCadastroUsuario(TelaUsuario usuarioView) {
 		super();
 		this.usuarioView = usuarioView;
 
@@ -46,10 +46,7 @@ public class TelaNovoUsuario extends JDialog {
 		setSize(630, 320);
 		setResizable(false);
 		setLocationRelativeTo(usuarioView);
-		// setDefaultCloseOperation(DO_NOTHING_ON_CLOSE);
 		setModalityType(ModalityType.DOCUMENT_MODAL);
-		// setAlwaysOnTop(true);
-		// pack();
 		setModal(true);
 	}
 
