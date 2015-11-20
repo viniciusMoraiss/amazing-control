@@ -7,20 +7,19 @@ public class Produto extends Entidate<Integer>{
 	private String tipo;
 	private double valorCusto;
 	private double valorVenda;
-	private int quantidadeDeProduto;
+	private int quantidade;
 	
 	public Produto() {
 	}
 	
 	public Produto(String nome, String marca, String tipo, double valorCusto, double valorVenda,
-			int quantidadeDeProduto) {
-		super();
+			int quantidade) {
 		this.nome = nome;
 		this.marca = marca;
 		this.tipo = tipo;
 		this.valorCusto = valorCusto;
 		this.valorVenda = valorVenda;
-		this.quantidadeDeProduto = quantidadeDeProduto;
+		this.quantidade = quantidade;
 	}
 
 	public String getNome() {
@@ -63,12 +62,12 @@ public class Produto extends Entidate<Integer>{
 		this.valorVenda = valorVenda;
 	}
 
-	public int getQuantidadeDeProduto() {
-		return this.quantidadeDeProduto;
+	public int getQuantidade() {
+		return this.quantidade;
 	}
 
-	public void setQuantidadeDeProduto(int quantidadeDeProduto) {
-		this.quantidadeDeProduto = quantidadeDeProduto;
+	public void setQuantidade(int quantidadeDeProduto) {
+		this.quantidade = quantidadeDeProduto;
 	}
 	
 	@Override

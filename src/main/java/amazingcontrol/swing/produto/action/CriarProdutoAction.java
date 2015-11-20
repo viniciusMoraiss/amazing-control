@@ -26,11 +26,11 @@ public class CriarProdutoAction implements ActionListener {
 		String tipo = view.getTipoText().getText();
 		double valorCusto = Double.parseDouble(view.getValorCustoText().getText());
 		double valorVenda = Double.parseDouble(view.getValorVendaText().getText());
-		int quantidadeDeProduto = Integer.parseInt(view.getQuantidadeDeProdutoText().getText());
+		int quantidade = Integer.parseInt(view.getQuantidadeDeProdutoText().getText());
 		
 		try {
 			// cria objeto com os dados digitados pelo usuario
-			Produto produto = new Produto(nome, marca, tipo, valorCusto, valorVenda, quantidadeDeProduto);
+			Produto produto = new Produto(nome, marca, tipo, valorCusto, valorVenda, quantidade);
 			
 			// tenta salvar o objeto fornecedor no banco de dados
 			new ProdutoService().salvar(produto);

@@ -120,7 +120,7 @@ public class TelaProduto extends JFrame {
 											produto.getTipo(), 
 											produto.getValorCusto(), 
 											produto.getValorVenda(),
-											produto.getQuantidadeDeProduto()
+											produto.getQuantidade()
 											});
 			}
 

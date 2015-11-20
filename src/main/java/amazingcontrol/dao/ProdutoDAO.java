@@ -24,7 +24,7 @@ public class ProdutoDAO implements Crud<Produto> {
 			stmt.setString(3, produto.getTipo());
 			stmt.setDouble(4, produto.getValorCusto());
 			stmt.setDouble(5, produto.getValorVenda());
-			stmt.setInt(6, produto.getQuantidadeDeProduto());
+			stmt.setInt(6, produto.getQuantidade());
 			stmt.execute();
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -45,7 +45,7 @@ public class ProdutoDAO implements Crud<Produto> {
 			stmt.setString(3, produto.getTipo());
 			stmt.setDouble(4, produto.getValorCusto());
 			stmt.setDouble(5, produto.getValorVenda());
-			stmt.setInt(6, produto.getQuantidadeDeProduto());
+			stmt.setInt(6, produto.getQuantidade());
 			stmt.execute();
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -92,7 +92,7 @@ public class ProdutoDAO implements Crud<Produto> {
 				produto.setTipo(rs.getString("Tipo"));
 				produto.setValorCusto(rs.getDouble("ValorCusto"));
 				produto.setValorVenda(rs.getDouble("ValorVenda"));
-				produto.setQuantidadeDeProduto(rs.getInt("QuantidadeDeProdutos"));
+				produto.setQuantidade(rs.getInt("QuantidadeDeProdutos"));
 				produtos.add(produto);
 			}
 		} catch (Exception e) {
