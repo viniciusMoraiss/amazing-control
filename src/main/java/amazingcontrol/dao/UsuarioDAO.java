@@ -3,6 +3,7 @@ package amazingcontrol.dao;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -33,7 +34,7 @@ public class UsuarioDAO implements Crud<Usuario> {
 			stmt.setBoolean(4, usuario.isAtivo());
 			stmt.execute();
 
-		} catch (Exception e) {
+		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally {
 			ConexaoMySQL.desconectar(con, stmt, null);
@@ -66,7 +67,7 @@ public class UsuarioDAO implements Crud<Usuario> {
 				throw new IllegalArgumentException("DEVERIA TER ATUALIZADO!");
 			}
 			
-		} catch (Exception e) {
+		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally {
 			ConexaoMySQL.desconectar(con, stmt, null);
@@ -88,7 +89,7 @@ public class UsuarioDAO implements Crud<Usuario> {
 			stmt = con.prepareStatement(sql);
 			stmt.setInt(1, usuario.getId());
 			stmt.execute();
-		} catch (Exception e) {
+		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally {
 			ConexaoMySQL.desconectar(con, stmt, null);
@@ -127,7 +128,7 @@ public class UsuarioDAO implements Crud<Usuario> {
 				usuarios.add(usuario);
 			}
 			return usuarios;
-		} catch (Exception e) {
+		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally {
 			ConexaoMySQL.desconectar(con, stmt, rs);
@@ -168,7 +169,7 @@ public class UsuarioDAO implements Crud<Usuario> {
 					usuario.setAtivo(rs.getBoolean("ativo"));
 				}
 			}
-		} catch (Exception e) {
+		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally {
 			ConexaoMySQL.desconectar(con, stmt, rs);
@@ -198,7 +199,7 @@ public class UsuarioDAO implements Crud<Usuario> {
 				usuario.setConfirmacaoSenha(rs.getString("confirmacaoSenha"));
 				usuario.setAtivo(rs.getBoolean("ativo"));
 			}
-		} catch (Exception e) {
+		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally {
 			ConexaoMySQL.desconectar(con, stmt, rs);
@@ -233,7 +234,7 @@ public class UsuarioDAO implements Crud<Usuario> {
 				alterou = false;
 			}
 
-		} catch (Exception e) {
+		} catch(SQLException e) {
 			e.printStackTrace();
 		} finally {
 			ConexaoMySQL.desconectar(con, stmt, null);
