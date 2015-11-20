@@ -4,6 +4,7 @@ import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.GridLayout;
 import java.awt.Insets;
+import java.sql.SQLException;
 import java.util.List;
 
 import javax.swing.JButton;
@@ -49,11 +50,7 @@ public class TelaUsuario extends JDialog {
 		setModal(true);
 
 		// carrega usuarios ao abrir a tela
-		try {
-			carregarUsuarios();
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
+		carregarUsuarios();
 	}
 
 	// Getters and setters
@@ -72,7 +69,7 @@ public class TelaUsuario extends JDialog {
 	public TableModel getModel() {
 		return getUsuariosJTable().getModel();
 	}
-	
+
 	public Usuario getUsuario() {
 		return view.getUsuario();
 	}
@@ -116,7 +113,7 @@ public class TelaUsuario extends JDialog {
 		item = new JMenuItem("Deletar...");
 		item.addActionListener(new DeletarUsuarioAction(this));
 		menu.add(item);
-		
+
 		item = new JMenuItem("Ativar...");
 		item.addActionListener(new AtivarUsuarioAction(this));
 		menu.add(item);
@@ -132,23 +129,27 @@ public class TelaUsuario extends JDialog {
 		novoJButton.addActionListener(new NovoUsuarioAction(this));
 	}
 
-	public void carregarUsuarios() throws Exception {
-		UsuarioService service = new UsuarioService();
+	public void carregarUsuarios() {
+		try {
+			UsuarioService service = new UsuarioService();
 
-		List<Usuario> usuarios = service.listar();
-		DefaultTableModel model;
+			List<Usuario> usuarios = service.listar();
+			DefaultTableModel model;
 
-		model = (DefaultTableModel) usuariosJTable.getModel();
+			model = (DefaultTableModel) usuariosJTable.getModel();
 
-		model.getDataVector().clear();
+			model.getDataVector().clear();
 
-		for (Usuario usuario : usuarios) {
-			String ativo = usuario.isAtivo() ? "Ativo" : "Inativo";
+			for (Usuario usuario : usuarios) {
+				String ativo = usuario.isAtivo() ? "Ativo" : "Inativo";
 
-			model.addRow(new Object[] { usuario, ativo });
+				model.addRow(new Object[] { usuario, ativo });
 
+			}
+
+			usuariosJTable.updateUI();
+		} catch (SQLException e) {
+			e.printStackTrace();
 		}
-
-		usuariosJTable.updateUI();
 	}
 }
