@@ -7,7 +7,7 @@ import java.awt.Insets;
 
 import javax.swing.BorderFactory;
 import javax.swing.JButton;
-import javax.swing.JFrame;
+import javax.swing.JDialog;
 import javax.swing.JMenuItem;
 import javax.swing.JPanel;
 import javax.swing.JPopupMenu;
@@ -19,7 +19,7 @@ import amazingcontrol.swing.fornecedor.action.NovoFornecedorAction;
 import amazingcontrol.swing.principal.view.TelaPrincipal;
 import amazingcontrol.swing.view.utils.PopupMouseAdapter;
 
-public class TelaFornecedor extends JFrame {
+public class TelaFornecedor extends JDialog {
 
 	private JButton btNovo;
 	private JTable jtFornecedor;
@@ -40,6 +40,7 @@ public class TelaFornecedor extends JFrame {
 		setSize(630, 320);
 		setResizable(false);
 		setLocationRelativeTo(null);
+		setModalityType(ModalityType.DOCUMENT_MODAL);
 		// setVisible(true);
 	}
 	// setDefaultCloseOperation(DO_NOTHING_ON_CLOSE);

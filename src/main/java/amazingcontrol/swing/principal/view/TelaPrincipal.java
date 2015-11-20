@@ -6,8 +6,9 @@ import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
 
 import amazingcontrol.model.Usuario;
-import amazingcontrol.swing.principal.action.MenuCadastroProdutoAction;
-import amazingcontrol.swing.principal.action.TelaFornecedorAction;
+import amazingcontrol.swing.cliente.action.TelaClienteAction;
+import amazingcontrol.swing.fornecedor.action.TelaFornecedorAction;
+import amazingcontrol.swing.produto.action.TelaProdutoAction;
 import amazingcontrol.swing.usuario.action.TelaAlterarSenhaUsuarioAction;
 import amazingcontrol.swing.usuario.action.TelaUsuarioAction;
 
@@ -83,6 +84,8 @@ public class TelaPrincipal extends JFrame {
 
 		// adiciona menu de fornecedores
 		menuOpcoesFornecedores(menuBar);
+		
+		menuClientes(menuBar);
 
 		return menuBar;
 	}
@@ -117,12 +120,8 @@ public class TelaPrincipal extends JFrame {
 		menuBar.add(menu);
 
 		menuItem = new JMenuItem("Cadastrar de produtos");
-		menuItem.addActionListener(new MenuCadastroProdutoAction(this));
+		menuItem.addActionListener(new TelaProdutoAction(this));
 		menu.add(menuItem);
-
-		// menuItem = new JMenuItem("Consultar estoque");
-		// menuItem.addActionListener(new MenuBairroAction(this));
-		// menu.add(menuItem);
 	}
 	
 	/**
@@ -141,6 +140,17 @@ public class TelaPrincipal extends JFrame {
 
 		menuItem = new JMenuItem("Alterar minha senha");
 		menuItem.addActionListener(new TelaAlterarSenhaUsuarioAction(this));
+		menu.add(menuItem);
+	}
+	
+	private void menuClientes(JMenuBar menuBar) {
+		JMenu menu;
+		JMenuItem menuItem;
+		menu = new JMenu("Clientes");
+		menuBar.add(menu);
+
+		menuItem = new JMenuItem("Cadastrar novo cliente");
+		menuItem.addActionListener(new TelaClienteAction(this));
 		menu.add(menuItem);
 	}
 	

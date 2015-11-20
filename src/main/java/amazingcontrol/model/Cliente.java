@@ -1,13 +1,26 @@
 package amazingcontrol.model;
 
 public class Cliente extends Entidate<Integer> {
-	
+
 	private String nome;
 	private String endereco;
-	private int telefone;
+	private String telefone;
 	private String cidade;
-	private int cep;
-	private String uf;
+	private String cep;
+	private UF uf;
+	
+	public Cliente() {
+	}
+
+	public Cliente(String nome, String endereco, String telefone, String cidade, String cep, UF uf) {
+		super();
+		this.nome = nome;
+		this.endereco = endereco;
+		this.telefone = telefone;
+		this.cidade = cidade;
+		this.cep = cep;
+		this.uf = uf;
+	}
 
 	public String getNome() {
 		return nome;
@@ -17,7 +30,6 @@ public class Cliente extends Entidate<Integer> {
 		this.nome = nome;
 	}
 
-
 	public String getEndereco() {
 		return endereco;
 	}
@@ -25,12 +37,12 @@ public class Cliente extends Entidate<Integer> {
 	public void setEndereco(String endereco) {
 		this.endereco = endereco;
 	}
-	
-	public int getTelefone() {
+
+	public String getTelefone() {
 		return telefone;
 	}
 
-	public void setTelefone(int telefone) {
+	public void setTelefone(String telefone) {
 		this.telefone = telefone;
 	}
 
@@ -42,24 +54,23 @@ public class Cliente extends Entidate<Integer> {
 		this.cidade = cidade;
 	}
 
-	public int getCep() {
+	public String getCep() {
 		return cep;
 	}
 
-	public void setCep(int cep) {
+	public void setCep(String cep) {
 		this.cep = cep;
 	}
 
-	public String getUf() {
+	public UF getUf() {
 		return uf;
 	}
 
-	public void setUf(String uf) {
+	public void setUf(UF uf) {
 		this.uf = uf;
 	}
 
 	public String toString() {
-		return "Fornecedor: " + nome;
+		return nome;
 	}
 }
-

@@ -1,4 +1,4 @@
-package amazingcontrol.swing.principal.action;
+package amazingcontrol.swing.fornecedor.action;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
