@@ -30,9 +30,6 @@ public class FornecedorService {
 	 * existente
 	 */
 	public void salvar(Fornecedor fornecedor) {
-		// valida fornecedor antes de inserir ou atualizar
-		//validar(fornecedor);
-
 		if (fornecedor.isNullId()) {
 			dao.inserir(fornecedor);
 		} else {
@@ -47,8 +44,4 @@ public class FornecedorService {
 		dao.deletar(fornecedor);
 	}
 	
-	public void validar(Fornecedor fornecedor) throws Exception {
-		fornecedor.valida();
-	}
-
 }

@@ -1,8 +1,5 @@
 package amazingcontrol.model;
 
-import java.util.HashMap;
-import java.util.Map;
-
 import amazingcontrol.model.utils.Validacoes;
 
 public class Fornecedor extends Entidate<Integer> {
@@ -14,27 +11,27 @@ public class Fornecedor extends Entidate<Integer> {
 	private String cep;
 	private UF uf;
 
-	
 	// construtor para passar os paramentros para a tela (CriarFornecedorAction)
 	public Fornecedor(String nome, String telefone, String endereco, String cidade, String cep, UF uf) {
-		this.nome = nome;
-		this.telefone = telefone;
-		this.endereco = endereco;
-		this.cidade = cidade;
-		this.cep = cep;
+		setNome(nome);
+		setTelefone(telefone);
+		setEndereco(endereco);
+		setCidade(cidade);
+		setCep(cep);
 		this.uf = uf;
 	}
 
-	// construtor padrao para o fornecedorDAO
-	public Fornecedor(){		
+	// construtor padrao
+	public Fornecedor() {
 	}
-	
-	// getters and setters 
+
+	// getters and setters
 	public String getNome() {
 		return nome;
 	}
 
 	public void setNome(String nome) {
+		Validacoes.validaNuloOuVazio("Nome ", nome);
 		this.nome = nome;
 	}
 
@@ -51,6 +48,7 @@ public class Fornecedor extends Entidate<Integer> {
 	}
 
 	public void setEndereco(String endereco) {
+		Validacoes.validaNuloOuVazio("Endereco ", endereco);
 		this.endereco = endereco;
 	}
 
@@ -59,6 +57,7 @@ public class Fornecedor extends Entidate<Integer> {
 	}
 
 	public void setCidade(String cidade) {
+		Validacoes.validaNuloOuVazio("Cidade ", cidade);
 		this.cidade = cidade;
 	}
 
@@ -67,6 +66,7 @@ public class Fornecedor extends Entidate<Integer> {
 	}
 
 	public void setCep(String cep) {
+		Validacoes.validaNuloOuVazio("CEP ", cep);
 		this.cep = cep;
 	}
 
@@ -81,15 +81,5 @@ public class Fornecedor extends Entidate<Integer> {
 	// toString
 	public String toString() {
 		return nome;
-	}
-	
-	// validacoes
-	public void valida() throws Exception {
-		Map<String, String> atributos = new HashMap<>();
-		atributos.put("Nome", nome);
-		atributos.put("CEP", cep);
-		atributos.put("Endereço", endereco );
-		atributos.put("Cidade", cidade);
-		Validacoes.valida(atributos);
 	}
 }

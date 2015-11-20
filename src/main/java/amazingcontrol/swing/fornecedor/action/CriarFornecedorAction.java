@@ -59,7 +59,7 @@ public class CriarFornecedorAction implements ActionListener {
 			
 			view.dispose();
 
-		} catch (SQLException | ParseException ex) {
+		} catch (SQLException | IllegalArgumentException |ParseException ex) {
 			ex.printStackTrace();
 			showMessageDialog(view, ex.getMessage(), "Erro", ERROR_MESSAGE);
 

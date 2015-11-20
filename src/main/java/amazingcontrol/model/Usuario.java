@@ -1,8 +1,5 @@
 package amazingcontrol.model;
 
-import java.util.HashMap;
-import java.util.Map;
-
 import amazingcontrol.model.utils.Validacoes;
 
 /**
@@ -25,12 +22,11 @@ public class Usuario extends Entidate<Integer> {
 	/**
 	 * Construtor com todos os atributos
 	 */
-	public Usuario(String nome, String senha, String confirmacaoSenha, boolean ativo) throws Exception {
-		this.nome = nome;
-		this.senha = senha;
-		this.ativo = ativo;
-		// chama o metodo set por haver validacao
+	public Usuario(String nome, String senha, String confirmacaoSenha, boolean ativo) {
+		setNome(nome);
+		setSenha(senha);
 		setConfirmacaoSenha(confirmacaoSenha);
+		setAtivo(ativo);
 	}
 	
 	/**
@@ -42,10 +38,12 @@ public class Usuario extends Entidate<Integer> {
 	}
 	
 	/**
-	 * configura nome
+	 * configura nome se for valido
 	 * @param nome
+	 * @throws Exception 
 	 */
 	public void setNome(String nome) {
+		Validacoes.validaNuloOuVazio("Nome ", nome);
 		this.nome = nome;
 	}
 	
@@ -60,8 +58,12 @@ public class Usuario extends Entidate<Integer> {
 	/**
 	 * configura senha
 	 * @param senha
+	 * @throws Exception 
 	 */
 	public void setSenha(String senha) {
+		String label = "Senha ";
+		Validacoes.validaNuloOuVazio(label, senha);
+		Validacoes.validaTamanho(label, senha, 4, 10);
 		this.senha = senha;
 	}
 	
@@ -79,7 +81,7 @@ public class Usuario extends Entidate<Integer> {
 	 * @param confirmacaoSenha
 	 * @throws Exception
 	 */
-	public void setConfirmacaoSenha(String confirmacaoSenha) throws Exception {
+	public void setConfirmacaoSenha(String confirmacaoSenha) {
 		// valida se a confirmacao de senha é a mesma senha digitada
 		if (!confirmacaoSenha.equals(senha)) {
 			throw new IllegalArgumentException("Confirmacao de senha deve ser igual a senha");
@@ -106,42 +108,5 @@ public class Usuario extends Entidate<Integer> {
 
 	public String toString() {
 		return nome;
-	}
-	
-	/**
-	 * metodo equals para comparar este objeto, onde se for o mesmo id e nome são iguais
-	 * (non-Javadoc)
-	 * @see java.lang.Object#equals(java.lang.Object)
-	 */
-	@Override
-	public boolean equals(Object obj) {
-		if (this == obj)
-			return true;
-		if (obj == null)
-			return false;
-		if (getClass() != obj.getClass())
-			return false;
-		Usuario other = (Usuario) obj;
-		if (ativo != other.ativo)
-			return false;
-		if (nome == null) {
-			if (other.nome != null)
-				return false;
-		} else if (!nome.equals(other.nome))
-			return false;
-		return true;
-	}
-	
-	public void validaAtributos() throws Exception {
-		Map<String, String> atributos = new HashMap<>();
-		atributos.put("Nome", nome);
-		atributos.put("Senha", senha);
-		Validacoes.valida(atributos);
-	}
-
-	public void validaSenha() throws Exception {
-		if(senha.length() < 6) {
-			throw new IllegalArgumentException("Senha tem que ser maior que  6 !");
-		}
 	}
 }

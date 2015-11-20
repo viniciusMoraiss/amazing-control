@@ -1,5 +1,7 @@
 package amazingcontrol.model;
 
+import amazingcontrol.model.utils.Validacoes;
+
 public class Cliente extends Entidate<Integer> {
 
 	private String nome;
@@ -13,13 +15,12 @@ public class Cliente extends Entidate<Integer> {
 	}
 
 	public Cliente(String nome, String endereco, String telefone, String cidade, String cep, UF uf) {
-		super();
-		this.nome = nome;
-		this.endereco = endereco;
-		this.telefone = telefone;
-		this.cidade = cidade;
-		this.cep = cep;
-		this.uf = uf;
+		setNome(nome);
+		setEndereco(endereco);
+		setTelefone(telefone);
+		setCidade(cidade);
+		setCep(cep);
+		setUf(uf);
 	}
 
 	public String getNome() {
@@ -27,6 +28,7 @@ public class Cliente extends Entidate<Integer> {
 	}
 
 	public void setNome(String nome) {
+		Validacoes.validaNuloOuVazio("Nome ", nome);
 		this.nome = nome;
 	}
 
@@ -35,6 +37,7 @@ public class Cliente extends Entidate<Integer> {
 	}
 
 	public void setEndereco(String endereco) {
+		Validacoes.validaNuloOuVazio("Endereco ", endereco);
 		this.endereco = endereco;
 	}
 
@@ -51,6 +54,7 @@ public class Cliente extends Entidate<Integer> {
 	}
 
 	public void setCidade(String cidade) {
+		Validacoes.validaNuloOuVazio("Cidade ", cidade);
 		this.cidade = cidade;
 	}
 
@@ -59,6 +63,7 @@ public class Cliente extends Entidate<Integer> {
 	}
 
 	public void setCep(String cep) {
+		Validacoes.validaNuloOuVazio("CEP", cep);
 		this.cep = cep;
 	}
 

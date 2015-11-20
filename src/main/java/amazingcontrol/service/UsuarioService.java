@@ -33,10 +33,7 @@ public class UsuarioService {
 	 * - caso o id seja igual a null ira inserir o usuario
 	 * - caso o id seja diferente de null ira atualizar um usuario existente
 	 */
-	public void salvar(Usuario usuario) throws Exception {
-		// valida usuario antes de inserir ou atualizar
-		validar(usuario);
-		
+	public void salvar(Usuario usuario) {
 		if (usuario.isNullId()) {
 			dao.inserir(usuario);
 		} else {
@@ -55,14 +52,6 @@ public class UsuarioService {
 		return dao.getUsuario(nome, senha);
 	}
 	
-	/*
-	 * metodo privado para chamar os metodos de validacoes do usuario
-	 */
-	private void validar(Usuario usuario) throws Exception {
-		usuario.validaAtributos();
-		usuario.validaSenha();
-	}
-
 	public boolean alterarStatus(Usuario usuario) {
 		return dao.alterarStatus(usuario);
 	}

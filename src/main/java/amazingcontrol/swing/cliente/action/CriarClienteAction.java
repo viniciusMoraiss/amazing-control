@@ -64,7 +64,7 @@ public class CriarClienteAction implements ActionListener {
 			// fehca janela apos cadastro
 			clienteCadastroView.dispose();
 
-		} catch (SQLException | ParseException ex) {
+		} catch (SQLException | IllegalArgumentException |ParseException ex) {
 			ex.printStackTrace();
 			showMessageDialog(clienteCadastroView, ex.getMessage(), "Erro", ERROR_MESSAGE);
 		}

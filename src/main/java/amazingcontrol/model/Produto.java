@@ -1,5 +1,7 @@
 package amazingcontrol.model;
 
+import amazingcontrol.model.utils.Validacoes;
+
 public class Produto extends Entidate<Integer>{
 
 	private String nome;
@@ -12,14 +14,13 @@ public class Produto extends Entidate<Integer>{
 	public Produto() {
 	}
 	
-	public Produto(String nome, String marca, String tipo, double valorCusto, double valorVenda,
-			int quantidade) {
-		this.nome = nome;
-		this.marca = marca;
-		this.tipo = tipo;
-		this.valorCusto = valorCusto;
-		this.valorVenda = valorVenda;
-		this.quantidade = quantidade;
+	public Produto(String nome, String marca, String tipo, Double valorCusto, Double valorVenda, Integer quantidade) {
+		setNome(nome);
+		setMarca(marca);
+		setTipo(tipo);
+		setValorCusto(valorCusto);
+		setValorVenda(valorVenda);
+		setQuantidade(quantidade);
 	}
 
 	public String getNome() {
@@ -27,6 +28,7 @@ public class Produto extends Entidate<Integer>{
 	}
 
 	public void setNome(String nome) {
+		Validacoes.validaNuloOuVazio("Nome ", nome);
 		this.nome = nome;
 	}
 
@@ -35,6 +37,7 @@ public class Produto extends Entidate<Integer>{
 	}
 
 	public void setMarca(String marca) {
+		Validacoes.validaNuloOuVazio("Marca ", marca);
 		this.marca = marca;
 	}
 
@@ -50,7 +53,8 @@ public class Produto extends Entidate<Integer>{
 		return this.valorCusto;
 	}
 
-	public void setValorCusto(double valorCusto) {
+	public void setValorCusto(Double valorCusto) {
+		Validacoes.validaNulo(valorCusto);
 		this.valorCusto = valorCusto;
 	}
 
@@ -58,7 +62,8 @@ public class Produto extends Entidate<Integer>{
 		return this.valorVenda;
 	}
 
-	public void setValorVenda(double valorVenda) {
+	public void setValorVenda(Double valorVenda) {
+		Validacoes.validaNulo(valorVenda);
 		this.valorVenda = valorVenda;
 	}
 
@@ -66,8 +71,9 @@ public class Produto extends Entidate<Integer>{
 		return this.quantidade;
 	}
 
-	public void setQuantidade(int quantidadeDeProduto) {
-		this.quantidade = quantidadeDeProduto;
+	public void setQuantidade(Integer quantidade) {
+		Validacoes.validaNulo(quantidade);
+		this.quantidade = quantidade;
 	}
 	
 	@Override

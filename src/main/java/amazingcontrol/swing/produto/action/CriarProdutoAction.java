@@ -6,6 +6,7 @@ import static javax.swing.JOptionPane.showMessageDialog;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.sql.SQLException;
 
 import amazingcontrol.model.Produto;
 import amazingcontrol.service.ProdutoService;
@@ -41,7 +42,7 @@ public class CriarProdutoAction implements ActionListener {
 			// recarrega os produtos
 			view.getProdutos();
 			
-		} catch (Exception ex) {
+		} catch (SQLException | IllegalArgumentException ex) {
 			ex.printStackTrace();
 			showMessageDialog(view, ex.getMessage(), "Erro", ERROR_MESSAGE);
 		}
