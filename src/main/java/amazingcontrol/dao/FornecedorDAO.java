@@ -72,7 +72,7 @@ public class FornecedorDAO implements Crud<Fornecedor> {
 	public List<Fornecedor> lista() {
 		Connection con = ConexaoMySQL.conectar();
 		List<Fornecedor> fornecedores = new ArrayList<>();
-		String sql = " SELECT * FROM Fornecedores";
+		String sql = " SELECT * FROM fornecedores";
 		PreparedStatement stmt = null;
 		ResultSet rs = null;
 
@@ -86,13 +86,13 @@ public class FornecedorDAO implements Crud<Fornecedor> {
 				fornecedor.setId(rs.getInt("id"));
 				fornecedor.setNome(rs.getString("nome"));
 				fornecedor.setTelefone(rs.getString("telefone"));
-				fornecedor.setEndereco(rs.getString("endereço"));
+				fornecedor.setEndereco(rs.getString("endereco"));
 				fornecedor.setCidade(rs.getString("cidade"));
 				fornecedor.setCep(rs.getString("cep"));
 				
 				// seta uf do banco
 				for(UF uf : UF.values()) {
-					if(rs.getString("uf") == uf.toString()) {
+					if(rs.getString("uf").equals(uf.toString())) {
 						fornecedor.setUf(uf);
 					}
 				}

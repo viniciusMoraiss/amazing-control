@@ -8,8 +8,8 @@ import java.text.ParseException;
 import javax.swing.BorderFactory;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
+import javax.swing.JDialog;
 import javax.swing.JFormattedTextField;
-import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
@@ -20,7 +20,7 @@ import amazingcontrol.swing.fornecedor.action.CriarFornecedorAction;
 import amazingcontrol.swing.principal.view.TelaPrincipal;
 import amazingcontrol.swing.view.utils.CustomizeView;
 
-public class TelaCadastroFornecedor extends JFrame {
+public class TelaCadastroFornecedor extends JDialog {
 
 	private JLabel nomeLabel;
 	private JTextField nomeText;
@@ -49,8 +49,10 @@ public class TelaCadastroFornecedor extends JFrame {
 		setTitle(("[A-CONTROL] Fornecedor"));
 		setSize(630, 470);
 		setResizable(false);
-		setVisible(true);
 		setLocationRelativeTo(null);
+		setModalityType(ModalityType.DOCUMENT_MODAL);
+		setModal(true);
+
 	}
 
 	// Getters and Setters
@@ -169,7 +171,7 @@ public class TelaCadastroFornecedor extends JFrame {
 	public void setCancelarBt(JButton cancelarBt) {
 		this.cancelarBt = cancelarBt;
 	}
-	
+
 	public MaskFormatter getMaskTelefone() {
 		return maskTelefone;
 	}
@@ -187,7 +189,7 @@ public class TelaCadastroFornecedor extends JFrame {
 	}
 
 	private void initComponents() {
-		
+
 		// cria mascaras para telefone e cep
 		try {
 			maskTelefone = new MaskFormatter("(##) # ####-####");
@@ -213,7 +215,7 @@ public class TelaCadastroFornecedor extends JFrame {
 		cidadeLabel = new JLabel("Cidade");
 		cidadeText = new JTextField();
 		CustomizeView.labelsAndInputs(cidadeLabel, cidadeText);
-		
+
 		Object[] ufs = UF.values();
 		ufLabel = new JLabel("UF");
 		ufJComboBox = new JComboBox<>(ufs);

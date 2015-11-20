@@ -80,7 +80,7 @@ public class Fornecedor extends Entidate<Integer> {
 
 	// toString
 	public String toString() {
-		return "Fornecedor: " + nome;
+		return nome;
 	}
 	
 	// validacoes

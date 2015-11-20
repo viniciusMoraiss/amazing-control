@@ -4,6 +4,8 @@ import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.GridLayout;
 import java.awt.Insets;
+import java.sql.SQLException;
+import java.util.List;
 
 import javax.swing.BorderFactory;
 import javax.swing.JButton;
@@ -15,12 +17,15 @@ import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 
+import amazingcontrol.model.Fornecedor;
+import amazingcontrol.service.FornecedorService;
 import amazingcontrol.swing.fornecedor.action.NovoFornecedorAction;
 import amazingcontrol.swing.principal.view.TelaPrincipal;
 import amazingcontrol.swing.view.utils.PopupMouseAdapter;
 
 public class TelaFornecedor extends JDialog {
 
+	private static final Object Fornecedor = null;
 	private JButton btNovo;
 	private JTable jtFornecedor;
 	private TelaPrincipal view;
@@ -39,20 +44,12 @@ public class TelaFornecedor extends JDialog {
 		setTitle("[A-CONTROL] Fornecedores");
 		setSize(630, 320);
 		setResizable(false);
-		setLocationRelativeTo(null);
+		setLocationRelativeTo(view);
 		setModalityType(ModalityType.DOCUMENT_MODAL);
-		// setVisible(true);
-	}
-	// setDefaultCloseOperation(DO_NOTHING_ON_CLOSE);
-	// setModalExclusionType(ModalityType.DOCUMENT_MODAL);
-	// setAlwaysOnTop(true);
-	// pack();
-	// setModal(true);
+		setModal(true);
 
-	/*
-	 * try { carregarFornecedores(); } catch (Exception e) {
-	 * e.printStackTrace(); }
-	 */
+		carregarFornecedores();
+	}
 
 	private void initComponents() {
 		jtFornecedor = new JTable(new DefaultTableModel(new Object[0][0], createColumnNames()));
@@ -60,7 +57,7 @@ public class TelaFornecedor extends JDialog {
 	}
 
 	private Object[] createColumnNames() {
-		return new Object[] { "Fornecedor" };
+		return new Object[] { "Fornecedor", "Cep", "Endereço", "Cidade", "UF", "Telefone" };
 	}
 
 	private void initPainel() {
@@ -106,17 +103,31 @@ public class TelaFornecedor extends JDialog {
 	private void initListeners() {
 		btNovo.addActionListener(new NovoFornecedorAction(view));
 	}
+
+	private void carregarFornecedores() {
+		try {
+			FornecedorService service = new FornecedorService();
+
+			List<Fornecedor> fornecedores = service.listar();
+			DefaultTableModel model;
+
+			model = (DefaultTableModel) jtFornecedor.getModel();
+
+			model.getDataVector().clear();
+
+			for (Fornecedor fornecedor : fornecedores) {
+				model.addRow(new Object[] { fornecedor, fornecedor.getCep(), fornecedor.getEndereco(),
+						fornecedor.getCidade(), fornecedor.getUf(), fornecedor.getTelefone() });
+
+			}
+			jtFornecedor.updateUI();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+	}
+
 }
 /*
- * private void carregarFornecedores() throws Exception { FornecedorService
- * service = new FornecedorService();
- * 
- * List<Fornecedor> fornecedor = service.listar(); DefaultTableModel model;
- * 
- * model = (DefaultTableModel) jtFornecedor.getModel();
- * 
- * model.getDataVector().clear();
- * 
  * public static void main(String[] args) { new
  * FornecedorView(null).setVisible(true); }
  * 
