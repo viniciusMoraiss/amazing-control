@@ -29,9 +29,9 @@ public class FornecedorService {
 	 * fornecedor - caso o id seja diferente de null ira atualizar um fornecedor
 	 * existente
 	 */
-	public void salvar(Fornecedor fornecedor) throws Exception {
+	public void salvar(Fornecedor fornecedor) {
 		// valida fornecedor antes de inserir ou atualizar
-		validar(fornecedor);
+		//validar(fornecedor);
 
 		if (fornecedor.isNullId()) {
 			dao.inserir(fornecedor);

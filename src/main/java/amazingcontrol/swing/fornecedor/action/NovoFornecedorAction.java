@@ -4,14 +4,14 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 import amazingcontrol.swing.fornecedor.view.TelaCadastroFornecedor;
-import amazingcontrol.swing.principal.view.TelaPrincipal;
+import amazingcontrol.swing.fornecedor.view.TelaFornecedor;
 
 // chama a TelaCadastroFornecedor atravez do btNovo da TelaFornecedor
 public class NovoFornecedorAction implements ActionListener {
 
-	private TelaPrincipal view;
+	private TelaFornecedor view;
 
-	public NovoFornecedorAction(TelaPrincipal view) {
+	public NovoFornecedorAction(TelaFornecedor view) {
 		this.view = view;
 	}
 

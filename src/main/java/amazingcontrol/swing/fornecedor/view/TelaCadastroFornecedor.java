@@ -17,7 +17,6 @@ import javax.swing.text.MaskFormatter;
 
 import amazingcontrol.model.UF;
 import amazingcontrol.swing.fornecedor.action.CriarFornecedorAction;
-import amazingcontrol.swing.principal.view.TelaPrincipal;
 import amazingcontrol.swing.view.utils.CustomizeView;
 
 public class TelaCadastroFornecedor extends JDialog {
@@ -38,9 +37,11 @@ public class TelaCadastroFornecedor extends JDialog {
 	private MaskFormatter maskCep;
 	private JButton cadastrarBt;
 	private JButton cancelarBt;
+	private TelaFornecedor view;
 
-	public TelaCadastroFornecedor(TelaPrincipal view) {
+	public TelaCadastroFornecedor(TelaFornecedor view) {
 		super();
+		this.view = view;
 
 		initComponents();
 		initPainel();
@@ -56,8 +57,25 @@ public class TelaCadastroFornecedor extends JDialog {
 	}
 
 	// Getters and Setters
+
 	private void initListeners() {
 		cadastrarBt.addActionListener(new CriarFornecedorAction(this));
+	}
+
+	public JComboBox<Object> getUfJComboBox() {
+		return ufJComboBox;
+	}
+
+	public void setUfJComboBox(JComboBox<Object> ufJComboBox) {
+		this.ufJComboBox = ufJComboBox;
+	}
+
+	public TelaFornecedor getView() {
+		return view;
+	}
+
+	public void setView(TelaFornecedor view) {
+		this.view = view;
 	}
 
 	public JLabel getNomeLabel() {

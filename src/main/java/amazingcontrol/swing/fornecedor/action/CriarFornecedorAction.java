@@ -6,6 +6,7 @@ import static javax.swing.JOptionPane.showMessageDialog;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.sql.SQLException;
 import java.text.ParseException;
 
 import amazingcontrol.model.Fornecedor;
@@ -27,42 +28,42 @@ public class CriarFornecedorAction implements ActionListener {
 		String endereco = view.getEnderecoText().getText();
 		String cidade = view.getCidadeText().getText();
 		UF uf = (UF) view.getUFComboBox().getSelectedItem();
-		
+
 		// remover as mascaras telefone e cep
 		String telefoneComMascara = view.getTelefoneText().getText();
 		String cepComMascara = view.getCepText().getText();
-		
+
 		String telefone = null;
 		String cep = null;
-		
+
 		try {
-			
-			if(telefoneComMascara != null && telefoneComMascara.matches(".*\\d+.*")) {
+
+			if (telefoneComMascara != null && telefoneComMascara.matches(".*\\d+.*")) {
 				telefone = (String) view.getMaskTelefone().stringToValue(telefoneComMascara);
 			}
-			
-			if(cepComMascara != null && cepComMascara.matches(".*\\d+.*")){
+
+			if (cepComMascara != null && cepComMascara.matches(".*\\d+.*")) {
 				cep = (String) view.getMaskCep().stringToValue(cepComMascara);
 			}
-			
-		} catch (ParseException ex) {
-			ex.printStackTrace();
-		}
-		
-		try {
+
 			// cria objeto com os dados digitados pelo usuario
 			Fornecedor fornecedor = new Fornecedor(nome, telefone, endereco, cidade, cep, uf);
-			
+
 			// tenta salvar o objeto fornecedor no banco de dados
 			new FornecedorService().salvar(fornecedor);
-			
+
 			// mensagem de sucesso
 			showMessageDialog(view, "Inserido com sucesso", "OK", INFORMATION_MESSAGE);
 			
-		} catch (Exception ex) {
+			view.getView().carregarFornecedores();
+			
+			view.dispose();
+
+		} catch (SQLException | ParseException ex) {
 			ex.printStackTrace();
 			showMessageDialog(view, ex.getMessage(), "Erro", ERROR_MESSAGE);
-		}
-	}
 
+		}
+
+	}
 }

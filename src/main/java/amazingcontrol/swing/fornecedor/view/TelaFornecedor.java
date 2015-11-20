@@ -25,16 +25,13 @@ import amazingcontrol.swing.view.utils.PopupMouseAdapter;
 
 public class TelaFornecedor extends JDialog {
 
-	private static final Object Fornecedor = null;
 	private JButton btNovo;
 	private JTable jtFornecedor;
-	private TelaPrincipal view;
 
 	// construtor
 
 	public TelaFornecedor(TelaPrincipal view) {
 		super();
-		this.view = view;
 
 		initComponents();
 		initListeners();
@@ -101,10 +98,10 @@ public class TelaFornecedor extends JDialog {
 	}
 
 	private void initListeners() {
-		btNovo.addActionListener(new NovoFornecedorAction(view));
+		btNovo.addActionListener(new NovoFornecedorAction(this));
 	}
 
-	private void carregarFornecedores() {
+	public void carregarFornecedores() {
 		try {
 			FornecedorService service = new FornecedorService();
 
