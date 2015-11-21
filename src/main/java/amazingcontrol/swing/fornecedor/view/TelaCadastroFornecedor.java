@@ -15,7 +15,9 @@ import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.text.MaskFormatter;
 
+import amazingcontrol.model.Fornecedor;
 import amazingcontrol.model.UF;
+import amazingcontrol.swing.fornecedor.action.CancelarFornecedorAction;
 import amazingcontrol.swing.fornecedor.action.CriarFornecedorAction;
 import amazingcontrol.swing.view.utils.CustomizeView;
 
@@ -37,11 +39,12 @@ public class TelaCadastroFornecedor extends JDialog {
 	private MaskFormatter maskCep;
 	private JButton cadastrarBt;
 	private JButton cancelarBt;
-	private TelaFornecedor view;
+	private TelaFornecedor fornecedorView;
+	private Fornecedor fornecedor;
 
-	public TelaCadastroFornecedor(TelaFornecedor view) {
+	public TelaCadastroFornecedor(TelaFornecedor fornecedorView) {
 		super();
-		this.view = view;
+		this.fornecedorView = fornecedorView;
 
 		initComponents();
 		initPainel();
@@ -50,7 +53,7 @@ public class TelaCadastroFornecedor extends JDialog {
 		setTitle(("[A-CONTROL] Fornecedor"));
 		setSize(630, 470);
 		setResizable(false);
-		setLocationRelativeTo(null);
+		setLocationRelativeTo(fornecedorView);
 		setModalityType(ModalityType.DOCUMENT_MODAL);
 		setModal(true);
 
@@ -58,9 +61,9 @@ public class TelaCadastroFornecedor extends JDialog {
 
 	// Getters and Setters
 
-	private void initListeners() {
-		cadastrarBt.addActionListener(new CriarFornecedorAction(this));
-	}
+	// private void initListeners() {
+	// cadastrarBt.addActionListener(new CriarFornecedorAction(this));
+	// }
 
 	public JComboBox<Object> getUfJComboBox() {
 		return ufJComboBox;
@@ -70,12 +73,12 @@ public class TelaCadastroFornecedor extends JDialog {
 		this.ufJComboBox = ufJComboBox;
 	}
 
-	public TelaFornecedor getView() {
-		return view;
+	public TelaFornecedor getFornecedorView() {
+		return fornecedorView;
 	}
 
-	public void setView(TelaFornecedor view) {
-		this.view = view;
+	public void setView(TelaFornecedor fornecedorView) {
+		this.fornecedorView = fornecedorView;
 	}
 
 	public JLabel getNomeLabel() {
@@ -307,5 +310,19 @@ public class TelaCadastroFornecedor extends JDialog {
 
 		add(painel);
 
+	}
+
+	private void initListeners() {
+		cadastrarBt.addActionListener(new CriarFornecedorAction(this));
+		cancelarBt.addActionListener(new CancelarFornecedorAction(this));
+
+	}
+
+	public Fornecedor getFornecedor() {
+		return fornecedor;
+	}
+
+	public void setFornecedor(Fornecedor fornecedor) {
+		this.fornecedor = fornecedor;
 	}
 }
