@@ -55,7 +55,7 @@ public class CriarFornecedorAction implements ActionListener {
 			// mensagem de sucesso
 			showMessageDialog(view, "Inserido com sucesso", "OK", INFORMATION_MESSAGE);
 			
-			view.getView().carregarFornecedores();
+			view.getFornecedorView().carregarFornecedores();
 			
 			view.dispose();
 
