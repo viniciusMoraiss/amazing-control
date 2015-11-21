@@ -16,9 +16,12 @@ import javax.swing.JPopupMenu;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableModel;
 
 import amazingcontrol.model.Fornecedor;
 import amazingcontrol.service.FornecedorService;
+import amazingcontrol.swing.fornecedor.action.AlterarFornecedorAction;
+import amazingcontrol.swing.fornecedor.action.DeletarFornecedorAction;
 import amazingcontrol.swing.fornecedor.action.NovoFornecedorAction;
 import amazingcontrol.swing.principal.view.TelaPrincipal;
 import amazingcontrol.swing.view.utils.PopupMouseAdapter;
@@ -46,6 +49,15 @@ public class TelaFornecedor extends JDialog {
 		setModal(true);
 
 		carregarFornecedores();
+	}
+
+	// Getters and Setters
+	public JTable getJtFornecedor() {
+		return jtFornecedor;
+	}
+
+	public TableModel getModel() {
+		return getJtFornecedor().getModel();
 	}
 
 	private void initComponents() {
@@ -85,12 +97,12 @@ public class TelaFornecedor extends JDialog {
 		JMenuItem item;
 
 		item = new JMenuItem("Alterar...");
-		// item.addActionListener(new FornecedorAlterarAction(this));
+		item.addActionListener(new AlterarFornecedorAction(this));
 		menu.add(item);
 
 		item = new JMenuItem("Deletar...");
 
-		// item.addActionListener(new FornecedorDeletarAction(this));
+		item.addActionListener(new DeletarFornecedorAction(this));
 		menu.add(item);
 
 		jtFornecedor.addMouseListener(new PopupMouseAdapter(menu));
