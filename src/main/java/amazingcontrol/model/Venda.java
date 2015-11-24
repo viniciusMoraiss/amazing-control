@@ -63,6 +63,8 @@ public class Venda extends Entidate<Integer> {
 				if (getProdutoLista(produto, produtos) != null) {
 					if (quantidade + produto.getQuantidade() <= quantidadeBanco) {
 						produto.setQuantidade(quantidade + produto.getQuantidade());
+					} else {
+						throw new IllegalArgumentException("Quantidade insuficiente");
 					}
 				} else if (quantidade <= quantidadeBanco) {
 					produto.setQuantidade(quantidade);

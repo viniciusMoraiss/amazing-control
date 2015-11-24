@@ -39,10 +39,9 @@ public class AdicionarProdutoAction implements ActionListener {
 			List<Produto> produtos = view.getVenda().getProdutos();
 
 			for (Produto p : produtos) {
-				// "Nome", "Marca", "Tipo", "Valor Custo", "Valor Venda",
-				// "Quantidade"
-				model.addRow(new Object[] { p, p.getMarca(), p.getTipo(), p.getValorCusto(), p.getValorVenda(),
-						p.getQuantidade() });
+				//"Nome", "Marca", "Tipo", "Valor Venda", "Quantidade", "Valor Total" 
+				model.addRow(new Object[] { p, p.getMarca(), p.getTipo(), p.getValorVenda(),
+						p.getQuantidade(), p.getValorTotal() });
 			}
 
 			view.getProdutosJTable().updateUI();

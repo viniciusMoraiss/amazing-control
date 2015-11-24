@@ -5,6 +5,7 @@ import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.Insets;
 import java.awt.TextField;
+import java.awt.Dialog.ModalityType;
 import java.sql.SQLException;
 import java.util.Calendar;
 import java.util.List;
@@ -49,6 +50,8 @@ public class TelaVenderProdutos extends JDialog {
 		setSize(730, 520);
 		setResizable(false);
 		setLocationRelativeTo(null);
+		setModalityType(ModalityType.DOCUMENT_MODAL);
+		setModal(true);
 		carregarProdutos();
 	}
 
@@ -133,7 +136,7 @@ public class TelaVenderProdutos extends JDialog {
 	}
 
 	private Object[] createColumnNames() {
-		return new Object[] { "Nome", "Marca", "Tipo", "Valor Custo", "Valor Venda", "Quantidade" };
+		return new Object[] { "Nome", "Marca", "Tipo", "Valor Venda", "Quantidade", "Valor Total" };
 	}
 
 	private void initPainel() {

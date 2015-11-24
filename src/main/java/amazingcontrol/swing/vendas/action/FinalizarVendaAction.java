@@ -33,6 +33,8 @@ public class FinalizarVendaAction implements ActionListener {
 			}
 
 			JOptionPane.showMessageDialog(view, "Inserido com sucesso");
+			
+			view.dispose();
 
 		} catch (Exception ex) {
 			ex.printStackTrace();

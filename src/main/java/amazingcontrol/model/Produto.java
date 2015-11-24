@@ -51,7 +51,7 @@ public class Produto extends Entidate<Integer>{
 	}
 
 	public Tipo getTipo() {
-		return this.tipo;
+		return tipo;
 	}
 
 	public void setTipo(Tipo tipo) {
@@ -84,11 +84,14 @@ public class Produto extends Entidate<Integer>{
 		Validacoes.validaNulo(quantidade);
 		this.quantidade = quantidade;
 	}
-	
-	
+
+	public Object getValorTotal() {
+		return quantidade * valorVenda;
+	}
 	
 	@Override
 	public String toString() {
 		return nome;
 	}
+
 }

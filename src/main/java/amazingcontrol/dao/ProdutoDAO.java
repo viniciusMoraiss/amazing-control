@@ -128,7 +128,11 @@ public class ProdutoDAO {
 						}
 					}
 					
-					produto.getFornecedor().setId((rs.getInt("fornecedores_id")));
+					int idFornecedor = rs.getInt("fornecedores_id");
+					
+					Fornecedor fornecedor = new FornecedorService().getFornecedorPorId(idFornecedor);
+					
+					produto.setFornecedor(fornecedor);
 				}
 			}
 		} catch (SQLException e) {
