@@ -40,7 +40,7 @@ public class FornecedorDAO implements Crud<Fornecedor> {
 	}
 
 	public void atualizar(Connection con, Fornecedor fornecedor) {
-		String sql = "UPDATE INTO fornecedores (nome, telefone, endereço, cidade, cep, uf) VALUES (?,?,?,?,?,?)";
+		String sql = "UPDATE fornecedores SET nome = ?, telefone = ?, endereco = ?, cidade = ? , cep = ?, uf = ? where id = ?";
 		
 		try(PreparedStatement stmt = con.prepareStatement(sql)) {
 			stmt.setString(1, fornecedor.getNome());
@@ -49,6 +49,7 @@ public class FornecedorDAO implements Crud<Fornecedor> {
 			stmt.setString(4, fornecedor.getCidade());
 			stmt.setString(5, fornecedor.getCep());
 			stmt.setString(6, fornecedor.getUf().toString());
+			stmt.setInt(7, fornecedor.getId());
 			stmt.execute();
 		} catch (SQLException e) {
 			e.printStackTrace();

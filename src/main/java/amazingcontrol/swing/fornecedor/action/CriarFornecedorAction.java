@@ -53,12 +53,18 @@ public class CriarFornecedorAction implements ActionListener {
 
 			// cria objeto com os dados digitados pelo usuario
 			Fornecedor fornecedor = new Fornecedor(nome, telefone, endereco, cidade, cep, uf);
+			
+			if (view.getFornecedor() != null) {
+				fornecedor.setId(view.getFornecedor().getId());
+			}
 
 			// tenta salvar o objeto fornecedor no banco de dados
 			new FornecedorService().salvar(fornecedor);
+			
+			String msg = fornecedor.getId() == null ? "Inserido com sucesso" : "Alterado com sucesso";
 
 			// mensagem de sucesso
-			showMessageDialog(view, "Inserido com sucesso", "OK", INFORMATION_MESSAGE);
+			showMessageDialog(view, msg, "OK", INFORMATION_MESSAGE);
 			
 			view.getFornecedorView().carregarFornecedores();
 			

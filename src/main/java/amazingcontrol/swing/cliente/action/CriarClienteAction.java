@@ -38,6 +38,10 @@ public class CriarClienteAction implements ActionListener {
 		String cep = null;
 
 		try {
+			
+			if(uf.isNotSelecionado()) {
+				showMessageDialog(clienteCadastroView, "Por favor, selecione uma UF", "OK", INFORMATION_MESSAGE);
+			}
 
 			if (telefoneComMascara != null && telefoneComMascara.matches(".*\\d+.*")) {
 				telefone = (String) clienteCadastroView.getMaskTelefone().stringToValue(telefoneComMascara);
@@ -49,7 +53,11 @@ public class CriarClienteAction implements ActionListener {
 
 			// cria objeto com os dados digitados pelo usuario
 			Cliente cliente = new Cliente(nome, endereco, telefone, cidade, cep, uf);
-			cliente.setId(clienteCadastroView.getCliente().getId());
+			
+			// caso seja alteração
+			if(clienteCadastroView.getCliente() != null) {
+				cliente.setId(clienteCadastroView.getCliente().getId());
+			}
 
 			// tenta salvar o objeto fornecedor no banco de dados
 			new ClienteService().salvar(cliente);
