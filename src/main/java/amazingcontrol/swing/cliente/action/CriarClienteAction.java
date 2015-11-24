@@ -40,7 +40,8 @@ public class CriarClienteAction implements ActionListener {
 		try {
 			
 			if(uf.isNotSelecionado()) {
-				showMessageDialog(clienteCadastroView, "Por favor, selecione uma UF", "OK", INFORMATION_MESSAGE);
+				showMessageDialog(clienteCadastroView, "Por favor, selecione uma UF", "OK", ERROR_MESSAGE);
+				return;
 			}
 
 			if (telefoneComMascara != null && telefoneComMascara.matches(".*\\d+.*")) {
