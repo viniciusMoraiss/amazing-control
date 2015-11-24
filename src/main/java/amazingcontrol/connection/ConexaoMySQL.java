@@ -6,20 +6,19 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-
 public class ConexaoMySQL {
 
-	public static Connection conectar(){
-		
+	public static Connection conectar() {
+
 		// tenta localizar o driver
 		try {
 			Class.forName("com.mysql.jdbc.Driver");
 		} catch (ClassNotFoundException e) {
 			e.printStackTrace();
 		}
-		
+
 		Connection conn = null;
-		
+
 		// tenta conectar
 		try {
 			String user = "amazing";
@@ -32,21 +31,19 @@ public class ConexaoMySQL {
 		return conn;
 	}
 
-	public static void desconectar(Connection conn, PreparedStatement pstm, ResultSet rs) {
-		{
-			try {
-				if (conn != null) {
-					conn.close();
-				}
-				if (pstm != null) {
-					pstm.close();
-				}
-				if (rs != null) {
-					rs.close();
-				}
-			} catch (SQLException e) {
-				e.printStackTrace();
+	public void desconectar(Connection conn, PreparedStatement pstm, ResultSet rs) {
+		try {
+			if (conn != null) {
+				conn.close();
 			}
+			if (pstm != null) {
+				pstm.close();
+			}
+			if (rs != null) {
+				rs.close();
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
 		}
 	}
 

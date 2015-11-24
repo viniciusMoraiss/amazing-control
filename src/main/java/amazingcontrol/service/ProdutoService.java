@@ -1,26 +1,30 @@
 package amazingcontrol.service;
 
+import java.sql.Connection;
 import java.sql.SQLException;
 import java.util.List;
 
+import amazingcontrol.connection.ConexaoMySQL;
 import amazingcontrol.dao.ProdutoDAO;
 import amazingcontrol.model.Produto;
 
 public class ProdutoService {
 	private ProdutoDAO dao;
+	private Connection con;
 
 	/*
 	 * Cria acesso ao metodos do banco já no construtor
 	 */
-	public ProdutoService() throws SQLException {
+	public ProdutoService() throws SQLException{
 		dao = new ProdutoDAO();
+		con = ConexaoMySQL.conectar();
 	}
 
 	/*
 	 * metodo para carregar lista de produto
 	 */
 	public List<Produto> listar() {
-		return dao.lista();
+		return dao.lista(con);
 	}
 
 	/*
@@ -33,9 +37,9 @@ public class ProdutoService {
 		// validar(produto);
 
 		if (produto.isNullId()) {
-			dao.inserir(produto);
+			dao.inserir(con, produto);
 		} else {
-			dao.atualizar(produto);
+			dao.atualizar(con, produto);
 		}
 	}
 
@@ -43,7 +47,14 @@ public class ProdutoService {
 	 * Metodo para deletar produto
 	 */
 	public void deletar(Produto produto) {
-		dao.deletar(produto);
+		dao.deletar(con, produto);
+	}
+	
+	/**
+	 * recupera produto pelo id
+	 */
+	public Produto getProdutoPorId(int id) {
+		return dao.getProdutoPorId(con, id);
 	}
 
 }

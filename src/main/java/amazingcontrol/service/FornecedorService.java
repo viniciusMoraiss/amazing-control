@@ -1,26 +1,30 @@
 package amazingcontrol.service;
 
+import java.sql.Connection;
 import java.sql.SQLException;
 import java.util.List;
 
+import amazingcontrol.connection.ConexaoMySQL;
 import amazingcontrol.dao.FornecedorDAO;
 import amazingcontrol.model.Fornecedor;
 
 public class FornecedorService {
 	private FornecedorDAO dao;
+	private Connection con;
 
 	/*
 	 * Cria acesso ao metodos do banco já no construtor
 	 */
 	public FornecedorService() throws SQLException {
 		dao = new FornecedorDAO();
+		con = ConexaoMySQL.conectar();
 	}
 
 	/*
 	 * metodo para carregar lista de fornecedor
 	 */
 	public List<Fornecedor> listar() {
-		return dao.lista();
+		return dao.lista(con);
 	}
 
 	/*
@@ -31,9 +35,9 @@ public class FornecedorService {
 	 */
 	public void salvar(Fornecedor fornecedor) {
 		if (fornecedor.isNullId()) {
-			dao.inserir(fornecedor);
+			dao.inserir(con, fornecedor);
 		} else {
-			dao.atualizar(fornecedor);
+			dao.atualizar(con, fornecedor);
 		}
 	}
 
@@ -41,7 +45,7 @@ public class FornecedorService {
 	 * Metodo para deletar fornecedor
 	 */
 	public void deletar(Fornecedor fornecedor) {
-		dao.deletar(fornecedor);
+		dao.deletar(con, fornecedor);
 	}
 	
 }

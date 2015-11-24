@@ -1,8 +1,10 @@
 package amazingcontrol.service;
 
+import java.sql.Connection;
 import java.sql.SQLException;
 import java.util.List;
 
+import amazingcontrol.connection.ConexaoMySQL;
 import amazingcontrol.dao.ClienteDAO;
 import amazingcontrol.model.Cliente;
 
@@ -12,12 +14,14 @@ import amazingcontrol.model.Cliente;
 public class ClienteService {
 
 	private ClienteDAO dao;
+	private Connection con;
 
 	/**
 	 * Instacia o ClienteDAO
 	 * @throws SQLException
 	 */
 	public ClienteService() throws SQLException {
+		con = ConexaoMySQL.conectar();
 		dao = new ClienteDAO();
 	}
 
@@ -26,7 +30,7 @@ public class ClienteService {
 	 * @return lista de usuarios
 	 */
 	public List<Cliente> listar() {
-		return dao.lista();
+		return dao.lista(con);
 	}
 
 	/**
@@ -41,9 +45,9 @@ public class ClienteService {
 		// validar(cliente);
 
 		if (cliente.isNullId()) {
-			dao.inserir(cliente);
+			dao.inserir(con, cliente);
 		} else {
-			dao.atualizar(cliente);
+			dao.atualizar(con, cliente);
 		}
 	}
 
@@ -53,6 +57,10 @@ public class ClienteService {
 	 * @param cliente
 	 */
 	public void deletar(Cliente cliente) {
-		dao.deletar(cliente);
+		dao.deletar(con, cliente);
+	}
+
+	public Cliente getClientePorId(int id) {
+		return dao.clientePorId(con, id);
 	}
 }
