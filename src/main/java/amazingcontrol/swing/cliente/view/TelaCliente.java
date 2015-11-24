@@ -37,7 +37,7 @@ public class TelaCliente extends JDialog {
 		initListeners();
 		initPopupMenu();
 
-		setTitle("[A-CONTROL] Cadastro de usuarios");
+		setTitle("[A-CONTROL] Cadastro de Clientes");
 		setSize(630, 320);
 		setResizable(false);
 		setLocationRelativeTo(view);

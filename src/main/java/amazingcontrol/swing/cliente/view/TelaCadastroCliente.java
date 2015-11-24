@@ -286,7 +286,7 @@ public class TelaCadastroCliente extends JDialog {
 		constraints.anchor = GridBagConstraints.SOUTH;
 		painel.add(cancelarButton, constraints);
 
-		painel.setBorder(BorderFactory.createTitledBorder(BorderFactory.createEtchedBorder(), "Fornecedor"));
+		painel.setBorder(BorderFactory.createTitledBorder(BorderFactory.createEtchedBorder(), "Cliente"));
 
 		add(painel);
 	}
