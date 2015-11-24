@@ -31,8 +31,13 @@ public class FinalizarVendaAction implements ActionListener {
 				// cadastrar venda no banco de dados
 				new FinalizarVendaService().cadastrar(venda, produto);
 			}
-
-			JOptionPane.showMessageDialog(view, "Inserido com sucesso");
+			
+			// foi realizado pelo menos uma venda
+			if(venda.getProdutos().size() > 0 ) {
+				JOptionPane.showMessageDialog(view, "Venda efetuada com sucesso");
+			} else {
+				JOptionPane.showMessageDialog(view, "Finalizado sem nenhuma venda");
+			}
 			
 			view.dispose();
 

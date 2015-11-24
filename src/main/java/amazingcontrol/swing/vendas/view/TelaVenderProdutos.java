@@ -5,7 +5,6 @@ import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.Insets;
 import java.awt.TextField;
-import java.awt.Dialog.ModalityType;
 import java.sql.SQLException;
 import java.util.Calendar;
 import java.util.List;
