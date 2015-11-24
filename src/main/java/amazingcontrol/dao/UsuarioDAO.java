@@ -14,7 +14,7 @@ import amazingcontrol.model.Usuario;
  * Reponsável por toda logica que envolve codigos
  * referente a banco de dados da classe usuario
  */
-public class UsuarioDAO implements Crud<Usuario> {
+public class UsuarioDAO {
 
 	/*
 	 * (non-Javadoc)

@@ -10,7 +10,7 @@ import java.util.List;
 import amazingcontrol.model.Fornecedor;
 import amazingcontrol.model.UF;
 
-public class FornecedorDAO implements Crud<Fornecedor> {
+public class FornecedorDAO {
 
 	public void inserir(Connection con, Fornecedor fornecedor) {
 		String sql = "INSERT INTO fornecedores (nome, telefone, endereco, cidade, cep, uf) VALUES (?,?,?,?,?,?)";
@@ -88,5 +88,37 @@ public class FornecedorDAO implements Crud<Fornecedor> {
 		}
 
 		return fornecedores;
+	}
+
+	public Fornecedor getFornecedorPorId(Connection con, Integer idFornecedor) {
+		String sql = " SELECT * FROM fornecedores where id = ?";
+		Fornecedor fornecedor = null;
+
+		try (PreparedStatement stmt = con.prepareStatement(sql)) {
+			stmt.setInt(1, idFornecedor);
+			try (ResultSet rs = stmt.executeQuery()) {
+
+				if (rs.next()) {
+					fornecedor = new Fornecedor();
+					fornecedor.setId(rs.getInt("id"));
+					fornecedor.setNome(rs.getString("nome"));
+					fornecedor.setTelefone(rs.getString("telefone"));
+					fornecedor.setEndereco(rs.getString("endereco"));
+					fornecedor.setCidade(rs.getString("cidade"));
+					fornecedor.setCep(rs.getString("cep"));
+
+					// seta uf do banco
+					for (UF uf : UF.values()) {
+						if (rs.getString("uf").equals(uf.toString())) {
+							fornecedor.setUf(uf);
+						}
+					}
+				}
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+
+		return fornecedor;
 	}
 }

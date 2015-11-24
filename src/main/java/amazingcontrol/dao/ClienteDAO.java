@@ -10,7 +10,7 @@ import java.util.List;
 import amazingcontrol.model.Cliente;
 import amazingcontrol.model.UF;
 
-public class ClienteDAO implements Crud<Cliente> {
+public class ClienteDAO {
 
 	public void inserir(Connection con, Cliente cliente) {
 		String sql = "INSERT INTO clientes (nome, endereco, telefone , cidade, cep, uf) VALUES (?,?,?,?,?,?)";
@@ -27,7 +27,6 @@ public class ClienteDAO implements Crud<Cliente> {
 		}
 	}
 
-	@Override
 	public void deletar(Connection con, Cliente cliente) {
 		String sql = "DELETE FROM clientes WHERE id = ? ";
 		
@@ -73,7 +72,6 @@ public class ClienteDAO implements Crud<Cliente> {
 		return Clientes;
 	}
 
-	@Override
 	public void atualizar(Connection con, Cliente cliente) {
 		String sql = "UPDATE clientes SET nome = ?, endereco= ?, telefone = ? , cidade = ?, cep = ?, uf= ? WHERE id = ?";
 	

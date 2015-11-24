@@ -47,5 +47,9 @@ public class FornecedorService {
 	public void deletar(Fornecedor fornecedor) {
 		dao.deletar(con, fornecedor);
 	}
+
+	public Fornecedor getFornecedorPorId(Integer idFornecedor) {
+		return dao.getFornecedorPorId(con, idFornecedor);
+	}
 	
 }

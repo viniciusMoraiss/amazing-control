@@ -43,14 +43,8 @@ public class TelaProduto extends JFrame {
 		setLocationRelativeTo(null);
 		
 		// carrega os produtos cadastrados
-		try {
-			carregarProdutos();
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
+		carregarProdutos();
 	}
-	
-	
 
 	public JButton getBtNovo() {
 		return btNovo;
@@ -82,7 +76,7 @@ public class TelaProduto extends JFrame {
 	}
 
 	private Object[] createColumnNames() {
-		return new Object[] { "Nome", "Marca", "Tipo", "Valor Custo", "Valor Venda", "Quantidade" };
+		return new Object[] { "Nome", "Marca", "Tipo", "Valor Custo", "Valor Venda", "Quantidade", "Fornecedor" };
 	}
 
 	private void initPainel() {
@@ -140,13 +134,16 @@ public class TelaProduto extends JFrame {
 			model.getDataVector().clear();
 			
 			for (Produto produto : produtos) {
+				
+				
 				//"Nome", "Marca", "Tipo", "Valor Custo", "Valor Venda", "Quantidade"
 				model.addRow(new Object[] { produto, 
 											produto.getMarca(), 
 											produto.getTipo(), 
 											produto.getValorCusto(), 
 											produto.getValorVenda(),
-											produto.getQuantidade()
+											produto.getQuantidade(),
+											produto.getFornecedor(),
 											});
 			}
 

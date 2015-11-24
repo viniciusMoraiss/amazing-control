@@ -3,15 +3,21 @@ package amazingcontrol.swing.produto.view;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.Insets;
+import java.sql.SQLException;
+import java.util.List;
 
 import javax.swing.BorderFactory;
 import javax.swing.JButton;
+import javax.swing.JComboBox;
 import javax.swing.JDialog;
 import javax.swing.JFormattedTextField;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
+import amazingcontrol.model.Fornecedor;
+import amazingcontrol.model.Tipo;
+import amazingcontrol.service.FornecedorService;
 import amazingcontrol.swing.produto.action.CriarProdutoAction;
 import amazingcontrol.swing.view.utils.CustomizeView;
 
@@ -22,7 +28,7 @@ public class TelaCadastroProduto extends JDialog {
 	private JLabel marcaLabel;
 	private JTextField marcaText;
 	private JLabel tipoLabel;
-	private JTextField tipoText;
+	private JComboBox<Object> tipoComboBox;
 	private JLabel valorCustoLabel;
 	private JTextField valorCustoText;
 	private JLabel valorVendaLabel;
@@ -32,6 +38,8 @@ public class TelaCadastroProduto extends JDialog {
 	private JButton cadastrarBt;
 	private JButton cancelarBt;
 	private TelaProduto view;
+	private JComboBox<Fornecedor> fornecedorCombo;
+	private JLabel fornecedorLabel;
 
 	public TelaCadastroProduto() {
 		this(null);
@@ -50,6 +58,10 @@ public class TelaCadastroProduto extends JDialog {
 		setResizable(false);
 		setVisible(true);
 		setLocationRelativeTo(null);
+		setLocationRelativeTo(view);
+		setModalityType(ModalityType.DOCUMENT_MODAL);
+		setModal(true);
+		carregarFornecedores();
 	}
 
 	private void initListeners() {
@@ -98,12 +110,22 @@ public class TelaCadastroProduto extends JDialog {
 		this.tipoLabel = tipoLabel;
 	}
 
-	public JTextField getTipoText() {
-		return tipoText;
+	public JComboBox<Object> getTipoComboBox() {
+		return tipoComboBox;
 	}
 
-	public void setTipoText(JTextField tipoText) {
-		this.tipoText = tipoText;
+	public void setTipoComboBox(JComboBox<Object> tipoComboBox) {
+		this.tipoComboBox = tipoComboBox;
+	}
+
+	public JComboBox<Fornecedor> getFornecedorCombo() {
+		return fornecedorCombo;
+
+	}
+
+	public void setFornecedorCombo(JComboBox<Fornecedor> fornecedorCombo) {
+		this.fornecedorCombo = fornecedorCombo;
+
 	}
 
 	public JLabel getValorCustoLabel() {
@@ -169,7 +191,7 @@ public class TelaCadastroProduto extends JDialog {
 	public void setCancelarBt(JButton cancelarBt) {
 		this.cancelarBt = cancelarBt;
 	}
-	
+
 	public void getProdutos() {
 		view.carregarProdutos();
 	}
@@ -184,9 +206,9 @@ public class TelaCadastroProduto extends JDialog {
 		marcaText = new JFormattedTextField();
 		CustomizeView.labelsAndInputs(marcaLabel, marcaText);
 
+		Object[] tipos = Tipo.values();
 		tipoLabel = new JLabel("Tipo");
-		tipoText = new JTextField();
-		CustomizeView.labelsAndInputs(tipoLabel, tipoText);
+		tipoComboBox = new JComboBox<>(tipos);
 
 		valorCustoLabel = new JLabel("Valor Custo");
 		valorCustoText = new JTextField();
@@ -199,6 +221,10 @@ public class TelaCadastroProduto extends JDialog {
 		quantidadeDeProdutoLabel = new JLabel("Quantidade");
 		quantidadeDeProdutoText = new JTextField();
 		CustomizeView.labelsAndInputs(quantidadeDeProdutoLabel, quantidadeDeProdutoText);
+
+		fornecedorLabel = new JLabel("Fornecedor");
+		fornecedorCombo = new JComboBox<Fornecedor>();
+		CustomizeView.labels(fornecedorLabel);
 
 		cadastrarBt = new JButton("Cadastrar");
 		cancelarBt = new JButton("Cancelar");
@@ -228,7 +254,7 @@ public class TelaCadastroProduto extends JDialog {
 		painel.add(tipoLabel, constraints);
 
 		constraints.gridx = 1;
-		painel.add(tipoText, constraints);
+		painel.add(tipoComboBox, constraints);
 
 		constraints.gridx = 0;
 		constraints.gridy = 4; // linha
@@ -250,9 +276,17 @@ public class TelaCadastroProduto extends JDialog {
 
 		constraints.gridx = 1;
 		painel.add(quantidadeDeProdutoText, constraints);
-
+		
 		constraints.gridx = 0;
 		constraints.gridy = 7;
+		painel.add(fornecedorLabel, constraints);
+
+		constraints.gridx = 1;
+		painel.add(fornecedorCombo, constraints);
+
+		
+		constraints.gridx = 0;
+		constraints.gridy = 8;
 		constraints.anchor = GridBagConstraints.CENTER;
 		painel.add(cadastrarBt, constraints);
 
@@ -264,5 +298,23 @@ public class TelaCadastroProduto extends JDialog {
 
 		add(painel);
 
+	}
+	
+	private void carregarFornecedores() {
+		List<Fornecedor> fornecedores;
+		
+		try {
+			fornecedores = new FornecedorService().listar();
+			
+			for (Fornecedor fornecedor : fornecedores) {
+				fornecedorCombo.addItem(fornecedor);
+			}
+		} catch (SQLException ex) {
+			ex.printStackTrace();
+		}
+	}
+	
+	public static void main(String[] args) {
+		new TelaCadastroProduto().setVisible(true);
 	}
 }

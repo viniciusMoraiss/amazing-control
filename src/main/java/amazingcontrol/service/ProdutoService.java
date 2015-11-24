@@ -6,6 +6,7 @@ import java.util.List;
 
 import amazingcontrol.connection.ConexaoMySQL;
 import amazingcontrol.dao.ProdutoDAO;
+import amazingcontrol.model.Fornecedor;
 import amazingcontrol.model.Produto;
 
 public class ProdutoService {
@@ -32,14 +33,14 @@ public class ProdutoService {
 	 * validar os campos - caso o id seja igual a null ira inserir o fornecedor
 	 * - caso o id seja diferente de null ira atualizar um produto existente
 	 */
-	public void salvar(Produto produto) {
+	public void salvar(Produto produto, Fornecedor fornecedor) {
 		// valida produto antes de inserir ou atualizar
 		// validar(produto);
 
 		if (produto.isNullId()) {
-			dao.inserir(con, produto);
+			dao.inserir(con, produto, fornecedor);
 		} else {
-			dao.atualizar(con, produto);
+			dao.atualizar(con, produto, fornecedor);
 		}
 	}
 

@@ -18,4 +18,8 @@ public class CustomizeView {
 		textField.setColumns(20);
 	}
 	
+	public static void labels(JLabel label) {
+		label.setFont(new Font(Font.SANS_SERIF, Font.CENTER_BASELINE, 14));
+	}
+	
 }

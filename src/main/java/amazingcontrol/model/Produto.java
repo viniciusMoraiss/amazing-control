@@ -6,15 +6,24 @@ public class Produto extends Entidate<Integer>{
 
 	private String nome;
 	private String marca;
-	private String tipo;
+	private Tipo tipo;
 	private double valorCusto;
 	private double valorVenda;
 	private int quantidade;
+	private Fornecedor fornecedor;
 	
+	public Fornecedor getFornecedor() {
+		return fornecedor;
+	}
+
+	public void setFornecedor(Fornecedor fornecedor) {
+		this.fornecedor = fornecedor;
+	}
+
 	public Produto() {
 	}
 	
-	public Produto(String nome, String marca, String tipo, Double valorCusto, Double valorVenda, Integer quantidade) {
+	public Produto(String nome, String marca, Tipo tipo, Double valorCusto, Double valorVenda, Integer quantidade) {
 		setNome(nome);
 		setMarca(marca);
 		setTipo(tipo);
@@ -41,11 +50,11 @@ public class Produto extends Entidate<Integer>{
 		this.marca = marca;
 	}
 
-	public String getTipo() {
+	public Tipo getTipo() {
 		return this.tipo;
 	}
 
-	public void setTipo(String tipo) {
+	public void setTipo(Tipo tipo) {
 		this.tipo = tipo;
 	}
 

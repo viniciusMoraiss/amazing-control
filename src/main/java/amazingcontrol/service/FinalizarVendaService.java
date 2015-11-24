@@ -43,7 +43,7 @@ public class FinalizarVendaService {
 			produto.setQuantidade(quantidadeBanco - quantidadeVendida);
 			
 			// TODO deve chamar o service
-			new ProdutoDAO().atualizar(con, produto);
+			new ProdutoDAO().atualizar(con, produto, produto.getFornecedor());
 			
 			// commita as transacoes caso não tenha nenhum erro
 			con.commit();
