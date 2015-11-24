@@ -11,6 +11,7 @@ import amazingcontrol.swing.fornecedor.action.TelaFornecedorAction;
 import amazingcontrol.swing.produto.action.TelaProdutoAction;
 import amazingcontrol.swing.usuario.action.TelaAlterarSenhaUsuarioAction;
 import amazingcontrol.swing.usuario.action.TelaUsuarioAction;
+import amazingcontrol.swing.vendas.action.TelaVendasAction;
 
 /**
  * Classe que representa a tela principal, chamada após o usuario fazer login.
@@ -76,37 +77,19 @@ public class TelaPrincipal extends JFrame {
 		// adiciona menu de produtos
 		menuProdutos(menuBar);
 
-		// adiciona menu de vendas
-		menuVendas(menuBar);
-
 		// adiciona menu de usuarios
 		menuOpcoesUsuario(menuBar);
 
 		// adiciona menu de fornecedores
 		menuOpcoesFornecedores(menuBar);
 		
+		// menu clientes
 		menuClientes(menuBar);
+		
+		// menu vendas
+		menuOpcoesVendas(menuBar);
 
 		return menuBar;
-	}
-	
-	/**
-	 * Monta o menu de vendas
-	 * @param menuBar
-	 */
-	private void menuVendas(JMenuBar menuBar) {
-		JMenu menu;
-		JMenuItem menuItem;
-		menu = new JMenu("Vendas");
-		menuBar.add(menu);
-
-		menuItem = new JMenuItem("Cadastrar de vendas");
-		// menuItem.addActionListener(new MenuCadastroProdutoAction(this));
-		menu.add(menuItem);
-
-		menuItem = new JMenuItem("Consultar vendas");
-		// menuItem.addActionListener(new MenuBairroAction(this));
-		menu.add(menuItem);
 	}
 	
 	/**
@@ -143,6 +126,10 @@ public class TelaPrincipal extends JFrame {
 		menu.add(menuItem);
 	}
 	
+	/**
+	 * Monta menu com opções de clientes
+	 * @param menuBar
+	 */
 	private void menuClientes(JMenuBar menuBar) {
 		JMenu menu;
 		JMenuItem menuItem;
@@ -166,6 +153,21 @@ public class TelaPrincipal extends JFrame {
 
 		menuItem = new JMenuItem("Consulta fornecedores");
 		menuItem.addActionListener(new TelaFornecedorAction(this));
+		menu.add(menuItem);
+	}
+	
+	/**
+	 * Monta menu de vendas
+	 * @param menuBar
+	 */
+	private void menuOpcoesVendas(JMenuBar menuBar) {
+		JMenu menu;
+		JMenuItem menuItem;
+		menu = new JMenu("Vendas");
+		menuBar.add(menu);
+
+		menuItem = new JMenuItem("Vender");
+		menuItem.addActionListener(new TelaVendasAction(usuario));
 		menu.add(menuItem);
 	}
 }

@@ -27,9 +27,8 @@ public class TelaProduto extends JFrame {
 
 	private JButton btNovo;
 	private JTable jtProduto;
-
+	
 	// construtor
-
 	public TelaProduto(TelaPrincipal view) {
 		super();
 
@@ -50,6 +49,32 @@ public class TelaProduto extends JFrame {
 			e.printStackTrace();
 		}
 	}
+	
+	
+
+	public JButton getBtNovo() {
+		return btNovo;
+	}
+
+
+
+	public void setBtNovo(JButton btNovo) {
+		this.btNovo = btNovo;
+	}
+
+
+
+	public JTable getProdutoJTable() {
+		return jtProduto;
+	}
+
+
+
+	public void setProdutoJTable(JTable jtProduto) {
+		this.jtProduto = jtProduto;
+	}
+
+
 
 	private void initComponents() {
 		jtProduto = new JTable(new DefaultTableModel(new Object[0][0], createColumnNames()));
@@ -108,7 +133,8 @@ public class TelaProduto extends JFrame {
 		ProdutoService service;
 		try {
 			service = new ProdutoService();
-			List<Produto> produtos = service.listar(); DefaultTableModel model;
+			List<Produto> produtos = service.listar(); 
+			DefaultTableModel model;
 			model = (DefaultTableModel) jtProduto.getModel();
 			
 			model.getDataVector().clear();

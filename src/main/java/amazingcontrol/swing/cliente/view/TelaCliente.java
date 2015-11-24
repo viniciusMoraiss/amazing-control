@@ -130,9 +130,4 @@ public class TelaCliente extends JDialog {
 			e.printStackTrace();
 		}
 	}
-	
-	public static void main(String[] args) {
-		new TelaCliente(null).setVisible(true);
-	}
-
 }

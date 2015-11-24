@@ -17,4 +17,5 @@ public class CustomizeView {
 		textField.setFont(new Font(Font.SANS_SERIF, Font.CENTER_BASELINE, 14));
 		textField.setColumns(20);
 	}
+	
 }

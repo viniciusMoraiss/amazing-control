@@ -6,7 +6,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 import amazingcontrol.model.Produto;
-import amazingcontrol.swing.produto.view.TelaCriaProduto;
+import amazingcontrol.swing.produto.view.TelaCadastroProduto;
 import amazingcontrol.swing.produto.view.TelaProduto;
 
 public class AlterarProdutoAction implements ActionListener {
@@ -45,20 +45,20 @@ public class AlterarProdutoAction implements ActionListener {
 		Produto produto = null;
 
 		// recupera o cliente selecionado
-		produto = (Produto) produtoView.getModel().getValueAt(rowSelected, 0);
+		produto = (Produto) produtoView.getProdutoJTable().getModel().getValueAt(rowSelected, 0);
 
 		// abre a tela de cadastro setando os campos os dados do cliente a ser
 		// alterado
 		TelaCadastroProduto cadastroProdutoView = new TelaCadastroProduto(produtoView);
-		cadastroProdutoView.setProduto(produto);
-		cadastroProdutoView.getNomeTextField().setText(produto.getNome());
-		cadastroProdutoView.getMarcaTextField().setText(produto.getMarca());
-		cadastroProdutoView.getTipoTextField().setText(produto.getTipo());
-		cadastroProdutoView.getValorCustoTextField().setText(produto.getValorCusto());
-		cadastroProdutoView.getValorVendaTextField().setText(produto.getValorVenda());
-		cadastroProdutoView.getQuantidadeTextField().setText(produto.getQuantidade());
-		cadastroProdutoView.getCadastrarButton().setText("Alterar");
-		cadastroProdutoView.setVisible(true);
+//		cadastroProdutoView.setProduto(produto);
+//		cadastroProdutoView.getNomeTextField().setText(produto.getNome());
+//		cadastroProdutoView.getMarcaTextField().setText(produto.getMarca());
+//		cadastroProdutoView.getTipoTextField().setText(produto.getTipo());
+//		cadastroProdutoView.getValorCustoTextField().setText(produto.getValorCusto());
+//		cadastroProdutoView.getValorVendaTextField().setText(produto.getValorVenda());
+//		cadastroProdutoView.getQuantidadeTextField().setText(produto.getQuantidade());
+//		cadastroProdutoView.getCadastrarButton().setText("Alterar");
+//		cadastroProdutoView.setVisible(true);
 
 		// se cliente for diferente de nulo, limpa a selecao e recarrega os
 		// clientes

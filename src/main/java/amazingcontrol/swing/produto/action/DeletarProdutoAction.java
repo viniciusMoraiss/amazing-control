@@ -7,11 +7,8 @@ import static javax.swing.JOptionPane.showMessageDialog;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-import amazingcontrol.model.Cliente;
 import amazingcontrol.model.Produto;
-import amazingcontrol.service.ClienteService;
 import amazingcontrol.service.ProdutoService;
-import amazingcontrol.swing.cliente.view.TelaCliente;
 import amazingcontrol.swing.produto.view.TelaProduto;
 
 public class DeletarProdutoAction implements ActionListener {
@@ -36,11 +33,11 @@ public class DeletarProdutoAction implements ActionListener {
 		}
 
 		try {
-			int[] indexes = view.getProdutosJTable().getSelectedRows();
+			int[] indexes = view.getProdutoJTable().getSelectedRows();
 			Produto produto = null;
 
 			for (int index : indexes) {
-				produto = (Produto) view.getModel().getValueAt(index, 0);
+				produto = (Produto) view.getProdutoJTable().getModel().getValueAt(index, 0);
 				new ProdutoService().deletar(produto);
 			}
 
