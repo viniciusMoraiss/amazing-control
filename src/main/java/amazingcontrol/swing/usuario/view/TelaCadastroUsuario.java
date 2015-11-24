@@ -227,7 +227,7 @@ public class TelaCadastroUsuario extends JDialog {
 		painel.add(botaoCancelar, constraints);
 
 		// configura borda
-		painel.setBorder(BorderFactory.createTitledBorder(BorderFactory.createEtchedBorder(), "Login Panel"));
+		painel.setBorder(BorderFactory.createTitledBorder(BorderFactory.createEtchedBorder(), "Usuario"));
 
 		add(painel);
 	}

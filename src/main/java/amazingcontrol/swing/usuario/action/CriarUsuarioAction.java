@@ -41,6 +41,8 @@ public class CriarUsuarioAction implements ActionListener {
 			
 			// recarrega tabela
 			usuarioView.carregarUsuarios();
+			view.dispose();
+			
 			
 		} catch (Exception ex) {
 			ex.printStackTrace();
