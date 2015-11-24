@@ -1,17 +1,15 @@
 package amazingcontrol.swing.vendas.action;
 
-import static javax.swing.JOptionPane.ERROR_MESSAGE;
 import static javax.swing.JOptionPane.showMessageDialog;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.sql.SQLException;
 import java.util.List;
 
+import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
 import amazingcontrol.model.Produto;
-import amazingcontrol.service.ProdutoService;
 import amazingcontrol.swing.vendas.view.TelaVenderProdutos;
 
 public class AdicionarProdutoAction implements ActionListener {
@@ -32,34 +30,13 @@ public class AdicionarProdutoAction implements ActionListener {
 
 		model.getDataVector().clear();
 
-		List<Produto> produtos = view.getVenda().getProdutos();
-
+		int quantidade = Integer.parseInt(view.getQuantidadeTextField().getText());
+		
 		try {
 
-			int quantidadeBanco = new ProdutoService().getProdutoPorId(produto.getId()).getQuantidade();
+			view.getVenda().addProdutos(produto, quantidade);
 
-			int quantidade = Integer.parseInt(view.getQuantidadeTextField().getText());
-
-			if (produtos.size() > 0) {
-				// verificar se produto já está na lista, se nao estiver retorna
-				// nulo
-				if (getProdutoLista(produto, produtos) != null) {
-					if (quantidade + produto.getQuantidade() <= quantidadeBanco) {
-						produto.setQuantidade(quantidade + produto.getQuantidade());
-					}
-				} else if (quantidade <= quantidadeBanco) {
-					produto.setQuantidade(quantidade);
-					produtos.add(produto);
-				} else {
-					showMessageDialog(view, "Quantidade insuficiente", "ERRO", ERROR_MESSAGE);
-				}
-
-			} else if (quantidade <= quantidadeBanco) {
-				produto.setQuantidade(quantidade);
-				produtos.add(produto);
-			} else {
-				showMessageDialog(view, "Quantidade insuficiente", "ERRO", ERROR_MESSAGE);
-			}
+			List<Produto> produtos = view.getVenda().getProdutos();
 
 			for (Produto p : produtos) {
 				// "Nome", "Marca", "Tipo", "Valor Custo", "Valor Venda",
@@ -70,23 +47,10 @@ public class AdicionarProdutoAction implements ActionListener {
 
 			view.getProdutosJTable().updateUI();
 			
-		} catch (SQLException ex) {
+		} catch (IllegalArgumentException ex) {
 			ex.printStackTrace();
+			showMessageDialog(view, ex.getMessage(), "ERRO", JOptionPane.ERROR_MESSAGE);
 		}
-
-	}
-
-	private Produto getProdutoLista(Produto produto, List<Produto> produtos) {
-		// verificar se produto já está na lista
-		for (int i = 0; i < produtos.size(); i++) {
-			// se estiver soma a quantidade com a já inserida
-			if (produto.getId().equals(produtos.get(i).getId())) {
-				return produto;
-			}
-		}
-
-		return null;
-
 	}
 
 }

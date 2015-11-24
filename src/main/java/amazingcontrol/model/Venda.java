@@ -1,8 +1,11 @@
 package amazingcontrol.model;
 
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
+
+import amazingcontrol.service.ProdutoService;
 
 public class Venda extends Entidate<Integer> {
 
@@ -49,8 +52,47 @@ public class Venda extends Entidate<Integer> {
 		return produtos;
 	}
 	
-	public void addProdutos(Produto produto) {
-		produtos.add(produto);
+	public void addProdutos(Produto produto, Integer quantidade) {
+	
+		try {
+			// recupera quantidade de produtos do banco de dados
+			int quantidadeBanco = new ProdutoService().getProdutoPorId(produto.getId()).getQuantidade();
+			
+			if (produtos.size() > 0) {
+				// verificar se produto já está na lista, se nao estiver retorna nulo
+				if (getProdutoLista(produto, produtos) != null) {
+					if (quantidade + produto.getQuantidade() <= quantidadeBanco) {
+						produto.setQuantidade(quantidade + produto.getQuantidade());
+					}
+				} else if (quantidade <= quantidadeBanco) {
+					produto.setQuantidade(quantidade);
+					produtos.add(produto);
+				} else {
+					throw new IllegalArgumentException("Quantidade insuficiente");
+				}
+
+			} else if (quantidade <= quantidadeBanco) {
+				produto.setQuantidade(quantidade);
+				produtos.add(produto);
+			} else {
+				throw new IllegalArgumentException("Quantidade insuficiente");
+			}
+			
+		} catch(SQLException ex) {
+			ex.printStackTrace();
+		}
+	}
+	
+	private Produto getProdutoLista(Produto produto, List<Produto> produtos) {
+		// verificar se produto já está na lista
+		for (int i = 0; i < produtos.size(); i++) {
+			// se estiver soma a quantidade com a já inserida
+			if (produto.getId().equals(produtos.get(i).getId())) {
+				return produto;
+			}
+		}
+
+		return null;
 	}
 	
 }
