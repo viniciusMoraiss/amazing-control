@@ -37,7 +37,12 @@ public class CriarFornecedorAction implements ActionListener {
 		String cep = null;
 
 		try {
-
+			
+			if(uf.isNotSelecionado()) {
+				showMessageDialog(view, "Por favor selecione a UF", "ERRO", ERROR_MESSAGE);
+				return;
+			}
+			
 			if (telefoneComMascara != null && telefoneComMascara.matches(".*\\d+.*")) {
 				telefone = (String) view.getMaskTelefone().stringToValue(telefoneComMascara);
 			}
