@@ -32,8 +32,13 @@ public class AdicionarProdutoAction implements ActionListener {
 
 		int quantidade = Integer.parseInt(view.getQuantidadeTextField().getText());
 		
+		if(quantidade <= 0 ) {
+			showMessageDialog(view, "Valor deve ser maior ou igual 1", "ERRO", JOptionPane.ERROR_MESSAGE);
+			return;
+		}
+		
 		try {
-
+			
 			view.getVenda().addProdutos(produto, quantidade);
 
 			List<Produto> produtos = view.getVenda().getProdutos();
