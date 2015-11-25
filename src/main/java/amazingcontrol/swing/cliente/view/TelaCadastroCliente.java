@@ -19,6 +19,7 @@ import amazingcontrol.model.Cliente;
 import amazingcontrol.model.UF;
 import amazingcontrol.swing.cliente.action.CriarClienteAction;
 import amazingcontrol.swing.view.utils.CustomizeView;
+import amazingcontrol.swing.view.utils.WindowCancelarAction;
 
 public class TelaCadastroCliente extends JDialog {
 
@@ -293,6 +294,8 @@ public class TelaCadastroCliente extends JDialog {
 
 	private void initListeners() {
 		cadastrarButton.addActionListener(new CriarClienteAction(this));
+		cancelarButton.addActionListener(new WindowCancelarAction(this, "[A-CONTROL] Clientes"));
+
 	}
 
 	public Cliente getCliente() {

@@ -16,10 +16,12 @@ import javax.swing.JPanel;
 import javax.swing.JTextField;
 
 import amazingcontrol.model.Fornecedor;
+import amazingcontrol.model.Produto;
 import amazingcontrol.model.Tipo;
 import amazingcontrol.service.FornecedorService;
 import amazingcontrol.swing.produto.action.CriarProdutoAction;
 import amazingcontrol.swing.view.utils.CustomizeView;
+import amazingcontrol.swing.view.utils.WindowCancelarAction;
 
 public class TelaCadastroProduto extends JDialog {
 
@@ -40,6 +42,7 @@ public class TelaCadastroProduto extends JDialog {
 	private TelaProduto view;
 	private JComboBox<Fornecedor> fornecedorCombo;
 	private JLabel fornecedorLabel;
+	private Produto produto;
 
 	public TelaCadastroProduto() {
 		this(null);
@@ -53,7 +56,7 @@ public class TelaCadastroProduto extends JDialog {
 		initPainel();
 		initListeners();
 
-		setTitle(("[A-CONTROL] Fornecedor"));
+		setTitle(("[A-CONTROL] Produto"));
 		setSize(630, 470);
 		setResizable(false);
 		setVisible(true);
@@ -66,6 +69,7 @@ public class TelaCadastroProduto extends JDialog {
 
 	private void initListeners() {
 		cadastrarBt.addActionListener(new CriarProdutoAction(this));
+		cancelarBt.addActionListener(new WindowCancelarAction(this, "[A-CONTROL] Produto"));
 	}
 
 	// getters and setters
@@ -195,6 +199,10 @@ public class TelaCadastroProduto extends JDialog {
 	public void getProdutos() {
 		view.carregarProdutos();
 	}
+	
+	public Produto getProduto() {
+		return produto;
+	}
 
 	private void initComponents() {
 
@@ -294,7 +302,7 @@ public class TelaCadastroProduto extends JDialog {
 		constraints.anchor = GridBagConstraints.SOUTH;
 		painel.add(cancelarBt, constraints);
 
-		painel.setBorder(BorderFactory.createTitledBorder(BorderFactory.createEtchedBorder(), "Fornecedor"));
+		painel.setBorder(BorderFactory.createTitledBorder(BorderFactory.createEtchedBorder(), "Produto"));
 
 		add(painel);
 
@@ -316,5 +324,9 @@ public class TelaCadastroProduto extends JDialog {
 	
 	public static void main(String[] args) {
 		new TelaCadastroProduto().setVisible(true);
+	}
+
+	public void setProduto(Produto produto) {
+		this.produto = produto;
 	}
 }

@@ -20,6 +20,8 @@ import javax.swing.table.DefaultTableModel;
 import amazingcontrol.model.Produto;
 import amazingcontrol.service.ProdutoService;
 import amazingcontrol.swing.principal.view.TelaPrincipal;
+import amazingcontrol.swing.produto.action.AlterarProdutoAction;
+import amazingcontrol.swing.produto.action.DeletarProdutoAction;
 import amazingcontrol.swing.produto.action.NovoProdutoAction;
 import amazingcontrol.swing.view.utils.PopupMouseAdapter;
 
@@ -58,7 +60,7 @@ public class TelaProduto extends JFrame {
 
 
 
-	public JTable getProdutoJTable() {
+	public JTable getJtProduto() {
 		return jtProduto;
 	}
 
@@ -107,12 +109,12 @@ public class TelaProduto extends JFrame {
 		JMenuItem item;
 
 		item = new JMenuItem("Alterar...");
-		// item.addActionListener(new FornecedorAlterarAction(this));
+		item.addActionListener(new AlterarProdutoAction(this));
 		menu.add(item);
 
 		item = new JMenuItem("Deletar...");
 
-		// item.addActionListener(new FornecedorDeletarAction(this));
+		item.addActionListener(new DeletarProdutoAction(this));
 		menu.add(item);
 
 		jtProduto.addMouseListener(new PopupMouseAdapter(menu));

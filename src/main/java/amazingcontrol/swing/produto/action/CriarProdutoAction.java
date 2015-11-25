@@ -36,6 +36,10 @@ public class CriarProdutoAction implements ActionListener {
 			// cria objeto com os dados digitados pelo usuario
 			Produto produto = new Produto(nome, marca, tipo, valorCusto, valorVenda, quantidade);
 			
+			if(view.getProduto() != null) {
+				produto.setId(view.getProduto().getId());
+			}
+			
 			// tenta salvar o objeto fornecedor no banco de dados
 			new ProdutoService().salvar(produto, fornecedor);
 			

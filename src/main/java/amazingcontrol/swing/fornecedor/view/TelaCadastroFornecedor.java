@@ -17,9 +17,9 @@ import javax.swing.text.MaskFormatter;
 
 import amazingcontrol.model.Fornecedor;
 import amazingcontrol.model.UF;
-import amazingcontrol.swing.fornecedor.action.CancelarFornecedorAction;
 import amazingcontrol.swing.fornecedor.action.CriarFornecedorAction;
 import amazingcontrol.swing.view.utils.CustomizeView;
+import amazingcontrol.swing.view.utils.WindowCancelarAction;
 
 public class TelaCadastroFornecedor extends JDialog {
 
@@ -60,10 +60,6 @@ public class TelaCadastroFornecedor extends JDialog {
 	}
 
 	// Getters and Setters
-
-	// private void initListeners() {
-	// cadastrarBt.addActionListener(new CriarFornecedorAction(this));
-	// }
 
 	public JComboBox<Object> getUfJComboBox() {
 		return ufJComboBox;
@@ -314,7 +310,7 @@ public class TelaCadastroFornecedor extends JDialog {
 
 	private void initListeners() {
 		cadastrarBt.addActionListener(new CriarFornecedorAction(this));
-		cancelarBt.addActionListener(new CancelarFornecedorAction(this));
+		cancelarBt.addActionListener(new WindowCancelarAction(this, "[A-CONTROL] Fornecedor"));
 
 	}
 

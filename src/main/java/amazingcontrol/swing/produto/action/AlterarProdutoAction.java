@@ -20,7 +20,7 @@ public class AlterarProdutoAction implements ActionListener {
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		// recupera a linha selecionada pelo usuario
-		int row = produtoView.getProdutoJTable().getSelectedRowCount();
+		int row = produtoView.getJtProduto().getSelectedRowCount();
 
 		// caso a linha for igual a zero, pede para o usuario selecionar alguma
 		if (row == 0) {
@@ -29,7 +29,7 @@ public class AlterarProdutoAction implements ActionListener {
 		}
 
 		// recupera todas as linhas selecionada pelo usuario
-		int[] indexes = produtoView.getProdutoJTable().getSelectedRows();
+		int[] indexes = produtoView.getJtProduto().getSelectedRows();
 
 		// caso tenha mais de uma linha selecionada pede para selecionar apenas
 		// uma
@@ -39,31 +39,35 @@ public class AlterarProdutoAction implements ActionListener {
 		}
 
 		// recupera a linha selecionada
-		int rowSelected = produtoView.getProdutoJTable().getSelectedRow();
+		int rowSelected = produtoView.getJtProduto().getSelectedRow();
 
 		// Cliente inicia com o valor nulo
 		Produto produto = null;
 
 		// recupera o cliente selecionado
-		produto = (Produto) produtoView.getProdutoJTable().getModel().getValueAt(rowSelected, 0);
+		produto = (Produto) produtoView.getJtProduto().getModel().getValueAt(rowSelected, 0);
 
 		// abre a tela de cadastro setando os campos os dados do cliente a ser
 		// alterado
 		TelaCadastroProduto cadastroProdutoView = new TelaCadastroProduto(produtoView);
-//		cadastroProdutoView.setProduto(produto);
-//		cadastroProdutoView.getNomeTextField().setText(produto.getNome());
-//		cadastroProdutoView.getMarcaTextField().setText(produto.getMarca());
-//		cadastroProdutoView.getTipoTextField().setText(produto.getTipo());
-//		cadastroProdutoView.getValorCustoTextField().setText(produto.getValorCusto());
-//		cadastroProdutoView.getValorVendaTextField().setText(produto.getValorVenda());
-//		cadastroProdutoView.getQuantidadeTextField().setText(produto.getQuantidade());
-//		cadastroProdutoView.getCadastrarButton().setText("Alterar");
-//		cadastroProdutoView.setVisible(true);
+		cadastroProdutoView.setProduto(produto);
+		cadastroProdutoView.getNomeText().setText(produto.getNome());
+		cadastroProdutoView.getMarcaText().setText(produto.getMarca());
+		cadastroProdutoView.getTipoComboBox().setSelectedItem(produto.getTipo());
+
+		String valorCusto = "" + produto.getValorCusto();
+		cadastroProdutoView.getValorCustoText().setText(valorCusto);
+		String valorVenda = "" + produto.getValorVenda();
+		cadastroProdutoView.getValorVendaText().setText(valorVenda);
+		String quantidade = "" + produto.getQuantidade();
+		cadastroProdutoView.getQuantidadeDeProdutoText().setText(quantidade);
+		cadastroProdutoView.getCadastrarBt().setText("Alterar");
+		cadastroProdutoView.setVisible(true);
 
 		// se cliente for diferente de nulo, limpa a selecao e recarrega os
 		// clientes
 		if (produto != null) {
-			produtoView.getProdutoJTable().clearSelection();
+			produtoView.getJtProduto().clearSelection();
 			produtoView.carregarProdutos();
 		}
 	}

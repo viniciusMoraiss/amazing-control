@@ -21,7 +21,7 @@ public class DeletarProdutoAction implements ActionListener {
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		int rows = view.getProdutoJTable().getSelectedRowCount();
+		int rows = view.getJtProduto().getSelectedRowCount();
 
 		if (rows == 0) {
 			showMessageDialog(view, "Selecione uma linha ou mais linha!");
@@ -33,16 +33,16 @@ public class DeletarProdutoAction implements ActionListener {
 		}
 
 		try {
-			int[] indexes = view.getProdutoJTable().getSelectedRows();
+			int[] indexes = view.getJtProduto().getSelectedRows();
 			Produto produto = null;
 
 			for (int index : indexes) {
-				produto = (Produto) view.getProdutoJTable().getModel().getValueAt(index, 0);
+				produto = (Produto) view.getJtProduto().getModel().getValueAt(index, 0);
 				new ProdutoService().deletar(produto);
 			}
 
 			if (produto != null) {
-				view.getProdutoJTable().clearSelection();
+				view.getJtProduto().clearSelection();
 				view.carregarProdutos();
 			}
 
