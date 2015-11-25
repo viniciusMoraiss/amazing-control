@@ -39,9 +39,9 @@ public class AdicionarProdutoAction implements ActionListener {
 		
 		try {
 			
-			view.getVenda().addProdutos(produto, quantidade);
+			view.getAdicionarService().addProdutos(produto, quantidade);
 
-			List<Produto> produtos = view.getVenda().getProdutos();
+			List<Produto> produtos = view.getAdicionarService().getProdutos();
 
 			for (Produto p : produtos) {
 				//"Nome", "Marca", "Tipo", "Valor Venda", "Quantidade", "Valor Total" 

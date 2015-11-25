@@ -23,7 +23,7 @@ public class FinalizarVendaAction implements ActionListener {
 	public void actionPerformed(ActionEvent e) {
 		Venda venda = view.getVenda();
 
-		List<Produto> produtos = venda.getProdutos();
+		List<Produto> produtos = view.getAdicionarService().getProdutos();
 
 		try {
 			// tenta cadastrar a venda de cada produto no banco de dados
@@ -33,7 +33,7 @@ public class FinalizarVendaAction implements ActionListener {
 			}
 			
 			// foi realizado pelo menos uma venda
-			if(venda.getProdutos().size() > 0 ) {
+			if(produtos.size() > 0 ) {
 				JOptionPane.showMessageDialog(view, "Venda efetuada com sucesso");
 			} else {
 				JOptionPane.showMessageDialog(view, "Finalizado sem nenhuma venda");

@@ -52,4 +52,5 @@ public class FinalizarVendaService {
 			con.rollback();
 		}
 	}
+
 }

@@ -21,6 +21,7 @@ import amazingcontrol.model.Cliente;
 import amazingcontrol.model.Produto;
 import amazingcontrol.model.Usuario;
 import amazingcontrol.model.Venda;
+import amazingcontrol.service.AdicionarProdutoService;
 import amazingcontrol.service.ProdutoService;
 import amazingcontrol.swing.vendas.action.AdicionarProdutoAction;
 import amazingcontrol.swing.vendas.action.FinalizarVendaAction;
@@ -34,11 +35,13 @@ public class TelaVenderProdutos extends JDialog {
 	private JButton finalizarVendaButton;
 	private JTable produtosJTable;
 	private Venda venda;
+	private AdicionarProdutoService adicionarService;
 	private Component quantidadeLabel;
 
 	public TelaVenderProdutos(TelaPesquisarCliente telaPesquisarCliente, Usuario usuario, Cliente cliente) {
 		super();
-
+		
+		adicionarService = new AdicionarProdutoService();
 		venda = new Venda(usuario, cliente, Calendar.getInstance());
 
 		initComponents();
@@ -104,6 +107,10 @@ public class TelaVenderProdutos extends JDialog {
 
 	public Venda getVenda() {
 		return venda;
+	}
+	
+	public AdicionarProdutoService getAdicionarService() {
+		return adicionarService;
 	}
 
 	private void initListeners() {
