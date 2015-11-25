@@ -8,6 +8,8 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.sql.SQLException;
 
+import javax.swing.JOptionPane;
+
 import amazingcontrol.model.Fornecedor;
 import amazingcontrol.model.Produto;
 import amazingcontrol.model.Tipo;
@@ -15,7 +17,7 @@ import amazingcontrol.service.ProdutoService;
 import amazingcontrol.swing.produto.view.TelaCadastroProduto;
 
 public class CriarProdutoAction implements ActionListener {
-	
+
 	private TelaCadastroProduto view;
 
 	public CriarProdutoAction(TelaCadastroProduto view) {
@@ -27,30 +29,53 @@ public class CriarProdutoAction implements ActionListener {
 		String nome = view.getNomeText().getText();
 		String marca = view.getMarcaText().getText();
 		Tipo tipo = (Tipo) view.getTipoComboBox().getSelectedItem();
-		double valorCusto = Double.parseDouble(view.getValorCustoText().getText());
-		double valorVenda = Double.parseDouble(view.getValorVendaText().getText());
+
+		String valorTxt = view.getValorCustoText().getText();
+		double valorCusto = 0;
+		if (!valorTxt.isEmpty()) {
+			valorCusto = Double.parseDouble(valorTxt);
+		} else {
+			showMessageDialog(view, "Digite um valor", "ERRO", JOptionPane.ERROR_MESSAGE);
+			return;
+		}
+
+		String valorV = view.getQuantidadeDeProdutoText().getText();
+
+		double valorVenda = 0;
+		if (!valorV.isEmpty()) {
+			valorVenda = Double.parseDouble(valorV);
+		} else {
+			showMessageDialog(view, "Digite um valor", "ERRO", JOptionPane.ERROR_MESSAGE);
+			return;
+		}
+
 		int quantidade = Integer.parseInt(view.getQuantidadeDeProdutoText().getText());
+
+		if (quantidade <= 0) {
+			showMessageDialog(view, "Valor deve ser maior ou igual 1", "ERRO", JOptionPane.ERROR_MESSAGE);
+			return;
+		}
 		Fornecedor fornecedor = (Fornecedor) view.getFornecedorCombo().getSelectedItem();
-		
+
 		try {
 			// cria objeto com os dados digitados pelo usuario
 			Produto produto = new Produto(nome, marca, tipo, valorCusto, valorVenda, quantidade);
-			
-			if(view.getProduto() != null) {
+
+			if (view.getProduto() != null) {
 				produto.setId(view.getProduto().getId());
 			}
-			
+
 			// tenta salvar o objeto fornecedor no banco de dados
 			new ProdutoService().salvar(produto, fornecedor);
-			
+
 			// mensagem de sucesso
 			showMessageDialog(view, "Inserido com sucesso", "OK", INFORMATION_MESSAGE);
-			
+
 			// recarrega os produtos
 			view.getProdutos();
-			
+
 			view.dispose();
-			
+
 		} catch (SQLException | IllegalArgumentException ex) {
 			ex.printStackTrace();
 			showMessageDialog(view, ex.getMessage(), "Erro", ERROR_MESSAGE);
