@@ -8,6 +8,7 @@ import javax.swing.JMenuItem;
 import amazingcontrol.model.Usuario;
 import amazingcontrol.swing.cliente.action.TelaClienteAction;
 import amazingcontrol.swing.fornecedor.action.TelaFornecedorAction;
+import amazingcontrol.swing.principal.vendas.action.TelaProdutosVendidosAction;
 import amazingcontrol.swing.produto.action.TelaProdutoAction;
 import amazingcontrol.swing.usuario.action.TelaAlterarSenhaUsuarioAction;
 import amazingcontrol.swing.usuario.action.TelaUsuarioAction;
@@ -169,6 +170,10 @@ public class TelaPrincipal extends JFrame {
 
 		menuItem = new JMenuItem("Vender");
 		menuItem.addActionListener(new TelaVendasAction(usuario));
+		menu.add(menuItem);
+		
+		menuItem = new JMenuItem("Consulta produtos vendidos");
+		menuItem.addActionListener(new TelaProdutosVendidosAction(this));
 		menu.add(menuItem);
 	}
 }
