@@ -16,15 +16,15 @@ public class FornecedorService {
 	 * Cria acesso ao metodos do banco já no construtor
 	 */
 	public FornecedorService() throws SQLException {
-		dao = new FornecedorDAO();
 		con = ConexaoMySQL.conectar();
+		dao = new FornecedorDAO(con);
 	}
 
 	/*
 	 * metodo para carregar lista de fornecedor
 	 */
 	public List<Fornecedor> listar() {
-		return dao.lista(con);
+		return dao.lista();
 	}
 
 	/*
@@ -35,9 +35,9 @@ public class FornecedorService {
 	 */
 	public void salvar(Fornecedor fornecedor) {
 		if (fornecedor.isNullId()) {
-			dao.inserir(con, fornecedor);
+			dao.inserir(fornecedor);
 		} else {
-			dao.atualizar(con, fornecedor);
+			dao.atualizar(fornecedor);
 		}
 	}
 
@@ -45,11 +45,11 @@ public class FornecedorService {
 	 * Metodo para deletar fornecedor
 	 */
 	public void deletar(Fornecedor fornecedor) {
-		dao.deletar(con, fornecedor);
+		dao.deletar(fornecedor);
 	}
 
 	public Fornecedor getFornecedorPorId(Integer idFornecedor) {
-		return dao.getFornecedorPorId(con, idFornecedor);
+		return dao.getFornecedorPorId(idFornecedor);
 	}
 	
 }

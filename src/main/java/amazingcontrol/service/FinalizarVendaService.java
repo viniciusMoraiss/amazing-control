@@ -4,8 +4,6 @@ import java.sql.Connection;
 import java.sql.SQLException;
 
 import amazingcontrol.connection.ConexaoMySQL;
-import amazingcontrol.dao.ItensVendasDAO;
-import amazingcontrol.dao.ProdutoDAO;
 import amazingcontrol.dao.VendasDAO;
 import amazingcontrol.model.ItensVendas;
 import amazingcontrol.model.Produto;
@@ -23,8 +21,8 @@ public class FinalizarVendaService {
 			con.setAutoCommit(false);
 			
 			// tenta cadastrar a venda
-			vendasDAO = new VendasDAO();
-			vendasDAO.cadastrar(con, venda);
+			vendasDAO = new VendasDAO(con);
+			vendasDAO.cadastrar(venda);
 			
 			// recupera o id da venda cadastrada
 			venda.setId(vendasDAO.getUltimaVenda());
@@ -32,7 +30,7 @@ public class FinalizarVendaService {
 			// cria a itens vendas com os dados da venda
 			ItensVendas itensVendas = new ItensVendas(venda, produto, produto.getQuantidade());
 			
-			new ItensVendasDAO().inserir(itensVendas, con);
+			new ItensVendasService().cadastrar(itensVendas);
 			
 			int quantidadeVendida = produto.getQuantidade();
 
@@ -43,13 +41,15 @@ public class FinalizarVendaService {
 			produto.setQuantidade(quantidadeBanco - quantidadeVendida);
 			
 			// TODO deve chamar o service
-			new ProdutoDAO().atualizar(con, produto, produto.getFornecedor());
+			new ProdutoService().salvar(produto, produto.getFornecedor());
 			
 			// commita as transacoes caso não tenha nenhum erro
 			con.commit();
 		} catch (SQLException e) {
 			e.printStackTrace();
 			con.rollback();
+		} finally {
+			ConexaoMySQL.desconectar(con);
 		}
 	}
 

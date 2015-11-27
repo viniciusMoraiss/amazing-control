@@ -20,15 +20,15 @@ public class UsuarioService {
 	 * Cria acesso ao metodos do banco já no construtor
 	 */
 	public UsuarioService() throws SQLException {
-		dao = new UsuarioDAO();
 		con = ConexaoMySQL.conectar();
+		dao = new UsuarioDAO(con);
 	}
 	
 	/*
 	 * metodo para carregar lista de usuarios
 	 */
 	public List<Usuario> listar() {
-		return dao.lista(con);
+		return dao.lista();
 	}
 	
 	/*
@@ -39,9 +39,9 @@ public class UsuarioService {
 	 */
 	public void salvar(Usuario usuario) {
 		if (usuario.isNullId()) {
-			dao.inserir(con, usuario);
+			dao.inserir(usuario);
 		} else {
-			dao.atualizar(con, usuario);
+			dao.atualizar(usuario);
 		}
 	}
 	
@@ -49,19 +49,19 @@ public class UsuarioService {
 	 * Metodo para deletar usuario
 	 */
 	public void deletar(Usuario usuario) {
-		dao.deletar(con, usuario);
+		dao.deletar(usuario);
 	}
 	
 	public Usuario getUsuario(String nome, String senha) {
-		return dao.getUsuario(con, nome, senha);
+		return dao.getUsuario( nome, senha);
 	}
 	
 	public boolean alterarStatus(Usuario usuario) {
-		return dao.alterarStatus(con, usuario);
+		return dao.alterarStatus(usuario);
 	}
 
 	public Usuario getUsuarioPorId(int id) {
-		return dao.getUsuarioPorId(con, id);
+		return dao.getUsuarioPorId(id);
 	}
 	
 }

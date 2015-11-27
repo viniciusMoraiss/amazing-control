@@ -10,18 +10,23 @@ import java.util.List;
 import amazingcontrol.model.Usuario;
 
 /**
- * Classe UsuarioDAO (Data Access Object)
- * Reponsável por toda logica que envolve codigos
- * referente a banco de dados da classe usuario
+ * Classe UsuarioDAO (Data Access Object) Reponsável por toda logica que envolve
+ * codigos referente a banco de dados da classe usuario
  */
 public class UsuarioDAO {
+
+	private Connection con;
+
+	public UsuarioDAO(Connection con) {
+		this.con = con;
+	}
 
 	/*
 	 * (non-Javadoc)
 	 * 
 	 * @see amazingcontrol.dao.Crud#inserir(java.lang.Object)
 	 */
-	public void inserir(Connection con, Usuario usuario) {
+	public void inserir(Usuario usuario) {
 		PreparedStatement stmt = null;
 		String sql = "INSERT INTO usuarios(nome, senha, confirmacaoSenha, ativo) VALUES (?,?,?,?)";
 
@@ -43,10 +48,10 @@ public class UsuarioDAO {
 	 * 
 	 * @see amazingcontrol.dao.Crud#atualizar(java.lang.Object)
 	 */
-	public void atualizar(Connection con, Usuario usuario) {
+	public void atualizar(Usuario usuario) {
 		String sql = "UPDATE usuarios SET nome = ?, senha = ?, confirmacaoSenha = ?, ativo = ? WHERE id = ?";
-		
-		try(PreparedStatement stmt = con.prepareStatement(sql);) {
+
+		try (PreparedStatement stmt = con.prepareStatement(sql);) {
 			// prepara consulta
 			stmt.setString(1, usuario.getNome());
 			stmt.setString(2, usuario.getSenha());
@@ -72,12 +77,12 @@ public class UsuarioDAO {
 	 * 
 	 * @see amazingcontrol.dao.Crud#deletar(java.lang.Object)
 	 */
-	public void deletar(Connection con, Usuario usuario) {
+	public void deletar(Usuario usuario) {
 		// TODO verificar se usuario possui venda, caso contrario não pode ser
 		// deletado. Implementar quando tiver a classe venda
 		String sql = "DELETE FROM usuarios WHERE id = ? ";
-		
-		try(PreparedStatement stmt = con.prepareStatement(sql)) {
+
+		try (PreparedStatement stmt = con.prepareStatement(sql)) {
 			stmt.setInt(1, usuario.getId());
 			stmt.execute();
 		} catch (SQLException e) {
@@ -90,13 +95,13 @@ public class UsuarioDAO {
 	 * 
 	 * @see amazingcontrol.dao.Crud#lista()
 	 */
-	public List<Usuario> lista(Connection con) {
+	public List<Usuario> lista() {
 		List<Usuario> usuarios = new ArrayList<>();
 		String sql = "SELECT * FROM usuarios";
-		
-		try(PreparedStatement stmt = con.prepareStatement(sql)) {
+
+		try (PreparedStatement stmt = con.prepareStatement(sql)) {
 			// executa a consulta sql
-			try(ResultSet rs = stmt.executeQuery();){
+			try (ResultSet rs = stmt.executeQuery();) {
 				Usuario usuario;
 
 				while (rs.next()) {
@@ -121,21 +126,22 @@ public class UsuarioDAO {
 	 * metodo que recupera um usuario caso ele exista de acordo com os
 	 * parametros
 	 */
-	public Usuario getUsuario(Connection con, String nome, String senha) {
+	public Usuario getUsuario(String nome, String senha) {
 		Usuario usuario = null;
 		String sql = "SELECT * FROM usuarios where nome = ? and senha = ?";
 
-		try (PreparedStatement stmt = con.prepareStatement(sql)){
+		try (PreparedStatement stmt = con.prepareStatement(sql)) {
 			stmt.setString(1, nome);
 			stmt.setString(2, senha);
-			
+
 			// executa a consulta sql
-			try(ResultSet rs = stmt.executeQuery()) {
+			try (ResultSet rs = stmt.executeQuery()) {
 				while (rs.next()) {
 					String nomeBanco = rs.getString("nome");
 					String senhaBanco = rs.getString("senha");
 
-					// retorna usuario se a senha e login for igual ao do banco de dados
+					// retorna usuario se a senha e login for igual ao do banco
+					// de dados
 					if (nomeBanco.equals(nome) && senhaBanco.equals(senha)) {
 						usuario = new Usuario();
 						usuario.setId(rs.getInt("id"));
@@ -152,7 +158,7 @@ public class UsuarioDAO {
 		return usuario;
 	}
 
-	public Usuario getUsuarioPorId(Connection con, Integer id) {
+	public Usuario getUsuarioPorId(Integer id) {
 		Usuario usuario = null;
 		String sql = "SELECT * FROM usuarios where id = ?";
 
@@ -177,12 +183,12 @@ public class UsuarioDAO {
 		return usuario;
 	}
 
-	public boolean alterarStatus(Connection con, Usuario usuario) {
+	public boolean alterarStatus(Usuario usuario) {
 		String sql = "UPDATE usuarios SET ativo = ?  WHERE id = ?";
 		boolean alterou = false;
 
 		try (PreparedStatement stmt = con.prepareStatement(sql)) {
-			Usuario usuarioBanco = getUsuarioPorId(con, usuario.getId());
+			Usuario usuarioBanco = getUsuarioPorId(usuario.getId());
 
 			if (usuarioBanco != null && usuarioBanco.isAtivo() != usuario.isAtivo()) {
 				stmt.setBoolean(1, usuario.isAtivo());

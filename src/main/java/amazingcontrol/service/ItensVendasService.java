@@ -12,12 +12,16 @@ public class ItensVendasService {
 	private Connection con;
 
 	public ItensVendasService() {
-		dao = new ItensVendasDAO();
 		con = ConexaoMySQL.conectar();
+		dao = new ItensVendasDAO(con);
+	}
+	
+	public void cadastrar(ItensVendas itensVendas) {
+		dao.inserir(itensVendas);
 	}
 
 	public List<ItensVendas> listVendas() {
-		return dao.listVendas(con);
+		return dao.listVendas();
 	}
 
 }

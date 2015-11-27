@@ -22,7 +22,7 @@ public class ClienteService {
 	 */
 	public ClienteService() throws SQLException {
 		con = ConexaoMySQL.conectar();
-		dao = new ClienteDAO();
+		dao = new ClienteDAO(con);
 	}
 
 	/**
@@ -30,7 +30,7 @@ public class ClienteService {
 	 * @return lista de usuarios
 	 */
 	public List<Cliente> listar() {
-		return dao.lista(con);
+		return dao.lista();
 	}
 
 	/**
@@ -45,9 +45,9 @@ public class ClienteService {
 		// validar(cliente);
 
 		if (cliente.isNullId()) {
-			dao.inserir(con, cliente);
+			dao.inserir(cliente);
 		} else {
-			dao.atualizar(con, cliente);
+			dao.atualizar(cliente);
 		}
 	}
 
@@ -61,6 +61,6 @@ public class ClienteService {
 	}
 
 	public Cliente getClientePorId(int id) {
-		return dao.clientePorId(con, id);
+		return dao.clientePorId(id);
 	}
 }

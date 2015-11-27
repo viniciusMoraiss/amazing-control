@@ -11,8 +11,13 @@ import amazingcontrol.model.Venda;
 public class VendasDAO {
 
 	private int ultimaVenda;
+	private Connection con;
 
-	public void cadastrar(Connection con, Venda venda) {
+	public VendasDAO(Connection con) {
+		this.con = con;
+	}
+
+	public void cadastrar(Venda venda) {
 		PreparedStatement stmt = null;
 		String sql = "INSERT INTO vendas (data, cliente_id, usuario_id) values ( ?, ?, ?)";
 

@@ -2,12 +2,13 @@ package amazingcontrol.connection;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
 import java.sql.SQLException;
 
 public class ConexaoMySQL {
-
+	
+	private static Connection con = null;
+	
+	
 	public static Connection conectar() {
 
 		// tenta localizar o driver
@@ -16,31 +17,28 @@ public class ConexaoMySQL {
 		} catch (ClassNotFoundException e) {
 			e.printStackTrace();
 		}
-
-		Connection conn = null;
-
+		
 		// tenta conectar
 		try {
-			String user = "amazing";
-			String senha = "";
-			conn = DriverManager.getConnection("jdbc:mysql://localhost/amazing_control", user, senha);
+			
+			if(con == null){
+				String user = "amazing";
+				String senha = "";
+				con = DriverManager.getConnection("jdbc:mysql://localhost/amazing_control", user, senha);
+				return con;
+			}
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-
-		return conn;
+		
+		return con;
 	}
 
-	public void desconectar(Connection conn, PreparedStatement pstm, ResultSet rs) {
+	public static void desconectar(Connection conn) {
 		try {
 			if (conn != null) {
 				conn.close();
-			}
-			if (pstm != null) {
-				pstm.close();
-			}
-			if (rs != null) {
-				rs.close();
+				conn = null;
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();

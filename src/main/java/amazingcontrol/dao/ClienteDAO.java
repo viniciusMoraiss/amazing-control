@@ -12,7 +12,13 @@ import amazingcontrol.model.UF;
 
 public class ClienteDAO {
 
-	public void inserir(Connection con, Cliente cliente) {
+	private Connection con;
+
+	public ClienteDAO(Connection con) {
+		this.con = con;
+	}
+	
+	public void inserir(Cliente cliente) {
 		String sql = "INSERT INTO clientes (nome, endereco, telefone , cidade, cep, uf) VALUES (?,?,?,?,?,?)";
 		try (PreparedStatement stmt = con.prepareStatement(sql)){
 			stmt.setString(1, cliente.getNome());
@@ -38,7 +44,7 @@ public class ClienteDAO {
 		} 
 	}
 
-	public List<Cliente> lista(Connection con) {
+	public List<Cliente> lista() {
 		List<Cliente> Clientes = new ArrayList<>();
 		String sql = " SELECT * FROM clientes";
 		
@@ -72,7 +78,7 @@ public class ClienteDAO {
 		return Clientes;
 	}
 
-	public void atualizar(Connection con, Cliente cliente) {
+	public void atualizar(Cliente cliente) {
 		String sql = "UPDATE clientes SET nome = ?, endereco= ?, telefone = ? , cidade = ?, cep = ?, uf= ? WHERE id = ?";
 	
 		try(PreparedStatement stmt = con.prepareStatement(sql)) {
@@ -89,7 +95,7 @@ public class ClienteDAO {
 		}
 	}
 
-	public Cliente clientePorId(Connection con, int id) {
+	public Cliente clientePorId(int id) {
 		Cliente cliente = null;
 		String sql = "SELECT * FROM clientes where id = ?";
 

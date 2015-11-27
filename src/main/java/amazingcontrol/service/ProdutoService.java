@@ -17,15 +17,15 @@ public class ProdutoService {
 	 * Cria acesso ao metodos do banco já no construtor
 	 */
 	public ProdutoService() throws SQLException{
-		dao = new ProdutoDAO();
 		con = ConexaoMySQL.conectar();
+		dao = new ProdutoDAO(con);
 	}
 
 	/*
 	 * metodo para carregar lista de produto
 	 */
 	public List<Produto> listar() {
-		return dao.lista(con);
+		return dao.lista();
 	}
 
 	/*
@@ -36,11 +36,10 @@ public class ProdutoService {
 	public void salvar(Produto produto, Fornecedor fornecedor) {
 		// valida produto antes de inserir ou atualizar
 		// validar(produto);
-
 		if (produto.isNullId()) {
-			dao.inserir(con, produto, fornecedor);
+			dao.inserir(produto, fornecedor);
 		} else {
-			dao.atualizar(con, produto, fornecedor);
+			dao.atualizar(produto, fornecedor);
 		}
 	}
 
@@ -48,14 +47,14 @@ public class ProdutoService {
 	 * Metodo para deletar produto
 	 */
 	public void deletar(Produto produto) {
-		dao.deletar(con, produto);
+		dao.deletar(produto);
 	}
 	
 	/**
 	 * recupera produto pelo id
 	 */
 	public Produto getProdutoPorId(int id) {
-		return dao.getProdutoPorId(con, id);
+		return dao.getProdutoPorId(id);
 	}
 
 }

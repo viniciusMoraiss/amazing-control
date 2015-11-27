@@ -13,8 +13,14 @@ import amazingcontrol.model.Tipo;
 import amazingcontrol.service.FornecedorService;
 
 public class ProdutoDAO {
+	
+	private Connection con;
 
-	public void inserir(Connection con, Produto produto, Fornecedor fornecedor) {
+	public ProdutoDAO(Connection con) {
+		this.con = con;
+	}
+
+	public void inserir(Produto produto, Fornecedor fornecedor) {
 		PreparedStatement stmt = null;
 		String sql = "INSERT INTO produtos(nome, marca, tipo, valorCusto, valorVenda, quantidade,fornecedores_id ) VALUES (?,?,?,?,?,?,?)";
 
@@ -33,7 +39,7 @@ public class ProdutoDAO {
 		}
 	}
 
-	public void atualizar(Connection con, Produto produto, Fornecedor fornecedor) {
+	public void atualizar(Produto produto, Fornecedor fornecedor) {
 		String sql = "UPDATE produtos SET nome = ?, marca = ?, tipo = ?, valorCusto = ?, valorVenda = ?, quantidade = ?, fornecedores_id = ? where id = ?";
 
 		try (PreparedStatement stmt = con.prepareStatement(sql);) {
@@ -51,7 +57,7 @@ public class ProdutoDAO {
 		}
 	}
 
-	public void deletar(Connection con, Produto produto) {
+	public void deletar(Produto produto) {
 		String sql = "DELETE FROM produtos WHERE id = ? ";
 
 		try (PreparedStatement stmt = con.prepareStatement(sql)) {
@@ -62,7 +68,7 @@ public class ProdutoDAO {
 		}
 	}
 
-	public List<Produto> lista(Connection con) {
+	public List<Produto> lista() {
 		List<Produto> produtos = new ArrayList<>();
 		String sql = " SELECT * FROM produtos";
 
@@ -104,7 +110,7 @@ public class ProdutoDAO {
 		return produtos;
 	}
 
-	public Produto getProdutoPorId(Connection con, int id) {
+	public Produto getProdutoPorId(int id) {
 		Produto produto = null;
 		String sql = "SELECT * FROM produtos where id = ?";
 

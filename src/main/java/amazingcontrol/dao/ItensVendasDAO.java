@@ -16,7 +16,14 @@ import amazingcontrol.model.Usuario;
 import amazingcontrol.model.Venda;
 
 public class ItensVendasDAO {
-	public void inserir(ItensVendas itensVendas, Connection con) {
+	
+	private Connection con;
+
+	public ItensVendasDAO(Connection con) {
+		this.con = con;
+	}
+	
+	public void inserir(ItensVendas itensVendas) {
 		PreparedStatement stmt = null;
 		String sql = "INSERT INTO itensVendas (produtos_id, vendas_id, valorTotal, quantidade) values (?, ?, ?, ?)";
 		
@@ -34,7 +41,7 @@ public class ItensVendasDAO {
 	}
 	
 	
-	public List<ItensVendas> listVendas(Connection con) {
+	public List<ItensVendas> listVendas() {
 		List<ItensVendas> itensVendidos = new ArrayList<>();
 		
 		String sql = "SELECT p.nome, p.tipo, p.valorVenda, iv.quantidade, c.nome, u.nome, v.data "
