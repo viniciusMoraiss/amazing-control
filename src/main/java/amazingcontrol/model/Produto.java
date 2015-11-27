@@ -85,7 +85,7 @@ public class Produto extends Entidate<Integer>{
 		this.quantidade = quantidade;
 	}
 
-	public Object getValorTotal() {
+	public Double getValorTotal() {
 		return quantidade * valorVenda;
 	}
 	
@@ -93,5 +93,4 @@ public class Produto extends Entidate<Integer>{
 	public String toString() {
 		return nome;
 	}
-
 }

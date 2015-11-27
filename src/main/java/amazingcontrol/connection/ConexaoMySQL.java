@@ -6,10 +6,12 @@ import java.sql.SQLException;
 
 public class ConexaoMySQL {
 	
+
 	private static Connection con = null;
 	
-	
 	public static Connection conectar() {
+		String user = "amazing";
+		String senha = "";
 
 		// tenta localizar o driver
 		try {
@@ -22,15 +24,13 @@ public class ConexaoMySQL {
 		try {
 			
 			if(con == null){
-				String user = "amazing";
-				String senha = "";
 				con = DriverManager.getConnection("jdbc:mysql://localhost/amazing_control", user, senha);
-				return con;
+				System.out.println("Conexao aberta");
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		
+			
 		return con;
 	}
 
@@ -39,6 +39,7 @@ public class ConexaoMySQL {
 			if (conn != null) {
 				conn.close();
 				conn = null;
+				System.out.println("Conexao fechada");
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();

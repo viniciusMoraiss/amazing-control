@@ -104,7 +104,7 @@ public class TelaPrincipal extends JFrame {
 		menu = new JMenu("Produtos");
 		menuBar.add(menu);
 
-		menuItem = new JMenuItem("Cadastrar de produtos");
+		menuItem = new JMenuItem("Consulta produtos");
 		menuItem.addActionListener(new TelaProdutoAction(this));
 		menu.add(menuItem);
 	}
@@ -138,7 +138,7 @@ public class TelaPrincipal extends JFrame {
 		menu = new JMenu("Clientes");
 		menuBar.add(menu);
 
-		menuItem = new JMenuItem("Cadastrar novo cliente");
+		menuItem = new JMenuItem("Consulta novo cliente");
 		menuItem.addActionListener(new TelaClienteAction(this));
 		menu.add(menuItem);
 	}
@@ -168,7 +168,7 @@ public class TelaPrincipal extends JFrame {
 		menu = new JMenu("Vendas");
 		menuBar.add(menu);
 
-		menuItem = new JMenuItem("Vender");
+		menuItem = new JMenuItem("Vender produtos");
 		menuItem.addActionListener(new TelaVendasAction(usuario));
 		menu.add(menuItem);
 		

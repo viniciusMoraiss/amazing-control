@@ -22,7 +22,7 @@ public class ProdutoDAO {
 
 	public void inserir(Produto produto, Fornecedor fornecedor) {
 		PreparedStatement stmt = null;
-		String sql = "INSERT INTO produtos(nome, marca, tipo, valorCusto, valorVenda, quantidade,fornecedores_id ) VALUES (?,?,?,?,?,?,?)";
+		String sql = "INSERT INTO produtos(nome, marca, tipo, valorCusto, valorVenda, quantidade, fornecedores_id ) VALUES (?,?,?,?,?,?,?)";
 
 		try {
 			stmt = con.prepareStatement(sql);

@@ -1,17 +1,14 @@
 package amazingcontrol.model;
 
 import java.util.Calendar;
-import java.util.List;
 
 public class Venda extends Entidate<Integer> {
 
 	private Cliente cliente;
 	private Usuario usuario;
 	private Calendar date;
-	List<Produto> produtos;
 
 	public Venda() {
-
 	}
 
 	public Venda(Usuario usuario, Cliente cliente, Calendar date) {

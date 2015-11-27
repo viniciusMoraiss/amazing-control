@@ -3,6 +3,7 @@ package amazingcontrol.swing.produto.view;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.Insets;
+import java.awt.Dialog.ModalityType;
 import java.sql.SQLException;
 import java.util.List;
 
@@ -55,12 +56,10 @@ public class TelaCadastroProduto extends JDialog {
 		initComponents();
 		initPainel();
 		initListeners();
-
+		
 		setTitle(("[A-CONTROL] Produto"));
 		setSize(630, 470);
 		setResizable(false);
-		setVisible(true);
-		setLocationRelativeTo(null);
 		setLocationRelativeTo(view);
 		setModalityType(ModalityType.DOCUMENT_MODAL);
 		setModal(true);

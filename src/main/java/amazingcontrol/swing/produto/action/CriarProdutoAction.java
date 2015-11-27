@@ -31,6 +31,7 @@ public class CriarProdutoAction implements ActionListener {
 		Tipo tipo = (Tipo) view.getTipoComboBox().getSelectedItem();
 
 		String valorTxt = view.getValorCustoText().getText();
+		
 		double valorCusto = 0;
 		if (!valorTxt.isEmpty()) {
 			valorCusto = Double.parseDouble(valorTxt);
@@ -39,11 +40,11 @@ public class CriarProdutoAction implements ActionListener {
 			return;
 		}
 
-		String valorV = view.getQuantidadeDeProdutoText().getText();
+		String valorVendaEmTexto = view.getValorVendaText().getText();
 
 		double valorVenda = 0;
-		if (!valorV.isEmpty()) {
-			valorVenda = Double.parseDouble(valorV);
+		if (!valorVendaEmTexto.isEmpty()) {
+			valorVenda = Double.parseDouble(valorVendaEmTexto);
 		} else {
 			showMessageDialog(view, "Digite um valor", "ERRO", JOptionPane.ERROR_MESSAGE);
 			return;

@@ -48,9 +48,7 @@ public class FinalizarVendaService {
 		} catch (SQLException e) {
 			e.printStackTrace();
 			con.rollback();
-		} finally {
-			ConexaoMySQL.desconectar(con);
-		}
+		} 
 	}
 
 }
