@@ -1,4 +1,5 @@
 # Amazing-control
+Projeto feito para atender conclusão de semestre da faculdade.
 
 ## Configurando o ambiente
 
