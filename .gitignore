@@ -2,7 +2,7 @@
 .classpath
 /bin
 *.class
-/build/
+/build
 .settings/
-.project/
-.gradle/
+.project
+.gradle
