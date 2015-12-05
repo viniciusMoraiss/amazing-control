@@ -34,8 +34,6 @@ public class ProdutoService {
 	 * - caso o id seja diferente de null ira atualizar um produto existente
 	 */
 	public void salvar(Produto produto, Fornecedor fornecedor) {
-		// valida produto antes de inserir ou atualizar
-		// validar(produto);
 		if (produto.isNullId()) {
 			dao.inserir(produto, fornecedor);
 		} else {
